@@ -1,0 +1,52 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cchwCH2r.s 			page 1
+
+
+   1              	# 0 "./progs/eg0515.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0515.S"
+   5              	# eg0515.s
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 0000FF00 	 str: .byte 0,0,-1,0,0,0,39,67,9,10
+   8      00002743 
+   8      090A
+   9              	 .equ count, .- str
+  10 000a 206E6F74 	 msg: .ascii " not found!\n"
+  10      20666F75 
+  10      6E64210A 
+  11              	
+  12 0016 00000000 	 .text #定义代码段
+  12      00000000 
+  12      0000
+  13              	        .globl main
+  14              	main: # 程序执行起始位置
+  15 0000 488D1D00 	 lea rbx,str[rip]
+  15      000000
+  16 0007 B90A0000 	 mov ecx,count #计算器ecx清零
+  16      00
+  17 000c B8FFFFFF 	 mov eax, -1 #rdx记录下标
+  17      FF
+  18              	
+  19 0011 FFC0     	 again: inc eax
+  20              	 #movsx rax, eax
+  21 0013 803C0300 	 cmp byte ptr [rbx+rax], 0 #是否为0
+  22 0017 E1F8     	 loopz again #ZF=1,即是0则继续比较
+  23              	
+  24 0019 67E307   	 jecxz nofound #循环结束，如果ecx=0, 表示没有找到,等同于jz
+  25              	
+  26              	
+  27 001c E8000000 	 call dispsid #显示下标
+  27      00
+  28 0021 EB0C     	 jmp done
+  29              	 nofound:
+  30 0023 488D050A 	 lea rax, msg[rip]
+  30      000000
+  31 002a E8000000 	 call dispmsg #显示not found
+  31      00
+  32              	 done:
+  33 002f B8000000 	      mov eax,0
+  33      00
+  34 0034 C3909090 	   ret # 程序正常执行结束
+  34      90909090 
+  34      90909090 

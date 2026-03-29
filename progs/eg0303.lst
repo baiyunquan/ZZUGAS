@@ -1,0 +1,42 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccBZqRQo.s 			page 1
+
+
+   1              	# 0 "./progs/eg0303.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0303.S"
+   6              	
+   7              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   8              	 .data #定义数据段
+   9 0000 78563412 	    x: .long 0x12345678,0x9ABCDEF0
+   9      F0DEBC9A 
+  10 0008 31323334 	    y: .ascii "12345"
+  10      35
+  11 000d 000000   	 .text #定义代码段
+  12              	        .globl main
+  13              	main: # 程序执行起始位置
+  14 0000 8B050000 	    mov eax,x[rip]
+  14      0000
+  15 0006 E8000000 	    call disphd
+  15      00
+  16 000b E8000000 	    call dispcrlf
+  16      00
+  17 0010 8B050800 	    mov eax,y[rip]
+  17      0000
+  18 0016 E8000000 	    call disphd
+  18      00
+  19 001b E8000000 	    call dispcrlf
+  19      00
+  20 0020 488B0504 	    mov rax,x[rip+4]
+  20      000000
+  21 0027 E8000000 	    call disphx
+  21      00
+  22 002c E8000000 	    call dispcrlf
+  22      00
+  23              	    #主程序（指令待填）
+  24 0031 B8000000 	    mov eax,0
+  24      00
+  25 0036 C3909090 	 ret # 程序正常执行结束
+  25      90909090 
+  25      9090

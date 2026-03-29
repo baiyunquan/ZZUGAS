@@ -1,0 +1,51 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccOIjdJm.s 			page 1
+
+
+   1              	# 0 "./progs/eg0301.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0301.S"
+   5              	
+   6              	.intel_syntax noprefix
+   7              	.data
+   8              	.text
+   9              	 .globl main
+  10              	main: # 程序执行起始位置
+  11 0000 B064     	mov al, 100
+  12 0002 E8000000 	call disphb
+  12      00
+  13 0007 E8000000 	call dispcrlf
+  13      00
+  14 000c 66B86400 	mov ax, 100
+  15 0010 E8000000 	call disphw
+  15      00
+  16 0015 E8000000 	call dispcrlf
+  16      00
+  17 001a B8640000 	mov eax, 100
+  17      00
+  18 001f E8000000 	call disphd
+  18      00
+  19 0024 E8000000 	call dispcrlf
+  19      00
+  20 0029 48C7C064 	mov rax, 100
+  20      000000
+  21 0030 E8000000 	call disphx
+  21      00
+  22 0035 E8000000 	call dispcrlf
+  22      00
+  23 003a 48B8F1DE 	mov rax, 0x123456789abcdef1
+  23      BC9A7856 
+  23      3412
+  24 0044 E8000000 	call disphx
+  24      00
+  25 0049 E8000000 	call dispcrlf
+  25      00
+  26              	
+  27              	
+  28              	
+  29 004e B8000000 	mov eax,0
+  29      00
+  30 0053 C3909090 	ret
+  30      90909090 
+  30      90909090 
+  30      90

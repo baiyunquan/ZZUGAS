@@ -1,0 +1,199 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc9vsqKR.s 			page 1
+
+
+   1              	# 0 "./progs/eg0506a.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0506a.S"
+   5              	 .file "eg0506.c"
+   6              	 .intel_syntax noprefix
+   7              	 .text
+   8              	 .p2align 4
+   9              	 .globl caculator
+  10              	 .def caculator; .scl 2; .type 32; .endef
+  11              	 .seh_proc caculator
+  12              	caculator:
+  13              	 .seh_endprologue
+  14 0000 83E92A   	 sub ecx, 42
+  15 0003 80F914   	 cmp cl, 20
+  16 0006 7718     	 ja .L11
+  17 0008 4C8D1500 	 lea r10, .L4[rip]
+  17      000000
+  18 000f 0FB6C9   	 movzx ecx, cl
+  19 0012 498B04CA 	 mov rax, QWORD PTR [r10+rcx*8]
+  20              	 #add rax, r10
+  21 0016 FFE0     	 jmp rax
+  22              	 .section .rdata,"dr"
+  23              	 .align 4
+  24              	.L4:
+  25 0000 40000000 	 .quad .L9
+  25      00000000 
+  26 0008 50000000 	 .quad .L8
+  26      00000000 
+  27 0010 20000000 	 .quad .L11
+  27      00000000 
+  28 0018 60000000 	 .quad .L7
+  28      00000000 
+  29 0020 20000000 	 .quad .L11
+  29      00000000 
+  30 0028 70000000 	 .quad .L6
+  30      00000000 
+  31 0030 20000000 	 .quad .L11
+  31      00000000 
+  32 0038 20000000 	 .quad .L11
+  32      00000000 
+  33 0040 20000000 	 .quad .L11
+  33      00000000 
+  34 0048 20000000 	 .quad .L11
+  34      00000000 
+  35 0050 20000000 	 .quad .L11
+  35      00000000 
+  36 0058 20000000 	 .quad .L11
+  36      00000000 
+  37 0060 20000000 	 .quad .L11
+  37      00000000 
+  38 0068 20000000 	 .quad .L11
+  38      00000000 
+  39 0070 20000000 	 .quad .L11
+  39      00000000 
+  40 0078 20000000 	 .quad .L11
+  40      00000000 
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc9vsqKR.s 			page 2
+
+
+  41 0080 20000000 	 .quad .L11
+  41      00000000 
+  42 0088 20000000 	 .quad .L11
+  42      00000000 
+  43 0090 80000000 	 .quad .L5
+  43      00000000 
+  44 0098 20000000 	 .quad .L11
+  44      00000000 
+  45 00a0 30000000 	 .quad .L3
+  45      00000000 
+  46              	 .text
+  47 0018 0F1F8400 	 .p2align 4,,10
+  47      00000000 
+  48              	 .p2align 3
+  49              	.L11:
+  50 0020 B8010000 	 mov eax, 1
+  50      00
+  51 0025 C3       	 ret
+  52 0026 662E0F1F 	 .p2align 4,,10
+  52      84000000 
+  52      0000
+  53              	 .p2align 3
+  54              	.L3:
+  55 0030 41C1F802 	 sar r8d, 2
+  56 0034 31C0     	 xor eax, eax
+  57 0036 458901   	 mov DWORD PTR [r9], r8d
+  58              	.L13:
+  59 0039 C3       	 ret
+  60 003a 660F1F44 	 .p2align 4,,10
+  60      0000
+  61              	 .p2align 3
+  62              	.L9:
+  63 0040 440FAFC2 	 imul r8d, edx
+  64 0044 31C0     	 xor eax, eax
+  65 0046 458901   	 mov DWORD PTR [r9], r8d
+  66 0049 EBEE     	 jmp .L13
+  67 004b 0F1F4400 	 .p2align 4,,10
+  67      00
+  68              	 .p2align 3
+  69              	.L8:
+  70 0050 4101D0   	 add r8d, edx
+  71 0053 31C0     	 xor eax, eax
+  72 0055 458901   	 mov DWORD PTR [r9], r8d
+  73 0058 EBDF     	 jmp .L13
+  74 005a 660F1F44 	 .p2align 4,,10
+  74      0000
+  75              	 .p2align 3
+  76              	.L7:
+  77 0060 4429C2   	 sub edx, r8d
+  78 0063 31C0     	 xor eax, eax
+  79 0065 418911   	 mov DWORD PTR [r9], edx
+  80 0068 EBCF     	 jmp .L13
+  81 006a 660F1F44 	 .p2align 4,,10
+  81      0000
+  82              	 .p2align 3
+  83              	.L6:
+  84 0070 89D0     	 mov eax, edx
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc9vsqKR.s 			page 3
+
+
+  85 0072 99       	 cdq
+  86 0073 41F7F8   	 idiv r8d
+  87 0076 418901   	 mov DWORD PTR [r9], eax
+  88 0079 31C0     	 xor eax, eax
+  89 007b EBBC     	 jmp .L13
+  90 007d 0F1F00   	 .p2align 4,,10
+  91              	 .p2align 3
+  92              	.L5:
+  93 0080 01D2     	 add edx, edx
+  94 0082 31C0     	 xor eax, eax
+  95 0084 418911   	 mov DWORD PTR [r9], edx
+  96 0087 EBB0     	 jmp .L13
+  97              	 .seh_endproc
+  98 0089 90909090 	 .section .rdata,"dr"
+  98      909090
+  99              	.LC0:
+ 100 00a8 256300   	 .ascii "%c\0"
+ 101              	.LC1:
+ 102 00ab 256400   	 .ascii "%d\0"
+ 103              	.LC2:
+ 104 00ae 696E7075 	 .ascii "input error\0"
+ 104      74206572 
+ 104      726F7200 
+ 105 00ba 00000000 	 .section .text.startup,"x"
+ 105      0000
+ 106              	 .p2align 4
+ 107              	 .globl main
+ 108              	 .def main; .scl 2; .type 32; .endef
+ 109              	 .seh_proc main
+ 110              	main:
+ 111 0000 4883EC38 	 sub rsp, 56
+ 112              	 .seh_stackalloc 56
+ 113              	 .seh_endprologue
+ 114 0004 E8000000 	 call __main
+ 114      00
+ 115 0009 488D5424 	 lea rdx, 43[rsp]
+ 115      2B
+ 116 000e 488D0DA8 	 lea rcx, .LC0[rip]
+ 116      000000
+ 117 0015 E8000000 	 call scanf
+ 117      00
+ 118 001a 0FBE4C24 	 movsx ecx, BYTE PTR 43[rsp]
+ 118      2B
+ 119 001f 4C8D4C24 	 lea r9, 44[rsp]
+ 119      2C
+ 120 0024 41B8D4FE 	 mov r8d, -300
+ 120      FFFF
+ 121 002a BAC80000 	 mov edx, 200
+ 121      00
+ 122 002f E8000000 	 call caculator
+ 122      00
+ 123 0034 85C0     	 test eax, eax
+ 124 0036 7517     	 jne .L15
+ 125 0038 8B54242C 	 mov edx, DWORD PTR 44[rsp]
+ 126 003c 488D0DAB 	 lea rcx, .LC1[rip]
+ 126      000000
+ 127 0043 E8000000 	 call printf
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc9vsqKR.s 			page 4
+
+
+ 127      00
+ 128              	.L16:
+ 129 0048 31C0     	 xor eax, eax
+ 130 004a 4883C438 	 add rsp, 56
+ 131 004e C3       	 ret
+ 132              	.L15:
+ 133 004f 488D0DAE 	 lea rcx, .LC2[rip]
+ 133      000000
+ 134 0056 E8000000 	 call printf
+ 134      00
+ 135 005b EBEB     	 jmp .L16
+ 136              	 .seh_endproc
+ 137              	 .def __main; .scl 2; .type 32; .endef
+ 138              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+ 139              	 .def scanf; .scl 2; .type 32; .endef
+ 140 005d 909090   	 .def printf; .scl 2; .type 32; .endef

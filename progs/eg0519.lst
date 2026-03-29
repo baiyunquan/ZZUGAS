@@ -1,0 +1,30 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccLCmQsy.s 			page 1
+
+
+   1              	# 0 "./progs/eg0519.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0519.S"
+   5              	#eg0519.s
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8              	 .text #定义代码段
+   9              	    .globl main
+  10              	main: # 程序执行起始位置
+  11 0000 E8060000 	        call dpcrlf
+  11      00
+  12 0005 B8000000 	        mov eax,0
+  12      00
+  13 000a C3       	        ret # 程序正常执行结束
+  14              	        #子程序
+  15              	dpcrlf: #回车换行子程序
+  16 000b 50       	 push rax #保护寄存器
+  17 000c B00D     	 mov al,0x0d #输出回车字符
+  18 000e E8000000 	 call dispc #子程序中调用子程序，实现子程序嵌套
+  18      00
+  19 0013 B00A     	 mov al,0x0a #输出换行字符
+  20 0015 E8000000 	 call dispc #子程序中调用子程序，实现子程序嵌套
+  20      00
+  21 001a 58       	 pop rax #恢复寄存器
+  22 001b C3909090 	 ret #子程序返回
+  22      90

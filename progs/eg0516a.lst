@@ -1,0 +1,146 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc1ppF6s.s 			page 1
+
+
+   1              	# 0 "./progs/eg0516a.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0516a.S"
+   5              	 .file "eg0516.c"
+   6              	 .intel_syntax noprefix
+   7              	 .text
+   8              	 .globl bubble_sort
+   9              	 .def bubble_sort; .scl 2; .type 32; .endef
+  10              	 .seh_proc bubble_sort
+  11              	bubble_sort:
+  12              	 .seh_endprologue
+  13 0000 41BB0100 	 mov r11d, 1
+  13      0000
+  14 0006 EB66     	 jmp .L2
+  15 0008 66662E0F 	 .p2align 6
+  15      1F840000 
+  15      00000066 
+  15      662E0F1F 
+  15      84000000 
+  16              	.L3:
+  17 0040 83C001   	 add eax, 1
+  18              	.L5:
+  19 0043 4189D0   	 mov r8d, edx
+  20 0046 4529D8   	 sub r8d, r11d
+  21 0049 4139C0   	 cmp r8d, eax
+  22 004c 7E1C     	 jle .L7
+  23 004e 4C63C0   	 movsx r8, eax
+  24 0051 4E8D1481 	 lea r10, [rcx+r8*4]
+  25 0055 458B0A   	 mov r9d, DWORD PTR [r10]
+  26 0058 458B4204 	 mov r8d, DWORD PTR 4[r10]
+  27 005c 4539C1   	 cmp r9d, r8d
+  28 005f 7EDF     	 jle .L3
+  29 0061 458902   	 mov DWORD PTR [r10], r8d
+  30 0064 45894A04 	 mov DWORD PTR 4[r10], r9d
+  31 0068 EBD6     	 jmp .L3
+  32              	.L7:
+  33 006a 4183C301 	 add r11d, 1
+  34              	.L2:
+  35 006e 4139D3   	 cmp r11d, edx
+  36 0071 7D07     	 jge .L8
+  37 0073 B8000000 	 mov eax, 0
+  37      00
+  38 0078 EBC9     	 jmp .L5
+  39              	.L8:
+  40 007a C3       	 ret
+  41              	 .seh_endproc
+  42              	 .section .rdata,"dr"
+  43              	.LC0:
+  44 0000 C5C5D0F2 	 .ascii "\305\305\320\362\307\260:\0"
+  44      C7B03A00 
+  45              	.LC1:
+  46 0008 25642000 	 .ascii "%d \0"
+  47              	.LC2:
+  48 000c 0AC5C5D0 	 .ascii "\12\305\305\320\362\272\363:\0"
+  48      F2BAF33A 
+  48      00
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc1ppF6s.s 			page 2
+
+
+  49 0015 00000000 	 .text
+  49      00000000 
+  49      000000
+  50              	 .globl main
+  51              	 .def main; .scl 2; .type 32; .endef
+  52              	 .seh_proc main
+  53              	main:
+  54 007b 53       	 push rbx
+  55              	 .seh_pushreg rbx
+  56 007c 4883EC40 	 sub rsp, 64
+  57              	 .seh_stackalloc 64
+  58              	 .seh_endprologue
+  59 0080 E8000000 	 call __main
+  59      00
+  60 0085 C7442420 	 mov DWORD PTR 32[rsp], 587
+  60      4B020000 
+  61 008d C7442424 	 mov DWORD PTR 36[rsp], -632
+  61      88FDFFFF 
+  62 0095 C7442428 	 mov DWORD PTR 40[rsp], 777
+  62      09030000 
+  63 009d C744242C 	 mov DWORD PTR 44[rsp], 234
+  63      EA000000 
+  64 00a5 C7442430 	 mov DWORD PTR 48[rsp], -34
+  64      DEFFFFFF 
+  65 00ad 488D0D00 	 lea rcx, .LC0[rip]
+  65      000000
+  66 00b4 E8000000 	 call puts
+  66      00
+  67 00b9 BB000000 	 mov ebx, 0
+  67      00
+  68 00be EB16     	 jmp .L10
+  69              	.L11:
+  70 00c0 4863C3   	 movsx rax, ebx
+  71 00c3 8B548420 	 mov edx, DWORD PTR 32[rsp+rax*4]
+  72 00c7 488D0D08 	 lea rcx, .LC1[rip]
+  72      000000
+  73 00ce E8000000 	 call printf
+  73      00
+  74 00d3 83C301   	 add ebx, 1
+  75              	.L10:
+  76 00d6 83FB04   	 cmp ebx, 4
+  77 00d9 7EE5     	 jle .L11
+  78 00db 488D4C24 	 lea rcx, 32[rsp]
+  78      20
+  79 00e0 BA050000 	 mov edx, 5
+  79      00
+  80 00e5 E816FFFF 	 call bubble_sort
+  80      FF
+  81 00ea 488D0D0C 	 lea rcx, .LC2[rip]
+  81      000000
+  82 00f1 E8000000 	 call puts
+  82      00
+  83 00f6 BB000000 	 mov ebx, 0
+  83      00
+  84 00fb EB16     	 jmp .L12
+  85              	.L13:
+  86 00fd 4863C3   	 movsx rax, ebx
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc1ppF6s.s 			page 3
+
+
+  87 0100 8B548420 	 mov edx, DWORD PTR 32[rsp+rax*4]
+  88 0104 488D0D08 	 lea rcx, .LC1[rip]
+  88      000000
+  89 010b E8000000 	 call printf
+  89      00
+  90 0110 83C301   	 add ebx, 1
+  91              	.L12:
+  92 0113 83FB04   	 cmp ebx, 4
+  93 0116 7EE5     	 jle .L13
+  94 0118 B8000000 	 mov eax, 0
+  94      00
+  95 011d 4883C440 	 add rsp, 64
+  96 0121 5B       	 pop rbx
+  97 0122 C3       	 ret
+  98              	 .seh_endproc
+  99              	 .def __main; .scl 2; .type 32; .endef
+ 100              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+ 101              	 .def puts; .scl 2; .type 32; .endef
+ 102 0123 90909090 	 .def printf; .scl 2; .type 32; .endef
+ 102      90909090 
+ 102      90909090 
+ 102      90909090 
+ 102      90909090 

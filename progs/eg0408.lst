@@ -1,0 +1,52 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccHV6fYD.s 			page 1
+
+
+   1              	# 0 "./progs/eg0408.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0408.S"
+   5              	
+   6              	        .intel_syntax noprefix
+   7              	
+   8              	        .section .data
+   9 0000 56783482 	        dvar1: .long 0x82347856,0x67783000
+   9      00307867 
+  10 0008 98893412 	        dvar2: .long 0x12348998,0x67762000
+  10      00207667 
+  11 0010 00000000 	        dvar3: .quad 0
+  11      00000000 
+  12              	
+  13 0018 00000000 	        .section .text
+  13      00000000 
+  14              	        .globl main
+  15              	        main:
+  16 0000 B080     	        mov al, 0x80
+  17 0002 2C07     	        sub al,0x7
+  18 0004 9C       	        pushf
+  19 0005 E8000000 	        call disphb
+  19      00
+  20 000a E8000000 	        call dispcrlf
+  20      00
+  21              	
+  22 000f 58       	        pop rax
+  23 0010 E8000000 	        call disprf
+  23      00
+  24              	
+  25 0015 B8800000 	        mov eax, 0x80
+  25      00
+  26 001a 83E807   	        sub eax, 0x7
+  27 001d 9C       	        pushf
+  28 001e E8000000 	        call disphd
+  28      00
+  29 0023 E8000000 	        call dispcrlf
+  29      00
+  30              	
+  31 0028 58       	        pop rax
+  32 0029 E8000000 	        call disprf
+  32      00
+  33              	        #·µ»ØÖµ
+  34 002e 31C0     	       xor eax,eax #·µ»Ø0
+  35 0030 C3909090 	       ret
+  35      90909090 
+  35      90909090 
+  35      90909090 

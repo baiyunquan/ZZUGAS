@@ -1,0 +1,82 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccIzSj1h.s 			page 1
+
+
+   1              	# 0 "./progs/eg0801_x86.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0801_x86.S"
+   5              	 .file "eg0801_x86.c"
+   6              	 .intel_syntax noprefix
+   7              	 .text
+   8              	 .section .rdata,"dr"
+   9              	 .align 8
+  10              	.LC0:
+  11 ???? 54686520 	 .ascii "The message is: %sThe length is %lu\12\0"
+  11      6D657373 
+  11      61676520 
+  11      69733A20 
+  11      25735468 
+  12              	 .text
+  13              	 .globl main
+  14              	 .def main; .scl 2; .type 32; .endef
+  15              	 .seh_proc main
+  16              	main:
+  17 ???? 53       	 push rbx
+  18              	 .seh_pushreg rbx
+  19 ???? 4883EC40 	 sub rsp, 64
+  20              	 .seh_stackalloc 64
+  21              	 .seh_endprologue
+  22 ???? E8060000 	 call __main
+  22      00
+  23 ???? 48B84452 	 movabs rax, 8388271297133892164
+  23      45414D20 
+  23      6974
+  24 ???? 48BA2050 	 movabs rdx, 5495035117574246432
+  24      4F535349 
+  24      424C
+  25 ???? 48894424 	 mov QWORD PTR 32[rsp], rax
+  25      20
+  26 ???? 48895424 	 mov QWORD PTR 40[rsp], rdx
+  26      28
+  27 ???? C7442430 	 mov DWORD PTR 48[rsp], 663877
+  27      45210A00 
+  28              	/APP
+  29              	 # 8 "./progs/eg0801_x86.c" 1
+  30              	 .intel_syntax noprefix
+  31 ???? 48C7C300 	mov rbx, 0
+  31      000000
+  32 ???? 8A441C20 	tol1: mov al , [32[rsp]+rbx]
+  33 ???? 3C00     	cmp al, 0
+  34 ???? 7414     	jz tol3
+  35 ???? 3C41     	cmp al, 'A'
+  36 ???? 720A     	jb tol2
+  37 ???? 3C5A     	cmp al, 'Z'
+  38 ???? 7706     	ja tol2
+  39 ???? 3420     	xor al, 0x20
+  40 ???? 88441C20 	mov [32[rsp]+rbx],al
+  41 ???? 4883C301 	tol2: add rbx, 1
+  42 ???? EBE4     	jmp tol1
+  43              	tol3: mov [DWORD PTR 60[rsp]], rbx
+  44              	
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccIzSj1h.s 			page 2
+
+
+  45              	 # 0 "" 2
+  46              	/NO_APP
+  47 ???? 488D5424 	 lea rdx, 32[rsp]
+  47      20
+  48 ???? 448B4424 	 mov r8d, DWORD PTR 60[rsp]
+  48      3C
+  49 ???? 488D0D60 	 lea rcx, .LC0[rip]
+  49      000000
+  50 ???? E8650000 	 call printf
+  50      00
+  51 ???? B8000000 	 mov eax, 0
+  51      00
+  52 ???? 4883C440 	 add rsp, 64
+  53 ???? 5B       	 pop rbx
+  54 ???? C3       	 ret
+  55              	 .seh_endproc
+  56              	 .def __main; .scl 2; .type 32; .endef
+  57              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  58              	 .def printf; .scl 2; .type 32; .endef

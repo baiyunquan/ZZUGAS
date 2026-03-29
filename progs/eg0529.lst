@@ -1,0 +1,85 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccVhn7Vq.s 			page 1
+
+
+   1              	# 0 "./progs/eg0529.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0529.S"
+   6              	#宏定义
+   7              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   8              	
+   9              	.macro rfbit bit1, bit2
+  10              	 xor ebx,ebx # EBX清0，用于保存字符
+  11              	 rol eax,\bit1 # 将某个标志左移bit1位，进入当前CF
+  12              	 adc ebx,0x30 # 转换为ASCII字符
+  13              	 mov rfmsg[rip+\bit2],bl # 保存于字符串bit2位置
+  14              	 .endm
+  15              	
+  16              	 .data
+  17 0000 4F463D30 	rfmsg: .asciz "OF=0, SF=0, ZF=0, AF=0, PF=0, CF=0   \n" #初始化
+  17      2C205346 
+  17      3D302C20 
+  17      5A463D30 
+  17      2C204146 
+  18 0027 00000000 	 .text
+  18      00000000 
+  18      00
+  19              	 .globl main
+  20              	main: # 程序执行起始位置
+  21 0000 4883EC28 	    sub rsp, 40
+  22 0004 B032     	 mov al,50
+  23 0006 2C50     	 sub al,80 #假设一个运算
+  24 0008 9C       	 pushfq #将标志位寄存器的内容（保护上条指令影响的状态标志）压入堆栈
+  25 0009 58       	 pop rax #将标志位寄存器的内容存入RAX
+  26              	
+  27              	 rfbit 21,3 #显示OF（原来的OF需左移21位，进入当前CF）
+  27 000a 31DB     	>  xor ebx,ebx
+  27 000c C1C015   	>  rol eax,21
+  27 000f 83D330   	>  adc ebx,0x30
+  27 0012 881D0300 	>  mov rfmsg[rip+3],bl
+  27      0000
+  28              	 rfbit 4,9 #显示SF（原来的SF再左移4位，进入当前CF）
+  28 0018 31DB     	>  xor ebx,ebx
+  28 001a C1C004   	>  rol eax,4
+  28 001d 83D330   	>  adc ebx,0x30
+  28 0020 881D0900 	>  mov rfmsg[rip+9],bl
+  28      0000
+  29              	 rfbit 1,15 #显示ZF（原来的ZF再左移1位，进入当前CF）
+  29 0026 31DB     	>  xor ebx,ebx
+  29 0028 D1C0     	>  rol eax,1
+  29 002a 83D330   	>  adc ebx,0x30
+  29 002d 881D0F00 	>  mov rfmsg[rip+15],bl
+  29      0000
+  30              	 rfbit 2,21 #显示AF（原来的AF再左移2位，进入当前CF）
+  30 0033 31DB     	>  xor ebx,ebx
+  30 0035 C1C002   	>  rol eax,2
+  30 0038 83D330   	>  adc ebx,0x30
+  30 003b 881D1500 	>  mov rfmsg[rip+21],bl
+  30      0000
+  31              	 rfbit 2,27 #显示PF（原来的PF再左移2位，进入当前CF）
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccVhn7Vq.s 			page 2
+
+
+  31 0041 31DB     	>  xor ebx,ebx
+  31 0043 C1C002   	>  rol eax,2
+  31 0046 83D330   	>  adc ebx,0x30
+  31 0049 881D1B00 	>  mov rfmsg[rip+27],bl
+  31      0000
+  32              	 rfbit 2,33 #显示CF（原来的CF再左移2位，进入当前CF）
+  32 004f 31DB     	>  xor ebx,ebx
+  32 0051 C1C002   	>  rol eax,2
+  32 0054 83D330   	>  adc ebx,0x30
+  32 0057 881D2100 	>  mov rfmsg[rip+33],bl
+  32      0000
+  33 005d 488D0500 	 lea rax,rfmsg[rip]
+  33      000000
+  34 0064 E8000000 	 call dispmsg
+  34      00
+  35 0069 B8000000 	    mov eax,0
+  35      00
+  36 006e 4883C428 	    add rsp, 40
+  37 0072 C3909090 	 ret # 程序正常执行结束
+  37      90909090 
+  37      90909090 
+  37      9090

@@ -1,0 +1,63 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccL4CnMH.s 			page 1
+
+
+   1              	# 0 "./progs/eg0517a.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0517a.S"
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 54686973 	 string: .ascii "This is    a test"
+   8      20697320 
+   8      20202061 
+   8      20746573 
+   8      74
+   9 0011 00       	         .byte 0
+  10              	
+  11 0012 00000000 	 .text #定义代码段
+  11      00000000 
+  11      00000000 
+  11      0000
+  12              	        .globl main
+  13              	main: # 程序执行起始位置
+  14 0000 488D0500 	       lea rax, string[rip]
+  14      000000
+  15 0007 E8000000 	       call dispmsg
+  15      00
+  16 000c E8000000 	       call dispcrlf
+  16      00
+  17              	
+  18 0011 488D3500 	        lea rsi,string[rip]
+  18      000000
+  19 0018 803E00   	   outlp: cmp byte ptr[rsi],0
+  20              	           #外循环，先判断后循环
+  21 001b 741C     	           jz done #为0结束
+  22 001d 803E20   	   again: cmp byte ptr [rsi],' ' #是否是空格
+  23 0020 7512     	        jnz next #不是空格继续循环
+  24 0022 4889F7   	        mov rdi,rsi #是空格，剔除分支
+  25 0025 48FFC7   	    inlp: inc rdi #该分支是循环程序
+  26 0028 8A07     	        mov al,[rdi] #前移一个位置
+  27 002a 8847FF   	        mov -1[rdi],al
+  28 002d 803F00   	           cmp byte ptr [rdi],0
+  29              	           #内循环，先循环后判断
+  30 0030 75F3     	           jnz inlp #内循环结束处
+  31 0032 EBE9     	           jmp again
+  32              	           #再次判断是否为空格（处理连续空格）
+  33 0034 48FFC6   	     next: inc rsi
+  34              	        #继续对后续字符进行判断处理
+  35 0037 EBDF     	        jmp outlp #外循环结束处
+  36              	
+  37 0039 488D0500 	done: lea rax, string[rip]
+  37      000000
+  38 0040 E8000000 	        call dispmsg
+  38      00
+  39              	
+  40              	
+  41 0045 B8000000 	      mov eax,0
+  41      00
+  42 004a C3909090 	   ret # 程序正常执行结束
+  42      9090
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccL4CnMH.s 			page 2
+
+

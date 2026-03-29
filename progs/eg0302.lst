@@ -1,0 +1,63 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccSRdsWa.s 			page 1
+
+
+   1              	# 0 "./progs/eg0302.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0302.S"
+   6              	
+   7              	.intel_syntax noprefix
+   8              	.data
+   9              	.text
+  10              	 .globl main
+  11              	main: # 程序执行起始位置
+  12 0000 66BB6400 	mov bx, 100
+  13 0004 6689D8   	mov ax, bx
+  14 0007 E8000000 	call disphw
+  14      00
+  15 000c E8000000 	call dispcrlf
+  15      00
+  16              	
+  17 0011 88C2     	mov dl,al
+  18 0013 88D0     	mov al, dl
+  19 0015 E8000000 	call disphb
+  19      00
+  20 001a E8000000 	call dispcrlf
+  20      00
+  21              	
+  22 001f 48C7C12C 	mov rcx, 300
+  22      010000
+  23 0026 88CD     	mov ch, cl
+  24 0028 88E8     	mov al, ch
+  25 002a E8000000 	call disphb
+  25      00
+  26 002f E8000000 	call dispcrlf
+  26      00
+  27              	
+  28 0034 BA9CFFFF 	mov edx, -100
+  28      FF
+  29 0039 89D6     	mov esi, edx
+  30 003b 89F0     	mov eax, esi
+  31 003d E8000000 	call disphd
+  31      00
+  32 0042 E8000000 	call dispcrlf
+  32      00
+  33              	
+  34 0047 49C7C039 	mov r8, 12345
+  34      300000
+  35 004e 4C89C0   	mov rax, r8
+  36 0051 E8000000 	call disphx
+  36      00
+  37 0056 E8000000 	call dispcrlf
+  37      00
+  38              	
+  39 005b B8000000 	mov eax,0
+  39      00
+  40 0060 C3909090 	ret
+  40      90909090 
+  40      90909090 
+  40      90909090 
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccSRdsWa.s 			page 2
+
+

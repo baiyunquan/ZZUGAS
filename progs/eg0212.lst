@@ -1,0 +1,217 @@
+GAS LISTING ./progs/eg0212.S 			page 1
+
+
+   1              		.file	"eg0212.c"
+   2              		.intel_syntax noprefix
+   3              		.text
+   4              		.section .rdata,"dr"
+   5              	.LC0:
+   6 0000 2078203D 		.ascii " x = %x = %d = %u \12\0"
+   6      20257820 
+   6      3D202564 
+   6      203D2025 
+   6      75200A00 
+   7              	.LC1:
+   8 0014 2075203D 		.ascii " u = %x = %d = %u \12\0"
+   8      20257820 
+   8      3D202564 
+   8      203D2025 
+   8      75200A00 
+   9              	.LC2:
+  10 0028 206C203D 		.ascii " l = %x = %ld = %lu \12\0"
+  10      20257820 
+  10      3D20256C 
+  10      64203D20 
+  10      256C7520 
+  11              	.LC3:
+  12 003e 2073203D 		.ascii " s = %x = %d = %u \12\0"
+  12      20257820 
+  12      3D202564 
+  12      203D2025 
+  12      75200A00 
+  13              	.LC4:
+  14 0052 20757320 		.ascii " us = %x = %d = %u \12\0"
+  14      3D202578 
+  14      203D2025 
+  14      64203D20 
+  14      2575200A 
+  15              	.LC5:
+  16 0067 2063203D 		.ascii " c = %x = %d = %u = %c \12\0"
+  16      20257820 
+  16      3D202564 
+  16      203D2025 
+  16      75203D20 
+  17              	.LC6:
+  18 0080 20756320 		.ascii " uc = %x = %d = %u = %c \12\0"
+  18      3D202578 
+  18      203D2025 
+  18      64203D20 
+  18      2575203D 
+  19              	.LC7:
+  20 009a 20737472 		.ascii " str = %s\12 \0"
+  20      203D2025 
+  20      730A2000 
+  21              	.LC8:
+  22 00a6 20737472 		.ascii " str1 = %s\12 \0"
+  22      31203D20 
+  22      25730A20 
+  22      00
+  23              	.LC9:
+  24 00b3 20707320 		.ascii " ps = %x = %ld \0"
+GAS LISTING ./progs/eg0212.S 			page 2
+
+
+  24      3D202578 
+  24      203D2025 
+  24      6C642000 
+  25 00c3 00000000 		.text
+  25      00000000 
+  25      00000000 
+  25      00
+  26              		.globl	main
+  27              		.def	main;	.scl	2;	.type	32;	.endef
+  28              		.seh_proc	main
+  29              	main:
+  30 0000 4883EC38 		sub	rsp, 56
+  31              		.seh_stackalloc	56
+  32              		.seh_endprologue
+  33 0004 E8000000 		call	__main
+  33      00
+  34 0009 8B153400 		mov	edx, DWORD PTR x[rip]
+  34      0000
+  35 000f 4189D1   		mov	r9d, edx
+  36 0012 4189D0   		mov	r8d, edx
+  37 0015 488D0D00 		lea	rcx, .LC0[rip]
+  37      000000
+  38 001c E8000000 		call	printf
+  38      00
+  39 0021 8B153000 		mov	edx, DWORD PTR u[rip]
+  39      0000
+  40 0027 4189D1   		mov	r9d, edx
+  41 002a 4189D0   		mov	r8d, edx
+  42 002d 488D0D14 		lea	rcx, .LC1[rip]
+  42      000000
+  43 0034 E8000000 		call	printf
+  43      00
+  44 0039 8B152C00 		mov	edx, DWORD PTR l[rip]
+  44      0000
+  45 003f 4189D1   		mov	r9d, edx
+  46 0042 4189D0   		mov	r8d, edx
+  47 0045 488D0D28 		lea	rcx, .LC2[rip]
+  47      000000
+  48 004c E8000000 		call	printf
+  48      00
+  49 0051 0FBF1524 		movsx	edx, WORD PTR s[rip]
+  49      000000
+  50 0058 4189D1   		mov	r9d, edx
+  51 005b 4189D0   		mov	r8d, edx
+  52 005e 488D0D3E 		lea	rcx, .LC3[rip]
+  52      000000
+  53 0065 E8000000 		call	printf
+  53      00
+  54 006a 0FB71522 		movzx	edx, WORD PTR us[rip]
+  54      000000
+  55 0071 4189D1   		mov	r9d, edx
+  56 0074 4189D0   		mov	r8d, edx
+  57 0077 488D0D52 		lea	rcx, .LC4[rip]
+  57      000000
+  58 007e E8000000 		call	printf
+  58      00
+  59 0083 0FBE1521 		movsx	edx, BYTE PTR c[rip]
+GAS LISTING ./progs/eg0212.S 			page 3
+
+
+  59      000000
+  60 008a 89542420 		mov	DWORD PTR 32[rsp], edx
+  61 008e 4189D1   		mov	r9d, edx
+  62 0091 4189D0   		mov	r8d, edx
+  63 0094 488D0D67 		lea	rcx, .LC5[rip]
+  63      000000
+  64 009b E8000000 		call	printf
+  64      00
+  65 00a0 0FB61520 		movzx	edx, BYTE PTR uc[rip]
+  65      000000
+  66 00a7 89542420 		mov	DWORD PTR 32[rsp], edx
+  67 00ab 4189D1   		mov	r9d, edx
+  68 00ae 4189D0   		mov	r8d, edx
+  69 00b1 488D0D80 		lea	rcx, .LC6[rip]
+  69      000000
+  70 00b8 E8000000 		call	printf
+  70      00
+  71 00bd 488D1510 		lea	rdx, str[rip]
+  71      000000
+  72 00c4 488D0D9A 		lea	rcx, .LC7[rip]
+  72      000000
+  73 00cb E8000000 		call	printf
+  73      00
+  74 00d0 488D1508 		lea	rdx, str1[rip]
+  74      000000
+  75 00d7 488D0DA6 		lea	rcx, .LC8[rip]
+  75      000000
+  76 00de E8000000 		call	printf
+  76      00
+  77 00e3 488B1500 		mov	rdx, QWORD PTR ps[rip]
+  77      000000
+  78 00ea 488D0DB3 		lea	rcx, .LC9[rip]
+  78      000000
+  79 00f1 E8000000 		call	printf
+  79      00
+  80 00f6 B8000000 		mov	eax, 0
+  80      00
+  81 00fb 4883C438 		add	rsp, 56
+  82 00ff C3       		ret
+  83              		.seh_endproc
+  84              		.globl	ps
+  85              		.data
+  86              		.align 8
+  87              	ps:
+  88 0000 10000000 		.quad	str
+  88      00000000 
+  89              		.globl	str1
+  90              	str1:
+  91 0008 4368696E 		.ascii "China\0"
+  91      6100
+  92              		.globl	str
+  93 000e 0000     		.align 16
+  94              	str:
+  95 0010 48656C6C 		.ascii "Hello Assembly!\0"
+  95      6F204173 
+  95      73656D62 
+  95      6C792100 
+GAS LISTING ./progs/eg0212.S 			page 4
+
+
+  96              		.globl	uc
+  97              	uc:
+  98 0020 C8       		.byte	-56
+  99              		.globl	c
+ 100              	c:
+ 101 0021 41       		.byte	65
+ 102              		.globl	us
+ 103              		.align 2
+ 104              	us:
+ 105 0022 FFFF     		.word	-1
+ 106              		.globl	s
+ 107              		.align 2
+ 108              	s:
+ 109 0024 FFFF     		.word	-1
+ 110              		.globl	ul
+ 111 0026 0000     		.align 4
+ 112              	ul:
+ 113 0028 FFFFFFFF 		.long	-1
+ 114              		.globl	l
+ 115              		.align 4
+ 116              	l:
+ 117 002c FFFFFFFF 		.long	-1
+ 118              		.globl	u
+ 119              		.align 4
+ 120              	u:
+ 121 0030 00000080 		.long	-2147483648
+ 122              		.globl	x
+ 123              		.align 4
+ 124              	x:
+ 125 0034 FFFFFFFF 		.long	-1
+ 126              		.def	__main;	.scl	2;	.type	32;	.endef
+ 127              		.ident	"GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+ 128 0038 00000000 		.def	printf;	.scl	2;	.type	32;	.endef
+ 128      00000000 

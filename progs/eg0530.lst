@@ -1,0 +1,36 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccJT28mk.s 			page 1
+
+
+   1              	# 0 "./progs/eg0530.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0530.S"
+   5              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   6              	
+   7              	.macro absol oprd
+   8              	 cmp \oprd,0
+   9              	 jge 1f
+  10              	 neg \oprd
+  11              	1:
+  12              	 .endm #这个伪指令要独占一行
+  13              	
+  14              	 .text #定义代码段
+  15              	        .globl main
+  16              	main: # 程序执行起始位置
+  17 0000 B080     	 mov al,0x80
+  18              	 absol al
+  18 0002 3C00     	>  cmp al,0
+  18 0004 7D02     	>  jge 1f
+  18 0006 F6D8     	>  neg al
+  18              	> 1:
+  19 0008 B008     	 mov al,0x8
+  20              	 absol al
+  20 000a 3C00     	>  cmp al,0
+  20 000c 7D02     	>  jge 1f
+  20 000e F6D8     	>  neg al
+  20              	> 1:
+  21 0010 B8000000 	    mov eax,0
+  21      00
+  22 0015 C3909090 	 ret # 程序正常执行结束
+  22      90909090 
+  22      909090

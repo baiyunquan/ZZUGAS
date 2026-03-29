@@ -1,0 +1,190 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwzkmOL.s 			page 1
+
+
+   1              	# 0 "./progs/eg0531.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0531.S"
+   5              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   6              	#宏定义
+   7              	.macro dreg32 reg32
+   8              	 push rdx #保护寄存器
+   9              	 push rcx
+  10              	 push rbx
+  11              	 push rax
+  12              	 mov eax,\reg32 #显示reg32寄存器
+  13              	 mov ecx,8
+  14              	 xor ebx,ebx
+  15              	1: rol eax,4
+  16              	 mov edx,eax
+  17              	 and dl,0xf
+  18              	 add dl,0x30 #转化为相应的ASCII码值
+  19              	 cmp dl,0x39 #区别0～9和A～F数码
+  20              	 jbe 2f #前向引用
+  21              	 add dl,7
+  22              	2: lea r9,rd\reg32[rip]
+  23              	    mov [r9+rbx+4],dl #存于对应的字符串
+  24              	 inc rbx
+  25              	 cmp ebx,ecx
+  26              	 jb 1b #向后引用
+  27              	 pop rax #保护寄存器
+  28              	 pop rbx
+  29              	 pop rcx
+  30              	 pop rdx
+  31              	 .endm
+  32              	 .data
+  33 0000 4541583D 	rdeax: .ascii "EAX=00000000, "
+  33      30303030 
+  33      30303030 
+  33      2C20
+  34 000e 4542583D 	rdebx: .ascii "EBX=00000000, "
+  34      30303030 
+  34      30303030 
+  34      2C20
+  35 001c 4543583D 	rdecx: .ascii "ECX=00000000, "
+  35      30303030 
+  35      30303030 
+  35      2C20
+  36 002a 4544583D 	rdedx: .asciz "EDX=00000000\n"
+  36      30303030 
+  36      30303030 
+  36      0A00
+  37              	
+  38 0038 00000000 	 .text
+  38      00000000 
+  39              	 .global main
+  40              	main:
+  41 0000 B8785634 	 mov eax,0x12345678 #假设一些数据
+  41      12
+  42 0005 BB00EFCD 	 mov ebx,0x0abcdef00
+  42      AB
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwzkmOL.s 			page 2
+
+
+  43 000a 89C1     	 mov ecx,eax
+  44 000c 89DA     	 mov edx,ebx
+  45              	
+  46              	 dreg32 eax #显示EAX
+  46 000e 52       	>  push rdx
+  46 000f 51       	>  push rcx
+  46 0010 53       	>  push rbx
+  46 0011 50       	>  push rax
+  46 0012 89C0     	>  mov eax,eax
+  46 0014 B9080000 	>  mov ecx,8
+  46      00
+  46 0019 31DB     	>  xor ebx,ebx
+  46 001b C1C004   	> 1:rol eax,4
+  46 001e 89C2     	>  mov edx,eax
+  46 0020 80E20F   	>  and dl,0xf
+  46 0023 80C230   	>  add dl,0x30
+  46 0026 80FA39   	>  cmp dl,0x39
+  46 0029 7603     	>  jbe 2f
+  46 002b 80C207   	>  add dl,7
+  46 002e 4C8D0D00 	> 2:lea r9,rdeax[rip]
+  46      000000
+  46 0035 41885419 	>  mov [r9+rbx+4],dl
+  46      04
+  46 003a 48FFC3   	>  inc rbx
+  46 003d 39CB     	>  cmp ebx,ecx
+  46 003f 72DA     	>  jb 1b
+  46 0041 58       	>  pop rax
+  46 0042 5B       	>  pop rbx
+  46 0043 59       	>  pop rcx
+  46 0044 5A       	>  pop rdx
+  47              	 dreg32 ebx #显示EBX
+  47 0045 52       	>  push rdx
+  47 0046 51       	>  push rcx
+  47 0047 53       	>  push rbx
+  47 0048 50       	>  push rax
+  47 0049 89D8     	>  mov eax,ebx
+  47 004b B9080000 	>  mov ecx,8
+  47      00
+  47 0050 31DB     	>  xor ebx,ebx
+  47 0052 C1C004   	> 1:rol eax,4
+  47 0055 89C2     	>  mov edx,eax
+  47 0057 80E20F   	>  and dl,0xf
+  47 005a 80C230   	>  add dl,0x30
+  47 005d 80FA39   	>  cmp dl,0x39
+  47 0060 7603     	>  jbe 2f
+  47 0062 80C207   	>  add dl,7
+  47 0065 4C8D0D0E 	> 2:lea r9,rdebx[rip]
+  47      000000
+  47 006c 41885419 	>  mov [r9+rbx+4],dl
+  47      04
+  47 0071 48FFC3   	>  inc rbx
+  47 0074 39CB     	>  cmp ebx,ecx
+  47 0076 72DA     	>  jb 1b
+  47 0078 58       	>  pop rax
+  47 0079 5B       	>  pop rbx
+  47 007a 59       	>  pop rcx
+  47 007b 5A       	>  pop rdx
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwzkmOL.s 			page 3
+
+
+  48              	 dreg32 ecx #显示ECX
+  48 007c 52       	>  push rdx
+  48 007d 51       	>  push rcx
+  48 007e 53       	>  push rbx
+  48 007f 50       	>  push rax
+  48 0080 89C8     	>  mov eax,ecx
+  48 0082 B9080000 	>  mov ecx,8
+  48      00
+  48 0087 31DB     	>  xor ebx,ebx
+  48 0089 C1C004   	> 1:rol eax,4
+  48 008c 89C2     	>  mov edx,eax
+  48 008e 80E20F   	>  and dl,0xf
+  48 0091 80C230   	>  add dl,0x30
+  48 0094 80FA39   	>  cmp dl,0x39
+  48 0097 7603     	>  jbe 2f
+  48 0099 80C207   	>  add dl,7
+  48 009c 4C8D0D1C 	> 2:lea r9,rdecx[rip]
+  48      000000
+  48 00a3 41885419 	>  mov [r9+rbx+4],dl
+  48      04
+  48 00a8 48FFC3   	>  inc rbx
+  48 00ab 39CB     	>  cmp ebx,ecx
+  48 00ad 72DA     	>  jb 1b
+  48 00af 58       	>  pop rax
+  48 00b0 5B       	>  pop rbx
+  48 00b1 59       	>  pop rcx
+  48 00b2 5A       	>  pop rdx
+  49              	 dreg32 edx #显示EDX
+  49 00b3 52       	>  push rdx
+  49 00b4 51       	>  push rcx
+  49 00b5 53       	>  push rbx
+  49 00b6 50       	>  push rax
+  49 00b7 89D0     	>  mov eax,edx
+  49 00b9 B9080000 	>  mov ecx,8
+  49      00
+  49 00be 31DB     	>  xor ebx,ebx
+  49 00c0 C1C004   	> 1:rol eax,4
+  49 00c3 89C2     	>  mov edx,eax
+  49 00c5 80E20F   	>  and dl,0xf
+  49 00c8 80C230   	>  add dl,0x30
+  49 00cb 80FA39   	>  cmp dl,0x39
+  49 00ce 7603     	>  jbe 2f
+  49 00d0 80C207   	>  add dl,7
+  49 00d3 4C8D0D2A 	> 2:lea r9,rdedx[rip]
+  49      000000
+  49 00da 41885419 	>  mov [r9+rbx+4],dl
+  49      04
+  49 00df 48FFC3   	>  inc rbx
+  49 00e2 39CB     	>  cmp ebx,ecx
+  49 00e4 72DA     	>  jb 1b
+  49 00e6 58       	>  pop rax
+  49 00e7 5B       	>  pop rbx
+  49 00e8 59       	>  pop rcx
+  49 00e9 5A       	>  pop rdx
+  50              	
+  51 00ea 488D0500 	 lea rax, rdeax[rip]
+  51      000000
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwzkmOL.s 			page 4
+
+
+  52 00f1 E8000000 	 call dispmsg
+  52      00
+  53              	
+  54 00f6 B8000000 	 mov eax, 0
+  54      00
+  55 00fb C3909090 	 ret
+  55      90

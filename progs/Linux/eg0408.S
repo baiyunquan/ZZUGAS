@@ -1,0 +1,31 @@
+/* eg0408.s in Linux Terminal for GCC_64*/
+        .intel_syntax noprefix
+        
+        .section .data
+        dvar1: .long 0x82347856,0x67783000
+        dvar2: .long 0x12348998,0x67762000
+        dvar3: .quad 0
+
+        .section .text
+        .globl main
+        main:
+        mov al, 0xfb
+        sub al,0x7
+        pushf
+        call disphb
+        call dispcrlf
+        
+        pop rax
+        call disprf
+        
+        mov eax, 0x10000
+        sub eax, 0x2000
+        pushf
+        call disphd
+        call dispcrlf
+        
+        pop rax
+        call disprf
+        #返回值
+       xor eax,eax        #返回0
+       ret

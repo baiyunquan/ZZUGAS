@@ -1,0 +1,64 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwBmMih.s 			page 1
+
+
+   1              	# 0 "./progs/eg0305.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0305.S"
+   6              	
+   7              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   8              	 .data #定义数据段
+   9 0000 78563412 	    x: .long 0x12345678,0x9ABCDEF0
+   9      F0DEBC9A 
+  10              	
+  11 0008 00000000 	 .text #定义代码段
+  11      00000000 
+  12              	        .globl main
+  13              	main: # 程序执行起始位置
+  14 0000 488D0500 	    lea rax,x[rip]
+  14      000000
+  15 0007 8A5801   	    mov bl, [rax+1]
+  16 000a 88D8     	    mov al, bl
+  17 000c E8000000 	    call disphb
+  17      00
+  18 0011 E8000000 	    call dispcrlf
+  18      00
+  19              	
+  20 0016 488D0500 	    lea rax,x[rip]
+  20      000000
+  21 001d 668B5802 	    mov bx, [rax+2]
+  22 0021 6689D8   	    mov ax, bx
+  23 0024 E8000000 	    call disphw
+  23      00
+  24 0029 E8000000 	    call dispcrlf
+  24      00
+  25              	
+  26 002e 488D0500 	    lea rax,x[rip]
+  26      000000
+  27 0035 8B5804   	    mov ebx,[rax+4]
+  28 0038 89D8     	    mov eax, ebx
+  29 003a E8000000 	    call disphd
+  29      00
+  30 003f E8000000 	    call dispcrlf
+  30      00
+  31              	
+  32 0044 488D0500 	    lea rax,x[rip]
+  32      000000
+  33 004b 488B5804 	    mov rbx,[rax+4]
+  34 004f 4889D8   	    mov rax, rbx
+  35 0052 E8000000 	    call disphx
+  35      00
+  36 0057 E8000000 	    call dispcrlf
+  36      00
+  37              	
+  38              	    #主程序（指令待填）
+  39 005c B8000000 	    mov eax,0
+  39      00
+  40 0061 C3909090 	 ret # 程序正常执行结束
+  40      90909090 
+  40      90909090 
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccwBmMih.s 			page 2
+
+
+  40      909090

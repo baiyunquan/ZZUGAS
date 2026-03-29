@@ -1,0 +1,50 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccRPkQVC.s 			page 1
+
+
+   1              	# 0 "./progs/eg0421.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0421.S"
+   5              	
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 000000   	 msg:.byte 0,0,0
+   9 0003 30313233 	 table: .ascii "0123456789ABCDEF"
+   9      34353637 
+   9      38394142 
+   9      43444546 
+  10              	
+  11 0013 00000000 	 .text #定义代码段
+  11      00000000 
+  11      00000000 
+  11      00
+  12              	        .globl main
+  13              	main: # 程序执行起始位置
+  14 0000 488D1D03 	 lea rbx, table[rip]
+  14      000000
+  15              	
+  16 0007 B064     	 mov al, 100
+  17 0009 88C4     	    mov ah,al
+  18              	
+  19 000b 24F0     	    and al, 0xf0
+  20 000d C0E804   	    shr al,4
+  21 0010 480FB6C8 	    movzx rcx, al
+  22 0014 8A040B   	    mov al, [rbx+rcx]
+  23 0017 88050000 	    mov msg[rip],al
+  23      0000
+  24              	
+  25 001d 88E0     	    mov al, ah
+  26 001f 240F     	    and al, 0xf
+  27 0021 480FB6C8 	    movzx rcx, al
+  28 0025 8A040B   	    mov al, [rbx+rcx]
+  29 0028 88050100 	    mov msg[rip+1],al
+  29      0000
+  30              	
+  31 002e 488D0500 	 lea rax, msg[rip]
+  31      000000
+  32 0035 E8000000 	 call dispmsg
+  32      00
+  33              	
+  34 003a B8000000 	    mov eax,0
+  34      00
+  35 003f C3       	 ret # 程序正常执行结束

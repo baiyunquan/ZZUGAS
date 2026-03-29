@@ -1,0 +1,102 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc41p9yh.s 			page 1
+
+
+   1              		.file	"eg0215.c"
+   2              		.intel_syntax noprefix
+   3              		.text
+   4              		.section .rdata,"dr"
+   5              	.LC0:
+   6 0000 20252E32 		.ascii " %.2x\0"
+   6      7800
+   7              		.text
+   8              		.globl	show_bytes
+   9              		.def	show_bytes;	.scl	2;	.type	32;	.endef
+  10              		.seh_proc	show_bytes
+  11              	show_bytes:
+  12 0000 57       		push	rdi
+  13              		.seh_pushreg	rdi
+  14 0001 56       		push	rsi
+  15              		.seh_pushreg	rsi
+  16 0002 53       		push	rbx
+  17              		.seh_pushreg	rbx
+  18 0003 4883EC20 		sub	rsp, 32
+  19              		.seh_stackalloc	32
+  20              		.seh_endprologue
+  21 0007 4889CF   		mov	rdi, rcx
+  22 000a 4889D6   		mov	rsi, rdx
+  23 000d BB000000 		mov	ebx, 0
+  23      00
+  24 0012 EB14     		jmp	.L2
+  25              	.L3:
+  26 0014 0FB6141F 		movzx	edx, BYTE PTR [rdi+rbx]
+  27 0018 488D0D00 		lea	rcx, .LC0[rip]
+  27      000000
+  28 001f E8000000 		call	printf
+  28      00
+  29 0024 4883C301 		add	rbx, 1
+  30              	.L2:
+  31 0028 4839F3   		cmp	rbx, rsi
+  32 002b 72E7     		jb	.L3
+  33 002d B90A0000 		mov	ecx, 10
+  33      00
+  34 0032 E8000000 		call	putchar
+  34      00
+  35 0037 90       		nop
+  36 0038 4883C420 		add	rsp, 32
+  37 003c 5B       		pop	rbx
+  38 003d 5E       		pop	rsi
+  39 003e 5F       		pop	rdi
+  40 003f C3       		ret
+  41              		.seh_endproc
+  42              		.section .rdata,"dr"
+  43              	.LC1:
+  44 0006 73697A65 		.ascii "sizeof X = %d \12\0"
+  44      6F662058 
+  44      203D2025 
+  44      64200A00 
+  45 0016 00000000 		.text
+  45      00000000 
+  45      0000
+  46              		.globl	main
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc41p9yh.s 			page 2
+
+
+  47              		.def	main;	.scl	2;	.type	32;	.endef
+  48              		.seh_proc	main
+  49              	main:
+  50 0040 4883EC28 		sub	rsp, 40
+  51              		.seh_stackalloc	40
+  52              		.seh_endprologue
+  53 0044 E8000000 		call	__main
+  53      00
+  54 0049 BA0C0000 		mov	edx, 12
+  54      00
+  55 004e 488D0D06 		lea	rcx, .LC1[rip]
+  55      000000
+  56 0055 E8000000 		call	printf
+  56      00
+  57 005a BA0C0000 		mov	edx, 12
+  57      00
+  58 005f 488D0D00 		lea	rcx, x[rip]
+  58      000000
+  59 0066 E895FFFF 		call	show_bytes
+  59      FF
+  60 006b B8000000 		mov	eax, 0
+  60      00
+  61 0070 4883C428 		add	rsp, 40
+  62 0074 C3       		ret
+  63              		.seh_endproc
+  64              		.globl	x
+  65 0075 90909090 		.data
+  65      90909090 
+  65      909090
+  66              		.align 8
+  67              	x:
+  68 0000 9CFFFFFF 		.long	-100
+  69 0004 61       		.byte	97
+  70 0005 000000   		.space 3
+  71 0008 38FFFFFF 		.long	-200
+  72              		.def	__main;	.scl	2;	.type	32;	.endef
+  73              		.ident	"GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  74              		.def	printf;	.scl	2;	.type	32;	.endef
+  75 000c 00000000 		.def	putchar;	.scl	2;	.type	32;	.endef

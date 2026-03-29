@@ -1,0 +1,107 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccf8RdnD.s 			page 1
+
+
+   1              	# 0 "./progs/eg0309.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0309.S"
+   5              	 .file "eg0309.c"
+   6              	 .intel_syntax noprefix
+   7              	 .text
+   8              	 .section .rdata,"dr"
+   9              	.LC0:
+  10 0000 25640A00 	 .ascii "%d\12\0"
+  11 0004 00000000 	 .text
+  11      00000000 
+  11      00000000 
+  12              	 .globl main
+  13              	 .def main; .scl 2; .type 32; .endef
+  14              	 .seh_proc main
+  15              	main:
+  16 0000 53       	 push rbx
+  17              	 .seh_pushreg rbx
+  18 0001 4883EC20 	 sub rsp, 32
+  19              	 .seh_stackalloc 32
+  20              	 .seh_endprologue
+  21 0005 E8000000 	 call __main
+  21      00
+  22 000a 488D1D00 	 lea rbx, .LC0[rip]
+  22      000000
+  23 0011 8B150800 	 mov edx, DWORD PTR array[rip]
+  23      0000
+  24 0017 4889D9   	 mov rcx, rbx
+  25 001a E8000000 	 call printf
+  25      00
+  26 001f C705FCFF 	 mov DWORD PTR i[rip], 1
+  26      FFFF0100 
+  26      0000
+  27 0029 8B150C00 	 mov edx, DWORD PTR array[rip+4]
+  27      0000
+  28 002f 4889D9   	 mov rcx, rbx
+  29 0032 E8000000 	 call printf
+  29      00
+  30 0037 C705FCFF 	 mov DWORD PTR i[rip], 2
+  30      FFFF0200 
+  30      0000
+  31 0041 8B151000 	 mov edx, DWORD PTR array[rip+8]
+  31      0000
+  32 0047 4889D9   	 mov rcx, rbx
+  33 004a E8000000 	 call printf
+  33      00
+  34 004f 488B0500 	 mov rax, QWORD PTR pi[rip]
+  34      000000
+  35 0056 8B10     	 mov edx, DWORD PTR [rax]
+  36 0058 4889D9   	 mov rcx, rbx
+  37 005b E8000000 	 call printf
+  37      00
+  38 0060 488B0500 	 mov rax, QWORD PTR pi[rip]
+  38      000000
+  39 0067 488D5004 	 lea rdx, 4[rax]
+  40 006b 48891500 	 mov QWORD PTR pi[rip], rdx
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccf8RdnD.s 			page 2
+
+
+  40      000000
+  41 0072 8B5004   	 mov edx, DWORD PTR 4[rax]
+  42 0075 4889D9   	 mov rcx, rbx
+  43 0078 E8000000 	 call printf
+  43      00
+  44 007d 488B0500 	 mov rax, QWORD PTR pi[rip]
+  44      000000
+  45 0084 488D5004 	 lea rdx, 4[rax]
+  46 0088 48891500 	 mov QWORD PTR pi[rip], rdx
+  46      000000
+  47 008f 8B5004   	 mov edx, DWORD PTR 4[rax]
+  48 0092 4889D9   	 mov rcx, rbx
+  49 0095 E8000000 	 call printf
+  49      00
+  50 009a B8000000 	 mov eax, 0
+  50      00
+  51 009f 4883C420 	 add rsp, 32
+  52 00a3 5B       	 pop rbx
+  53 00a4 C3       	 ret
+  54              	 .seh_endproc
+  55              	 .globl pi
+  56 00a5 90909090 	 .data
+  56      90909090 
+  56      909090
+  57              	 .align 8
+  58              	pi:
+  59 0000 08000000 	 .quad array
+  59      00000000 
+  60              	 .globl i
+  61              	 .bss
+  62              	 .align 4
+  63              	i:
+  64 0000 00000000 	 .space 4
+  65              	 .globl array
+  66 0004 00000000 	 .data
+  66      00000000 
+  66      00000000 
+  67              	 .align 8
+  68              	array:
+  69 0008 39300000 	 .long 12345
+  70 000c C7CFFFFF 	 .long -12345
+  71              	 .def __main; .scl 2; .type 32; .endef
+  72              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  73              	 .def printf; .scl 2; .type 32; .endef

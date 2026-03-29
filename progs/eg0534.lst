@@ -1,0 +1,127 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccAFAFaU.s 			page 1
+
+
+   1              	# 0 "./progs/eg0534.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0534.S"
+   5              	
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	#宏定义
+   8              	 .altmacro # 启用替代宏语法
+   9              	.macro printf format,var
+  10              	
+  11              	 mov eax,\var[rip]
+  12              	 .ifc "\format","b"
+  13              	 call disphd #二进制显示用格式符“b”
+  14              	 .endif
+  15              	
+  16              	 .ifc "format","x"
+  17              	 call disphd #十六进制显示用格式符“x”
+  18              	 .endif
+  19              	 .ifc "\format","d"
+  20              	 call dispsid #十进制显示用格式符“d”
+  21              	 .endif
+  22              	 .ifc "\format","c"
+  23              	 call dispc #字符显示用格式符“c”
+  24              	 .endif
+  25              	 .endm
+  26              	
+  27              	 .data #数据段
+  28 0000 64       	var: .byte 0b01100100
+  29 0001 00000000 	 .text #代码段
+  29      00000000 
+  29      00000000 
+  29      000000
+  30              	 .global main
+  31              	 main:
+  32              	 printf b,var #二进制形式显示：01100100
+  32              	> 
+  32 0000 8B050000 	>  mov eax,var[rip]
+  32      0000
+  32              	>  .ifc "b","b"
+  32 0006 E8000000 	>  call disphd
+  32      00
+  32              	>  .endif
+  32              	> 
+  32              	>  .ifc "b","x"
+  32              	>  call disphd
+  32              	>  .endif
+  32              	>  .ifc "b","d"
+  32              	>  call dispsid
+  32              	>  .endif
+  32              	>  .ifc "b","c"
+  32              	>  call dispc
+  32              	>  .endif
+  33 000b E8000000 	 call dispcrlf #回车换行（用于分隔）
+  33      00
+  34              	 printf x,var #十六进制形式显示：64
+  34              	> 
+  34 0010 8B050000 	>  mov eax,var[rip]
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccAFAFaU.s 			page 2
+
+
+  34      0000
+  34              	>  .ifc "x","b"
+  34              	>  call disphd
+  34              	>  .endif
+  34              	> 
+  34              	>  .ifc "x","x"
+  34 0016 E8000000 	>  call disphd
+  34      00
+  34              	>  .endif
+  34              	>  .ifc "x","d"
+  34              	>  call dispsid
+  34              	>  .endif
+  34              	>  .ifc "x","c"
+  34              	>  call dispc
+  34              	>  .endif
+  35 001b E8000000 	 call dispcrlf #回车换行（用于分隔）
+  35      00
+  36              	 printf d,var #十进制形式显示：100
+  36              	> 
+  36 0020 8B050000 	>  mov eax,var[rip]
+  36      0000
+  36              	>  .ifc "d","b"
+  36              	>  call disphd
+  36              	>  .endif
+  36              	> 
+  36              	>  .ifc "d","x"
+  36              	>  call disphd
+  36              	>  .endif
+  36              	>  .ifc "d","d"
+  36 0026 E8000000 	>  call dispsid
+  36      00
+  36              	>  .endif
+  36              	>  .ifc "d","c"
+  36              	>  call dispc
+  36              	>  .endif
+  37 002b E8000000 	 call dispcrlf #回车换行（用于分隔）
+  37      00
+  38              	 printf c,var #字符显示：d
+  38              	> 
+  38 0030 8B050000 	>  mov eax,var[rip]
+  38      0000
+  38              	>  .ifc "c","b"
+  38              	>  call disphd
+  38              	>  .endif
+  38              	> 
+  38              	>  .ifc "c","x"
+  38              	>  call disphd
+  38              	>  .endif
+  38              	>  .ifc "c","d"
+  38              	>  call dispsid
+  38              	>  .endif
+  38              	>  .ifc "c","c"
+  38 0036 E8000000 	>  call dispc
+  38      00
+  38              	>  .endif
+  39 003b B8000000 	 mov eax, 0
+  39      00
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccAFAFaU.s 			page 3
+
+
+  40 0040 C3909090 	 ret
+  40      90909090 
+  40      90909090 
+  40      90909090 

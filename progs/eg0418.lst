@@ -1,0 +1,71 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccLeqLep.s 			page 1
+
+
+   1              	# 0 "./progs/eg0418.S"
+   2              	# 1 "G:\\MLL\\汇编语言\\数字化教材\\章节\\初稿v2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0418.S"
+   6              	 #gcc -S -Og -masm=intel -o ./progs/eg0418.S ./progs/eg0418.c
+   7              	 .file "eg0418.c"
+   8              	 .intel_syntax noprefix
+   9              	 .text
+  10              	 .section .rdata,"dr"
+  11              	.LC0:
+  12 0000 257800   	 .ascii "%x\0"
+  13 0003 00000000 	 .text
+  13      00000000 
+  13      00000000 
+  13      00
+  14              	 .globl main
+  15              	 .def main; .scl 2; .type 32; .endef
+  16              	 .seh_proc main
+  17              	main:
+  18 0000 4883EC28 	 sub rsp, 40
+  19              	 .seh_stackalloc 40
+  20              	 .seh_endprologue
+  21 0004 E8000000 	 call __main
+  21      00
+  22 0009 0FBF1502 	 movsx edx, WORD PTR num[rip]
+  22      000000
+  23 0010 0FB60D01 	 movzx ecx, BYTE PTR n[rip]
+  23      000000
+  24 0017 D3FA     	 sar edx, cl
+  25 0019 0FB60D00 	 movzx ecx, BYTE PTR m[rip]
+  25      000000
+  26 0020 B8FFFFFF 	 mov eax, -1
+  26      FF
+  27 0025 D3E0     	 sal eax, cl
+  28 0027 F7D0     	 not eax
+  29 0029 21C2     	 and edx, eax
+  30 002b 488D0D00 	 lea rcx, .LC0[rip]
+  30      000000
+  31 0032 E8000000 	 call printf
+  31      00
+  32 0037 B8000000 	 mov eax, 0
+  32      00
+  33 003c 4883C428 	 add rsp, 40
+  34 0040 C3       	 ret
+  35              	 .seh_endproc
+  36              	 .globl m
+  37 0041 90909090 	 .data
+  37      90909090 
+  37      90909090 
+  37      909090
+  38              	m:
+  39 0000 08       	 .byte 8
+  40              	 .globl n
+  41              	n:
+  42 0001 04       	 .byte 4
+  43              	 .globl num
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccLeqLep.s 			page 2
+
+
+  44              	 .align 2
+  45              	num:
+  46 0002 CDAB     	 .word -21555
+  47              	 .def __main; .scl 2; .type 32; .endef
+  48              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  49 0004 00000000 	 .def printf; .scl 2; .type 32; .endef
+  49      00000000 
+  49      00000000 

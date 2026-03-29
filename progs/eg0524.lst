@@ -1,0 +1,156 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccEm7Rly.s 			page 1
+
+
+   1              	# 0 "./progs/eg0524.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0524.S"
+   6              	#eg0524.s
+   7              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   8              	 .data #定义数据段
+   9 0000 00000000 	temp: .space 4 #共享变量
+  10 0004 2B313233 	Decstr1: .asciz "+123456"
+  10      34353600 
+  11              	.equ len1, .-Decstr1
+  12 000c 2D313233 	Decstr2: .asciz "-123456"
+  12      34353600 
+  13              	.equ len2, .-Decstr2
+  14 0014 30313233 	Decstr3: .asciz "01234560"
+  14      34353630 
+  14      00
+  15              	.equ len3, .-Decstr3
+  16 001d 313F3233 	Decstr4: .asciz "1?23456"
+  16      34353600 
+  17              	.equ len4, .-Decstr4
+  18 0025 00000000 	 .text #定义代码段
+  18      00000000 
+  18      000000
+  19              	    .globl main
+  20              	main: # 程序执行起始位置
+  21 0000 488D1504 	 lea rdx, Decstr1[rip] #入口参数rdx
+  21      000000
+  22 0007 48C7C108 	 mov rcx, len1 #入口参数rcx,字符长度
+  22      000000
+  23 000e E87F0000 	 call DStoD
+  23      00
+  24 0013 8B050000 	 mov eax,temp[rip] #获得出口参数
+  24      0000
+  25 0019 E8000000 	 call dispsid
+  25      00
+  26 001e E8000000 	 call dispcrlf
+  26      00
+  27              	
+  28 0023 488D150C 	 lea rdx, Decstr2[rip] #入口参数rdx
+  28      000000
+  29 002a 48C7C108 	 mov rcx, len2 #入口参数rcx,字符长度
+  29      000000
+  30 0031 E85C0000 	 call DStoD
+  30      00
+  31 0036 8B050000 	 mov eax,temp[rip] #获得出口参数
+  31      0000
+  32 003c E8000000 	 call dispsid
+  32      00
+  33 0041 E8000000 	 call dispcrlf
+  33      00
+  34              	
+  35 0046 488D1514 	 lea rdx, Decstr3[rip] #入口参数rdx
+  35      000000
+  36 004d 48C7C109 	 mov rcx, len3 #入口参数rcx,字符长度
+  36      000000
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccEm7Rly.s 			page 2
+
+
+  37 0054 E8390000 	 call DStoD
+  37      00
+  38 0059 8B050000 	 mov eax,temp[rip] #获得出口参数
+  38      0000
+  39 005f E8000000 	 call dispsid
+  39      00
+  40 0064 E8000000 	 call dispcrlf
+  40      00
+  41              	
+  42 0069 488D151D 	 lea rdx, Decstr4[rip] #入口参数rdx
+  42      000000
+  43 0070 48C7C108 	 mov rcx, len4 #入口参数rcx,字符长度
+  43      000000
+  44 0077 E8160000 	 call DStoD
+  44      00
+  45 007c 8B050000 	 mov eax,temp[rip] #获得出口参数
+  45      0000
+  46 0082 E8000000 	 call dispsid
+  46      00
+  47 0087 E8000000 	 call dispcrlf
+  47      00
+  48              	
+  49 008c B8000000 	 mov eax, 0
+  49      00
+  50 0091 C3       	 ret
+  51              	
+  52              	 #子程序
+  53              	DStoD: #十进制字符串转换为双字数值子程序
+  54 0092 50       	 push rax #出口参数：变量TEMP＝补码表示的二进制数值
+  55 0093 53       	 push rbx #说明：负数用“－”引导
+  56 0094 51       	 push rcx
+  57 0095 52       	 push rdx
+  58              	read0:
+  59 0096 85C9     	 test ecx,ecx
+  60 0098 743F     	 jz err #没有输入数据，转向错误处理
+  61 009a 83F90C   	 cmp ecx,12
+  62 009d 773A     	 ja err #输入超过12个字符，转向错误处理
+  63              	
+  64 009f 31DB     	 xor ebx,ebx #EBX保存结果
+  65 00a1 4531C0   	 xor r8d,r8d #r8d为正负标志，0为正，－1为负
+  66 00a4 8A02     	 mov al,[rdx] #取一个字符
+  67 00a6 3C2B     	 cmp al,'+' #是“＋”，继续
+  68 00a8 740A     	 jz L1
+  69 00aa 3C2D     	 cmp al,'-' #是“－”，设置－1标志
+  70 00ac 750F     	 jnz L2
+  71 00ae 41B8FFFF 	 mov r8d,-1
+  71      FFFF
+  72 00b4 48FFC2   	L1: inc rdx #取下一个字符
+  73 00b7 8A02     	 mov al,[rdx]
+  74 00b9 84C0     	 test al,al #是结尾0，转向求补码
+  75 00bb 742B     	 jz L3
+  76 00bd 3C30     	L2: cmp al,'0' #不是0～9之间的数码，则输入错误
+  77 00bf 7218     	 jb err
+  78 00c1 3C39     	 cmp al,'9'
+  79 00c3 7714     	 ja err
+  80 00c5 2C30     	 sub al,0x30 #是0～9之间的数码，则转换为二进制数
+  81 00c7 6BDB0A   	 imul ebx,10 #原数值乘10：EBX＝EBX×10
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccEm7Rly.s 			page 3
+
+
+  82 00ca 720D     	 jc err #CF＝1，说明乘积溢出，输入数据超出32位范围，出错
+  83 00cc 0FB6C0   	 movzx eax,al #零位扩展，便于相加
+  84 00cf 01C3     	 add ebx,eax #原数值乘10后，与新数码相加
+  85 00d1 81FB0000 	 cmp ebx,0x80000000 #数据超过2^31，出错
+  85      0080
+  86 00d7 76DB     	 jbe L1 #继续转换下一个数位
+  87 00d9 488D0525 	err: lea rax, errmsg[rip] #显示出错信息
+  87      000000
+  88 00e0 E8000000 	 call dispmsg
+  88      00
+  89 00e5 F9       	 stc
+  90 00e6 EB18     	 jmp L5
+  91              	 ########################
+  92 00e8 4585C0   	L3: test r8d,r8d #判断是正数还是负数
+  93 00eb 7404     	 jz L4
+  94 00ed F7DB     	 neg ebx #是负数，进行求补
+  95 00ef EB08     	 jmp L6
+  96 00f1 81FBFFFF 	L4: cmp ebx,0x7fffffff #正数超过2^31-1，出错
+  96      FF7F
+  97 00f7 77E0     	 ja err
+  98 00f9 891D0000 	L6: mov temp[rip],ebx #设置出口参数
+  98      0000
+  99 00ff F8       	    clc
+ 100 0100 5A       	L5: pop rdx
+ 101 0101 59       	 pop rcx
+ 102 0102 5B       	 pop rbx
+ 103 0103 58       	 pop rax
+ 104 0104 C3       	 ret #子程序返回
+ 105 0105 73747269 	errmsg: .asciz "string error, ending\n"
+ 105      6E672065 
+ 105      72726F72 
+ 105      2C20656E 
+ 105      64696E67 

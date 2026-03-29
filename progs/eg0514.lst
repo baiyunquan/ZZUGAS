@@ -1,0 +1,87 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMf2qHf.s 			page 1
+
+
+   1              	# 0 "./progs/eg0514.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0514.S"
+   5              	# eg0514.s
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 EA       	 key: .byte 234 #假设的一个密钥
+   9              	
+  10 0001 54686973 	msg1: .ascii "This is a screte." #源字符串
+  10      20697320 
+  10      61207363 
+  10      72657465 
+  10      2E
+  11              	        .equ count , .-msg1
+  12 0012 00       	        .byte 0
+  13 0013 456E6372 	msg2: .ascii "Encrypted message:\0 "
+  13      79707465 
+  13      64206D65 
+  13      73736167 
+  13      653A0020 
+  14 0027 0A4F7269 	msg3: .ascii "\nOriginal messge:\0"
+  14      67696E61 
+  14      6C206D65 
+  14      73736765 
+  14      3A00
+  15              	
+  16 0039 00000000 	 .text #定义代码段
+  16      000000
+  17              	        .globl main
+  18              	main: # 程序执行起始位置
+  19 0000 B9110000 	 mov ecx, count#ECX＝实际输入的字符个数，作为循环的次数
+  19      00
+  20              	
+  21              	 #xor rbx,rbx #RBX指向输入字符
+  22 0005 8A050000 	 mov al,key[rip] #AL＝密钥
+  22      0000
+  23 000b 488D3501 	 lea rsi,msg1[rip]
+  23      000000
+  24              	encrypt: #xor [rsi+rbx],al #异或加密
+  25 0012 30440EFF 	      xor -1[rsi+rcx],al
+  26              	 #inc rbx
+  27 0016 E2FA     	      loop encrypt #处理下一个字符, 等同于指令dec ecx jnz encrypt
+  28              	
+  29 0018 488D0513 	 lea rax, msg2[rip]
+  29      000000
+  30 001f E8000000 	 call dispmsg
+  30      00
+  31 0024 488D0501 	 lea rax,msg1[rip] #显示加密后的密文
+  31      000000
+  32 002b E8000000 	 call dispmsg
+  32      00
+  33              	
+  34 0030 488D3501 	 lea rsi,msg1[rip]
+  34      000000
+  35 0037 B9110000 	 mov ecx, count #ECX＝实际输入的字符个数，作为循环的次数
+  35      00
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMf2qHf.s 			page 2
+
+
+  36              	
+  37              	 #xor rbx,rbx #RBX指向输入字符
+  38 003c 8A050000 	 mov al,key[rip] #AL＝密钥
+  38      0000
+  39              	decrypt: #xor [rsi+rbx],al #异或解密
+  40              	 #inc rbx
+  41 0042 30440EFF 	      xor -1[rsi+rcx],al
+  42 0046 E2FA     	 loop decrypt #处理下一个字符,等同于指令dec ecx jnz decrypt
+  43              	
+  44 0048 488D0527 	 lea rax, msg3[rip]
+  44      000000
+  45 004f E8000000 	 call dispmsg
+  45      00
+  46 0054 488D0501 	 lea rax, msg1[rip] #显示解密后的明文
+  46      000000
+  47 005b E8000000 	 call dispmsg
+  47      00
+  48              	
+  49              	
+  50 0060 B8000000 	      mov eax,0
+  50      00
+  51 0065 C3909090 	 ret # 程序正常执行结束
+  51      90909090 
+  51      909090

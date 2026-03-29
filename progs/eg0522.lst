@@ -1,0 +1,98 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc6Hn9NN.s 			page 1
+
+
+   1              	# 0 "./progs/eg0522.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0522.S"
+   5              	#eg0522.s
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 D2029649 	 array: .long 1234567890,-1234,0,1,-987654321,32767,-32768,5678,-5678,9000
+   8      2EFBFFFF 
+   8      00000000 
+   8      01000000 
+   8      4F9721C5 
+   9              	 .equ len, (.-array)/4
+  10 0028 00000000 	      writebuf: .space 13 #显示缓冲区
+  10      00000000 
+  10      00000000 
+  10      00
+  11              	
+  12 0035 00000000 	 .text #定义代码段
+  12      00000000 
+  12      000000
+  13              	    .globl main
+  14              	main: # 程序执行起始位置
+  15 0000 48C7C10A 	       mov rcx,len
+  15      000000
+  16 0007 48C7C300 	  mov rbx,0
+  16      000000
+  17              	again:
+  18 000e 488D3500 	      lea rsi,array[rip]
+  18      000000
+  19 0015 488D3D28 	      lea rdi,writebuf[rip] #入口参数：rdi，指向显示缓冲区
+  19      000000
+  20 001c 8B049E   	      mov eax,[rsi+rbx*4] #EAX＝入口参数
+  21 001f E80B0000 	 call write #调用子程序，显示一个数据
+  21      00
+  22 0024 48FFC3   	 inc rbx
+  23 0027 E2E5     	 loop again
+  24              	
+  25 0029 B8000000 	      mov eax,0
+  25      00
+  26 002e C3       	      ret # 程序正常执行结束
+  27              	        #子程序
+  28              	write: #显示有符号十进制数的子程序，EAX，RDI＝入口参数
+  29 002f 53       	 push rbx #保护寄存器
+  30 0030 51       	 push rcx
+  31 0031 52       	 push rdx
+  32 0032 56       	 push rsi
+  33              	
+  34 0033 4989FC   	      mov r12,rdi
+  35 0036 85C0     	 test eax,eax #判断数据是零、正数或负数
+  36 0038 750A     	 jnz write1 #不是零，跳转
+  37 003a 41C60424 	 mov byte ptr [r12],'0' #是零，设置“0”
+  37      30
+  38 003f 49FFC4   	 inc r12
+  39 0042 EB2F     	 jmp write5 #转向显示
+  40 0044 790A     	write1: jns write2 #是正数，跳转
+  41 0046 41C60424 	 mov byte ptr [r12],'-' #是负数，设置负号“－”
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc6Hn9NN.s 			page 2
+
+
+  41      2D
+  42 004b 49FFC4   	 inc r12
+  43 004e F7D8     	 neg eax #数据求补（绝对值）
+  44 0050 B90A0000 	write2: mov ecx,10
+  44      00
+  45 0055 51       	      push rcx #10压入堆栈，作为退出标志
+  46 0056 83F800   	write3: cmp eax,0 #数据（商）为零，转向保存
+  47 0059 740A     	 jz write4
+  48 005b 31D2     	 xor edx,edx #零位扩展被除数为EDX.EAX
+  49 005d F7F1     	 div ecx #数据除以10：EDX.EAX÷10
+  50 005f 83C230   	 add edx,0x30 #余数（0～9）转换为ASCII码
+  51 0062 52       	 push rdx #数据各位先低位后高位压入堆栈
+  52 0063 EBF1     	 jmp write3
+  53 0065 5A       	write4: pop rdx #数据各位先高位后低位弹出堆栈
+  54 0066 39CA     	 cmp edx,ecx #是结束标志10，转向显示
+  55 0068 7409     	 je write5
+  56 006a 41881424 	 mov [r12],dl #数据保存到缓冲区
+  57 006e 49FFC4   	 inc r12
+  58 0071 EBF2     	 jmp write4
+  59              	
+  60 0073 41C60424 	write5: mov byte ptr [r12],'\n' #给显示内容加上回车换行和结尾标志
+  60      0A
+  61 0078 41C64424 	   mov byte ptr 1[r12],0
+  61      0100
+  62              	
+  63 007e 4889F8   	      mov rax, rdi
+  64 0081 E8000000 	 call dispmsg
+  64      00
+  65              	
+  66 0086 5E       	 pop rsi #恢复寄存器
+  67 0087 5A       	 pop rdx
+  68 0088 59       	 pop rcx
+  69 0089 5B       	 pop rbx
+  70 008a C3909090 	      ret #子程序返回
+  70      9090

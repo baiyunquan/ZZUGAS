@@ -1,0 +1,43 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccUUBVxd.s 			page 1
+
+
+   1              	# 0 "./progs/eg0520s.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0520s.S"
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 0A000000 	 N: .long 10
+   9 0004 00000000 	 .text #定义代码段
+   9      00000000 
+   9      00000000 
+  10              	        .globl main
+  11              	main: # 程序执行起始位置
+  12 0000 488B0D00 	 mov rcx, N[rip] #主程序（指令待填）
+  12      000000
+  13 0007 E80B0000 	    call fact
+  13      00
+  14 000c E8000000 	    call dispsid
+  14      00
+  15 0011 B8000000 	    mov eax,0
+  15      00
+  16 0016 C3       	 ret # 程序正常执行结束
+  17              	 #子程序（指令待填）
+  18              	 fact:
+  19 0017 53       	 push rbx #保存rbx
+  20 0018 89CB     	 mov ebx, ecx #入口参数rcx：n
+  21 001a 85C9     	 test ecx, ecx
+  22 001c 7412     	 je .L2 # n=0时，返回1
+  23 001e 8D49FF   	.L4: lea ecx, -1[rcx] # n不等于0，则计算n*fact(n-1)
+  24 0021 E8F1FFFF 	 call fact #递归调用fact
+  24      FF
+  25 0026 0FAFC3   	 imul eax, ebx #fact（n-1）返回，n*fact（n-1）
+  26 0029 EB05     	 jmp .L2
+  27 002b B8010000 	.L1: mov eax, 1 # 返回值在eax
+  27      00
+  28 0030 5B       	.L2: pop rbx #恢复rbx
+  29 0031 C3909090 	 ret #函数返回
+  29      90909090 
+  29      90909090 
+  29      909090

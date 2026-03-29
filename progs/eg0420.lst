@@ -1,0 +1,59 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccKehA7c.s 			page 1
+
+
+   1              	# 0 "./progs/eg0420.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0420.S"
+   5              	
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8              	
+   9              	 .text #定义代码段
+  10              	        .globl main
+  11              	main: # 程序执行起始位置
+  12              	
+  13 0000 B080     	 mov al, 0x80
+  14 0002 0480     	 add al, 0x80
+  15              	
+  16 0004 9C       	 pushfq
+  17              	
+  18 0005 8B0424   	 mov eax, dword ptr [rsp]
+  19 0008 E8000000 	 call disphd
+  19      00
+  20 000d E8000000 	 call dispcrlf
+  20      00
+  21              	
+  22 0012 8B0424   	 mov eax, dword ptr [rsp]
+  23 0015 83E001   	 and eax, 1 #截取CF， D0
+  24 0018 E8000000 	 call dispuid
+  24      00
+  25 001d E8000000 	 call dispcrlf
+  25      00
+  26              	
+  27 0022 8B0424   	 mov eax, dword ptr [rsp]
+  28 0025 C1E806   	 shr eax, 6
+  29 0028 83E001   	 and eax, 1 #截取ZF， D6
+  30 002b E8000000 	 call dispuid
+  30      00
+  31 0030 E8000000 	 call dispcrlf
+  31      00
+  32              	
+  33 0035 8B0424   	 mov eax, dword ptr [rsp]
+  34 0038 C1E807   	 shr eax, 7
+  35 003b 83E001   	 and eax, 1 #截取SF， D7
+  36 003e E8000000 	 call dispuid
+  36      00
+  37 0043 E8000000 	 call dispcrlf
+  37      00
+  38              	
+  39 0048 8B0424   	 mov eax, dword ptr [rsp]
+  40 004b C1E80B   	 shr eax, 11
+  41 004e 83E001   	 and eax, 1 #截取OF， D11
+  42 0051 E8000000 	 call dispuid
+  42      00
+  43              	
+  44 0056 59       	 pop rcx
+  45 0057 B8000000 	      mov eax,0
+  45      00
+  46 005c C3909090 	 ret # 程序正常执行结束

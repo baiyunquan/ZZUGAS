@@ -1,0 +1,63 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccmujyZb.s 			page 1
+
+
+   1              	# 0 "./progs/eg0417.S"
+   2              	# 1 "G:\\MLL\\姹囩紪璇█\\鏁板瓧鍖栨暀鏉怽\绔犺妭\\鍒濈ǹv2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0417.S"
+   6              	
+   7              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   8              	 .data #定义数据段
+   9              	
+  10              	 .text #定义代码段
+  11              	        .globl main
+  12              	main: # 程序执行起始位置
+  13              	
+  14 0000 B080     	 mov al, 0x80
+  15 0002 0480     	 add al, 0x80
+  16              	
+  17 0004 9C       	 pushfq
+  18              	
+  19 0005 8B0424   	 mov eax, dword ptr [rsp]
+  20 0008 E8000000 	 call disphd
+  20      00
+  21 000d E8000000 	 call dispcrlf
+  21      00
+  22              	
+  23 0012 8B0424   	 mov eax, dword ptr [rsp]
+  24 0015 83E001   	 and eax, 1 #截取CF， D0
+  25 0018 E8000000 	 call dispuid
+  25      00
+  26 001d E8000000 	 call dispcrlf
+  26      00
+  27              	
+  28 0022 8B0424   	 mov eax, dword ptr [rsp]
+  29 0025 C1E806   	 shr eax, 6
+  30 0028 83E001   	 and eax, 1 #截取ZF， D6
+  31 002b E8000000 	 call dispuid
+  31      00
+  32 0030 E8000000 	 call dispcrlf
+  32      00
+  33              	
+  34 0035 8B0424   	 mov eax, dword ptr [rsp]
+  35 0038 C1E807   	 shr eax, 7
+  36 003b 83E001   	 and eax, 1 #截取SF， D7
+  37 003e E8000000 	 call dispuid
+  37      00
+  38 0043 E8000000 	 call dispcrlf
+  38      00
+  39              	
+  40 0048 8B0424   	 mov eax, dword ptr [rsp]
+  41 004b C1E80B   	 shr eax, 11
+  42 004e 83E001   	 and eax, 1 #截取OF， D11
+  43 0051 E8000000 	 call dispuid
+  43      00
+  44              	
+  45 0056 59       	 pop rcx
+  46 0057 B8000000 	      mov eax,0
+  46      00
+  47 005c C3909090 	 ret # 程序正常执行结束
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccmujyZb.s 			page 2
+
+

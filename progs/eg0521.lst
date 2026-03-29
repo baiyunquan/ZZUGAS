@@ -1,0 +1,70 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc3Kk7dE.s 			page 1
+
+
+   1              	# 0 "./progs/eg0521.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0521.S"
+   5              	#eg0521.s
+   6              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   7              	 .data #定义数据段
+   8 0000 4541583D 	 regd: .ascii "EAX=" #显示EAX内容，
+   9 0004 00000000 	         .space 8 #预留8个字符（字节）空间
+   9      00000000 
+  10 000c 0A00     	         .byte '\n',0 #回车换行，以0结尾
+  11 000e 0000     	 .text #定义代码段
+  12              	    .globl main
+  13              	main: # 程序执行起始位置
+  14 0000 B8CDAB34 	       mov eax, 0x1234abcd #假设一个要显示的数据
+  14      12
+  15 0005 4831DB   	    xor rbx,rbx #使用rBX相对寻址访问REGD字符串
+  16 0008 488D3D00 	    lea rdi,regd[rip]
+  16      000000
+  17 000f B9080000 	 mov ecx,8 #8位十六进制数
+  17      00
+  18 0014 C1C004   	again: rol eax,4 #高4位循环移位进入低4位，作为子程序的入口参数
+  19 0017 50       	 push rax #子程序利用AL返回结果，所以需要保存EAX中的数据
+  20 0018 E8270000 	 call htoasc1 #调用子程序
+  20      00
+  21 001d 88441F04 	 mov 4[rdi+rbx],al #保存转换后的ASCII码
+  22 0021 58       	 pop rax #恢复保存的数据
+  23 0022 48FFC3   	 inc rbx
+  24 0025 E2ED     	 loop again
+  25              	
+  26 0027 488D0500 	 lea rax,regd[rip] #等价于 mov rax, offset regd[rip]
+  26      000000
+  27 002e E8000000 	 call dispmsg #显示
+  27      00
+  28              	
+  29 0033 B8000000 	        mov eax,0
+  29      00
+  30 0038 C3       	        ret # 程序正常执行结束
+  31              	        #子程序
+  32              	htoasc: #将AL低4位表达的一位十六进制数转换为ASCII码
+  33              	
+  34              	
+  35 0039 240F     	 and al,0xf #只取AL的低4位
+  36 003b 0C30     	 or al,0x30 #AL高4位变成3，实现加30H
+  37 003d 3C39     	 cmp al,0x39 #是0～9，还是A～F
+  38 003f 7602     	 jbe htoend
+  39 0041 0407     	 add al,7 #是A～F，其ASCII码再加上7
+  40              	
+  41 0043 C3       	htoend: ret #子程序返回
+  42              	
+  43              	htoasc1: #将AL低4位表达的一位十六进制数转换为ASCII码
+  44 0044 57       	      push rdi
+  45 0045 4883E00F 	 and rax, 0xf
+  46 0049 488D3D05 	 lea rdi,.ASCII[rip]
+  46      000000
+  47 0050 8A0407   	 mov al, [rdi+rax]
+  48 0053 5F       	 pop rdi
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cc3Kk7dE.s 			page 2
+
+
+  49 0054 C3       	 ret #子程序返回
+  50              	#子程序的局部数据
+  51 0055 30313233 	.ASCII: .ascii "0123456789ABCDEF"
+  51      34353637 
+  51      38394142 
+  51      43444546 
+  51      90909090 

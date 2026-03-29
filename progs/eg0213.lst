@@ -1,0 +1,115 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccr0Lxov.s 			page 1
+
+
+   1              		.file	"eg0213.c"
+   2              		.intel_syntax noprefix
+   3              		.text
+   4              		.section .rdata,"dr"
+   5              	.LC0:
+   6 0000 20252E32 		.ascii " %.2x\0"
+   6      7800
+   7              		.text
+   8              		.globl	show_bytes
+   9              		.def	show_bytes;	.scl	2;	.type	32;	.endef
+  10              		.seh_proc	show_bytes
+  11              	show_bytes:
+  12 0000 57       		push	rdi
+  13              		.seh_pushreg	rdi
+  14 0001 56       		push	rsi
+  15              		.seh_pushreg	rsi
+  16 0002 53       		push	rbx
+  17              		.seh_pushreg	rbx
+  18 0003 4883EC20 		sub	rsp, 32
+  19              		.seh_stackalloc	32
+  20              		.seh_endprologue
+  21 0007 4889CF   		mov	rdi, rcx
+  22 000a 4889D6   		mov	rsi, rdx
+  23 000d BB000000 		mov	ebx, 0
+  23      00
+  24 0012 EB14     		jmp	.L2
+  25              	.L3:
+  26 0014 0FB6141F 		movzx	edx, BYTE PTR [rdi+rbx]
+  27 0018 488D0D00 		lea	rcx, .LC0[rip]
+  27      000000
+  28 001f E8000000 		call	printf
+  28      00
+  29 0024 4883C301 		add	rbx, 1
+  30              	.L2:
+  31 0028 4839F3   		cmp	rbx, rsi
+  32 002b 72E7     		jb	.L3
+  33 002d B90A0000 		mov	ecx, 10
+  33      00
+  34 0032 E8000000 		call	putchar
+  34      00
+  35 0037 90       		nop
+  36 0038 4883C420 		add	rsp, 32
+  37 003c 5B       		pop	rbx
+  38 003d 5E       		pop	rsi
+  39 003e 5F       		pop	rdi
+  40 003f C3       		ret
+  41              		.seh_endproc
+  42              		.section .rdata,"dr"
+  43              	.LC1:
+  44 0006 663D2025 		.ascii "f= %f,d= %lf\12\0"
+  44      662C643D 
+  44      20256C66 
+  44      0A00
+  45 0014 00000000 		.text
+  45      00000000 
+  45      00000000 
+  46              		.globl	main
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccr0Lxov.s 			page 2
+
+
+  47              		.def	main;	.scl	2;	.type	32;	.endef
+  48              		.seh_proc	main
+  49              	main:
+  50 0040 4883EC28 		sub	rsp, 40
+  51              		.seh_stackalloc	40
+  52              		.seh_endprologue
+  53 0044 E8000000 		call	__main
+  53      00
+  54 0049 660FEFC9 		pxor	xmm1, xmm1
+  55 004d F30F5A0D 		cvtss2sd	xmm1, DWORD PTR f[rip]
+  55      08000000 
+  56 0055 F20F1015 		movsd	xmm2, QWORD PTR d[rip]
+  56      00000000 
+  57 005d 66490F7E 		movq	r8, xmm2
+  57      D0
+  58 0062 66480F7E 		movq	rdx, xmm1
+  58      CA
+  59 0067 488D0D06 		lea	rcx, .LC1[rip]
+  59      000000
+  60 006e E8000000 		call	printf
+  60      00
+  61 0073 BA040000 		mov	edx, 4
+  61      00
+  62 0078 488D0D08 		lea	rcx, f[rip]
+  62      000000
+  63 007f E87CFFFF 		call	show_bytes
+  63      FF
+  64 0084 BA080000 		mov	edx, 8
+  64      00
+  65 0089 488D0D00 		lea	rcx, d[rip]
+  65      000000
+  66 0090 E86BFFFF 		call	show_bytes
+  66      FF
+  67 0095 B8000000 		mov	eax, 0
+  67      00
+  68 009a 4883C428 		add	rsp, 40
+  69 009e C3       		ret
+  70              		.seh_endproc
+  71              		.globl	d
+  72 009f 90       		.data
+  73              		.align 8
+  74              	d:
+  75 0000 00000000 		.long	0
+  76 0004 002059C0 		.long	-1067900928
+  77              		.globl	f
+  78              		.align 4
+  79              	f:
+  80 0008 0000C9C2 		.long	-1027014656
+  81              		.def	__main;	.scl	2;	.type	32;	.endef
+  82              		.ident	"GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  83              		.def	printf;	.scl	2;	.type	32;	.endef
+  84 000c 00000000 		.def	putchar;	.scl	2;	.type	32;	.endef

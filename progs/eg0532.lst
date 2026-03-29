@@ -1,0 +1,250 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMTpCPx.s 			page 1
+
+
+   1              	# 0 "./progs/eg0532.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0532.S"
+   5              	.intel_syntax noprefix #采用Intel语法，面向X86处理器时使用
+   6              	.data
+   7              	.set char, 0x20 #定义第一个可显示字符：空格，其ASCII值是20H
+   8 0000 20       	space:.byte char
+   9              	 .rept 6 #重复6行
+  10              	    .rept 16 #每行16个字符
+  11              	     .set char , char +1
+  12              	     .byte char,0x20
+  13              	    .endr
+  14              	    .ascii "\n"
+  15              	 .endr
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 0001 2120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0003 2220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0005 2320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0007 2420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0009 2520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 000b 2620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 000d 2720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 000f 2820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0011 2920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0013 2A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0015 2B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0017 2C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0019 2D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 001b 2E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 001d 2F20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 001f 3020     	>>  .byte char,0x20
+  15 0021 0A       	>  .ascii "\n"
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 0022 3120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0024 3220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0026 3320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMTpCPx.s 			page 2
+
+
+  15 0028 3420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 002a 3520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 002c 3620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 002e 3720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0030 3820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0032 3920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0034 3A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0036 3B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0038 3C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 003a 3D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 003c 3E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 003e 3F20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0040 4020     	>>  .byte char,0x20
+  15 0042 0A       	>  .ascii "\n"
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 0043 4120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0045 4220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0047 4320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0049 4420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 004b 4520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 004d 4620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 004f 4720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0051 4820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0053 4920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0055 4A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0057 4B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0059 4C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 005b 4D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 005d 4E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 005f 4F20     	>>  .byte char,0x20
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMTpCPx.s 			page 3
+
+
+  15              	>>  .set char,char+1
+  15 0061 5020     	>>  .byte char,0x20
+  15 0063 0A       	>  .ascii "\n"
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 0064 5120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0066 5220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0068 5320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 006a 5420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 006c 5520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 006e 5620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0070 5720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0072 5820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0074 5920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0076 5A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0078 5B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 007a 5C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 007c 5D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 007e 5E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0080 5F20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0082 6020     	>>  .byte char,0x20
+  15 0084 0A       	>  .ascii "\n"
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 0085 6120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0087 6220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0089 6320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 008b 6420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 008d 6520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 008f 6620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0091 6720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0093 6820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0095 6920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMTpCPx.s 			page 4
+
+
+  15 0097 6A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 0099 6B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 009b 6C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 009d 6D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 009f 6E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00a1 6F20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00a3 7020     	>>  .byte char,0x20
+  15 00a5 0A       	>  .ascii "\n"
+  15              	>  .rept 16
+  15              	>>  .set char,char+1
+  15 00a6 7120     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00a8 7220     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00aa 7320     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00ac 7420     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00ae 7520     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00b0 7620     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00b2 7720     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00b4 7820     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00b6 7920     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00b8 7A20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00ba 7B20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00bc 7C20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00be 7D20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00c0 7E20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00c2 7F20     	>>  .byte char,0x20
+  15              	>>  .set char,char+1
+  15 00c4 8020     	>>  .byte char,0x20
+  15 00c6 0A       	>  .ascii "\n"
+  16 00c7 00       	 .byte 0
+  17              	
+  18 00c8 00000000 	 .text #代码段
+  18      00000000 
+  19              	 .global main
+  20              	 main:
+  21 0000 488D0500 	 lea rax,space[rip]
+  21      000000
+  22 0007 E8000000 	 call dispmsg
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccMTpCPx.s 			page 5
+
+
+  22      00
+  23 000c B8000000 	 mov eax, 0
+  23      00
+  24 0011 C3909090 	 ret
+  24      90909090 
+  24      90909090 
+  24      909090

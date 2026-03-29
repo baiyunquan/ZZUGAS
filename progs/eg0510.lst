@@ -1,0 +1,113 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccU22hT5.s 			page 1
+
+
+   1              	# 0 "./progs/eg0510.S"
+   2              	# 0 "<built-in>"
+   3              	# 0 "<command-line>"
+   4              	# 1 "./progs/eg0510.S"
+   5              	 .file "eg0510.c"
+   6              	 .intel_syntax noprefix
+   7              	 .text
+   8              	 .globl mystrlen
+   9              	 .def mystrlen; .scl 2; .type 32; .endef
+  10              	 .seh_proc mystrlen
+  11              	mystrlen:
+  12              	 .seh_endprologue
+  13 0000 B8000000 	 mov eax, 0
+  13      00
+  14 0005 EB0F     	 jmp .L2
+  15 0007 660F1F84 	 .p2align 4
+  15      00000000 
+  15      00
+  16              	.L3:
+  17 0010 83C001   	 add eax, 1
+  18 0013 4889D1   	 mov rcx, rdx
+  19              	.L2:
+  20 0016 488D5101 	 lea rdx, 1[rcx]
+  21 001a 803900   	 cmp BYTE PTR [rcx], 0
+  22 001d 75F1     	 jne .L3
+  23 001f C3       	 ret
+  24              	 .seh_endproc
+  25              	 .globl mystrlen1
+  26              	 .def mystrlen1; .scl 2; .type 32; .endef
+  27              	 .seh_proc mystrlen1
+  28              	mystrlen1:
+  29              	 .seh_endprologue
+  30 0020 B8000000 	 mov eax, 0
+  30      00
+  31 0025 EB0C     	 jmp .L5
+  32 0027 660F1F84 	 .p2align 4
+  32      00000000 
+  32      00
+  33              	.L6:
+  34 0030 83C001   	 add eax, 1
+  35              	.L5:
+  36 0033 4863D0   	 movsx rdx, eax
+  37 0036 803C1100 	 cmp BYTE PTR [rcx+rdx], 0
+  38 003a 75F4     	 jne .L6
+  39 003c C3       	 ret
+  40              	 .seh_endproc
+  41              	 .section .rdata,"dr"
+  42              	.LC0:
+  43 0000 256400   	 .ascii "%d\0"
+  44 0003 00000000 	 .text
+  44      00000000 
+  44      00000000 
+  44      00
+  45              	 .globl main
+  46              	 .def main; .scl 2; .type 32; .endef
+  47              	 .seh_proc main
+  48              	main:
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccU22hT5.s 			page 2
+
+
+  49 003d 4883EC58 	 sub rsp, 88
+  50              	 .seh_stackalloc 88
+  51              	 .seh_endprologue
+  52 0041 E8000000 	 call __main
+  52      00
+  53 0046 48B84368 	 movabs rax, 8316213789752649795
+  53      696E6120 
+  53      6973
+  54 0050 48BA2061 	 movabs rdx, 8389772277102698784
+  54      20636F75 
+  54      6E74
+  55 005a 48894424 	 mov QWORD PTR 32[rsp], rax
+  55      20
+  56 005f 48895424 	 mov QWORD PTR 40[rsp], rdx
+  56      28
+  57 0064 48B87279 	 movabs rax, 2335244403110607218
+  57      20776974 
+  57      6820
+  58 006e 48BA6120 	 movabs rdx, 7503110703212666977
+  58      6C6F6E67 
+  58      2068
+  59 0078 48894424 	 mov QWORD PTR 48[rsp], rax
+  59      30
+  60 007d 48895424 	 mov QWORD PTR 56[rsp], rdx
+  60      38
+  61 0082 48B86973 	 movabs rax, 13081381331825513
+  61      746F7279 
+  61      2E00
+  62 008c 48894424 	 mov QWORD PTR 64[rsp], rax
+  62      40
+  63 0091 488D4C24 	 lea rcx, 32[rsp]
+  63      20
+  64 0096 E865FFFF 	 call mystrlen
+  64      FF
+  65 009b 89C2     	 mov edx, eax
+  66 009d 488D0D00 	 lea rcx, .LC0[rip]
+  66      000000
+  67 00a4 E8000000 	 call printf
+  67      00
+  68 00a9 B8000000 	 mov eax, 0
+  68      00
+  69 00ae 4883C458 	 add rsp, 88
+  70 00b2 C3       	 ret
+  71              	 .seh_endproc
+  72              	 .def __main; .scl 2; .type 32; .endef
+  73              	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  74 00b3 90909090 	 .def printf; .scl 2; .type 32; .endef
+  74      90909090 
+  74      90909090 
+  74      90

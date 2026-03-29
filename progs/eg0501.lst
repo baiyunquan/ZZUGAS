@@ -1,0 +1,56 @@
+GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccCeYk12.s 			page 1
+
+
+   1              	# 0 "./progs/eg0501.S"
+   2              	# 1 "G:\\MLL\\汇编语言\\数字化教材\\章节\\初稿v2\\ZZUGAS//"
+   3              	# 0 "<built-in>"
+   4              	# 0 "<command-line>"
+   5              	# 1 "./progs/eg0501.S"
+   6              	 .file "eg0501.c"
+   7              	 .intel_syntax noprefix
+   8              	 .text
+   9              	 .globl diffabs
+  10              	 .def diffabs; .scl 2; .type 32; .endef
+  11              	 .seh_proc diffabs
+  12              	diffabs:
+  13              	 .seh_endprologue
+  14 0000 39D1     	 cmp ecx, edx
+  15 0002 7D05     	 jge .L4
+  16 0004 89D0     	 mov eax, edx
+  17 0006 29C8     	 sub eax, ecx
+  18              	.L3:
+  19              	.L1:
+  20 0008 C3       	 ret
+  21              	.L4:
+  22 0009 89C8     	 mov eax, ecx
+  23 000b 29D0     	 sub eax, edx
+  24 000d EBF9     	 jmp .L1
+  25              	 .seh_endproc
+  26              	 .globl find
+  27              	 .def find; .scl 2; .type 32; .endef
+  28              	 .seh_proc find
+  29              	find:
+  30              	 .seh_endprologue
+  31 000f B8000000 	 mov eax, 0
+  31      00
+  32 0014 EB0D     	 jmp .L6
+  33 0016 662E0F1F 	 .p2align 5
+  33      84000000 
+  33      0000
+  34              	.L10:
+  35 0020 83C001   	 add eax, 1
+  36              	.L6:
+  37 0023 83F802   	 cmp eax, 2
+  38 0026 7F0B     	 jg .L9
+  39 0028 4C63C0   	 movsx r8, eax
+  40 002b 42391481 	 cmp DWORD PTR [rcx+r8*4], edx
+  41 002f 75EF     	 jne .L10
+  42 0031 EB05     	 jmp .L5
+  43              	.L9:
+  44 0033 B8FFFFFF 	 mov eax, -1
+  44      FF
+  45              	.L5:
+  46 0038 C3       	 ret
+  47              	 .seh_endproc
+  48 0039 90909090 	 .ident "GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0"
+  48      909090
