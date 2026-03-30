@@ -9,7 +9,7 @@ xfwm4 --replace &
 ``` bash
 ssh-keygen
 apt update && apt install git
-git clone https://github.com/baiyunquan/ZZUGAS.git
+git clone git@github.com:baiyunquan/ZZUGAS.git
 cd ZZUGAS
 cp ./ZZUGAS ~/Desktop/ZZUassembly
 ```
