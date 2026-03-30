@@ -1,0 +1,216 @@
+    1  cp /mnt/cgshare/____-____.png ~/Pictures/
+    2  cd ~
+    3  ls
+    4  dpkg -i code_1.42.1-1581432938_amd64.deb 
+    5  ls
+    6  chmod +x code.desktop
+    7  apt-get install gdb
+    8  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O /tmp/code_latest_amd64.deb
+    9  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O /tmp/code_latest_amd64.deb
+   10  ls
+   11  dpkg -i /tmp/code_latest_amd64.deb
+   12  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O /tmp/code_latest_amd64.deb
+   13  whereis nasm
+   14  ld
+   15  ls
+   16  tar zxvf nasm-2.15.05.tar.gz 
+   17  ls
+   18  cd nasm-2.15.05
+   19  ls
+   20  ./configure 
+   21  make
+   22  apt-get install make
+   23  ls
+   24  make
+   25  make install
+   26  nasm -version
+   27  ls
+   28  ls
+   29  rm -r HH
+   30  rm -r TT
+   31  ls
+   32  mkdir assembly
+   33  ls
+   34  ls
+   35  cd assembly/
+   36  ls
+   37  cd exp1/
+   38  ls
+   39  cp ans_exp1.asm /mnt/cgshare/
+   40  cd assembly/
+   41  ls
+   42  mkdir exp2
+   43  mkdir exp3
+   44  mkdir exp4
+   45  mkdir exp5
+   46  mkdir exp5
+   47  mkdir exp6
+   48  mkdir exp7
+   49  mkdir exp8
+   50  mkdir exp9
+   51  mkdir exp10
+   52  ls
+   53  ls
+   54  cd assembly/
+   55  ls
+   56  cd exp3
+   57  ls
+   58  cp ans3.asm /mnt/cgshare/
+   59  ls
+   60  ls
+   61  cd assembly/
+   62  ls
+   63  cd exp4
+   64  ls
+   65  cp p.asm /mnt/cgshare/
+   66  ls
+   67  cd assembly/
+   68  ls
+   69  mkdir exp11
+   70  ls
+   71  mkdir exp12
+   72  mkdir exp13
+   73  mkdir exp14
+   74  mkdir exp15
+   75  mkdir exp16
+   76  mkdir exp17
+   77  mkdir exp18
+   78  mkdir exp19
+   79  ls
+   80  cd assembly/
+   81  ls
+   82  cd exp18/
+   83  ls
+   84  rm 'myfile.txtXueZhiQiaoWritten to file
+   85  ' 
+   86  ls
+   87  ls
+   88  rm 'myfile.txtXueZhiQiaoWritten to file
+   89  ' 
+   90  ls
+   91  ls
+   92  ./p2
+   93  cd assembly/
+   94  cd exp18/
+   95  ls
+   96  rm 'myfile.txtWelcome to Tutorials PointWritten to file
+   97  ' 
+   98  ls
+   99  cd assembly/
+  100  ls
+  101  cd exp1
+  102  ls
+  103  rm *
+  104  cd ../exp2
+  105  ls
+  106  rm *
+  107  cd ../exp3
+  108  ls
+  109  rm *
+  110  cd ../exp4
+  111  ls
+  112  rm *
+  113  cd ../exp5
+  114  ls
+  115  rm *
+  116  cd ../exp6/
+  117  ls
+  118  rm *
+  119  ls
+  120  cd ../exp7
+  121  ls
+  122  rm * 
+  123  cd ../exp8
+  124  rm *
+  125  cd ../exp9
+  126  rm *
+  127  cd ../exp10
+  128  rm *
+  129  cd ../exp11
+  130  rm *
+  131  cd ../exp12
+  132  rm *
+  133  cd ../exp13
+  134  rm *
+  135  ls
+  136  ls
+  137  cd ../exp14
+  138  ls
+  139  rm *
+  140  ls
+  141  cd ../exp15
+  142  ls
+  143  rm *
+  144  cd ../exp16
+  145  ls
+  146  rm *
+  147  cd ../exp17
+  148  ls
+  149  rm *
+  150  cd ../exp18
+  151  ls
+  152  ls
+  153  rm *
+  154  ls
+  155  cd ../exp19
+  156  ls
+  157  rm *
+  158  ls
+  159  cd /mnt/cgshare/
+  160  ls
+  161  rm *
+  162  ls
+  163  ls
+  164  mkdir exp1
+  165  mkdir exp1
+  166  cd ..
+  167  cd ..
+  168  cd ZZUNASM/
+  169  io_linux.inc    section .data
+  170      section .text
+  171      global _start
+  172      _start:
+  173      mov eax,msg
+  174      call dispmsg  ;>:
+  175  nasm -f elf ./experiments/exp1/exp1_1.asm
+  176  nasm -f elf ./experiments/exp1/exp1_1.asm
+  177  nasm -f elf ./experiments/exp1/exp1_1.asm
+  178  nasm -f elf ./experiments/exp1/exp1_1.asm
+  179  nasm -f elf ./experiments/exp1/exp1_1.asm
+  180  nasm -f elf ./experiments/exp1/exp1_1.asm
+  181  nasm -f elf ./experiments/exp1/exp1_1.asm
+  182  nasm -f elf ./experiments/exp1/exp1_1.asm
+  183  nasm -f elf ./experiments/exp1/exp1_1.asm
+  184  nasm -f elf ./experiments/exp1/exp1_1.asm
+  185  nasm -f elf ./experiments/exp1/exp1_1.asm
+  186  ld -m elf_i386 -s -o ./experiments/exp1/exp1_1 ./experiments/exp1/exp1_1.o ./lib/io_linux.a
+  187  ld -m elf_i386 -s -o ./experiments/exp1/exp1_1 ./experiments/exp1/exp1_1.o ./lib/io_linux.a
+  188  ./experiments/exp1/exp1_1 
+  189  cd ./experiments/exp1/
+  190  rm exp1_1
+  191  em exp1_1.o
+  192  rm exp1_1.o
+  193  cd ..
+  194  cd ..
+  195  ./nmake32.sh exp1/exp1_1.asm
+  196  ./nmake32.sh exp1/exp1_1.asm
+  197  ./nmake32.sh exp1/exp1_1.asm
+  198  ./nmake32.sh exp1/exp1_1.asm
+  199  ./nmake32.sh exp1/exp1_1.asm
+  200  ./experiments/exp1/exp1_1 
+  201  rm exp1_1
+  202  cd ./experiments/exp1/
+  203  rm exp1_1
+  204  rm exp1_1.o
+  205  rm exp1_1.asm 
+  206  nmake32.sh eg0301
+  207  ./nmake32.sh eg0301
+  208  eg0301
+  209  ./eg0301
+  210  cd ZZUassembly/Demo/
+  211  ls
+  212  history
+  213  ls 
+  214  ls /
+  215  ls /mnt/cgshare/
+  216  history > history.txt
