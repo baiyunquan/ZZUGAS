@@ -1,175 +1,128 @@
 	.file	"eg0214.c"
 	.intel_syntax noprefix
-	.section	.rodata.str1.1,"aMS",@progbits,1
+	.text
+	.section .rdata,"dr"
 .LC0:
-	.string	" x = %x = %d = %u \n"
+	.ascii " x = %x = %d = %u \12\0"
 .LC1:
-	.string	" u = %x = %d = %u \n"
+	.ascii " u = %x = %d = %u \12\0"
 .LC2:
-	.string	" l = %x = %ld = %llu \n"
+	.ascii " l = %x = %ld = %llu \12\0"
 .LC3:
-	.string	" s = %x = %d = %u \n"
+	.ascii " s = %x = %d = %u \12\0"
 .LC4:
-	.string	" us = %x = %d = %u \n"
+	.ascii " us = %x = %d = %u \12\0"
 .LC5:
-	.string	" c = %x = %d = %u = %c \n"
+	.ascii " c = %x = %d = %u = %c \12\0"
 .LC6:
-	.string	" uc = %x = %d = %u = %c \n"
+	.ascii " uc = %x = %d = %u = %c \12\0"
 .LC7:
-	.string	" str = %s\n "
+	.ascii " str = %s\12 \0"
 .LC8:
-	.string	" str1 = %s\n "
+	.ascii " str1 = %s\12 \0"
 .LC9:
-	.string	" ps = %x = %ld "
+	.ascii " ps = %x = %ld \0"
 	.text
 	.globl	main
-	.type	main, @function
+	.def	main;	.scl	2;	.type	32;	.endef
+	.seh_proc	main
 main:
-.LFB23:
-	.cfi_startproc
-	sub	rsp, 8
-	.cfi_def_cfa_offset 16
+	sub	rsp, 56
+	.seh_stackalloc	56
+	.seh_endprologue
+	call	__main
 	mov	edx, DWORD PTR x[rip]
+	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC0
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC0[rip]
+	call	printf
 	mov	edx, DWORD PTR u[rip]
+	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC1
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
-	mov	rdx, QWORD PTR l[rip]
-	mov	r8, rdx
-	mov	rcx, rdx
-	mov	esi, OFFSET FLAT:.LC2
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC1[rip]
+	call	printf
+	mov	edx, DWORD PTR l[rip]
+	mov	r9d, edx
+	mov	r8d, edx
+	lea	rcx, .LC2[rip]
+	call	printf
 	movsx	edx, WORD PTR s[rip]
+	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC3
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC3[rip]
+	call	printf
 	movzx	edx, WORD PTR us[rip]
+	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC4
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC4[rip]
+	call	printf
 	movsx	edx, BYTE PTR c[rip]
+	mov	DWORD PTR 32[rsp], edx
 	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC5
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC5[rip]
+	call	printf
 	movzx	edx, BYTE PTR uc[rip]
+	mov	DWORD PTR 32[rsp], edx
 	mov	r9d, edx
 	mov	r8d, edx
-	mov	ecx, edx
-	mov	esi, OFFSET FLAT:.LC6
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
-	mov	edx, OFFSET FLAT:str
-	mov	esi, OFFSET FLAT:.LC7
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
-	mov	edx, OFFSET FLAT:str1
-	mov	esi, OFFSET FLAT:.LC8
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
+	lea	rcx, .LC6[rip]
+	call	printf
+	lea	rdx, str[rip]
+	lea	rcx, .LC7[rip]
+	call	printf
+	lea	rdx, str1[rip]
+	lea	rcx, .LC8[rip]
+	call	printf
 	mov	rdx, QWORD PTR ps[rip]
-	mov	esi, OFFSET FLAT:.LC9
-	mov	edi, 1
+	lea	rcx, .LC9[rip]
+	call	printf
 	mov	eax, 0
-	call	__printf_chk
-	mov	eax, 0
-	add	rsp, 8
-	.cfi_def_cfa_offset 8
+	add	rsp, 56
 	ret
-	.cfi_endproc
-.LFE23:
-	.size	main, .-main
+	.seh_endproc
 	.globl	ps
 	.data
 	.align 8
-	.type	ps, @object
-	.size	ps, 8
 ps:
 	.quad	str
 	.globl	str1
-	.type	str1, @object
-	.size	str1, 6
 str1:
-	.byte	67
-	.byte	104
-	.byte	105
-	.byte	110
-	.byte	97
-	.byte	0
+	.ascii "China\0"
 	.globl	str
 	.align 16
-	.type	str, @object
-	.size	str, 16
 str:
-	.string	"Hello Assembly!"
+	.ascii "Hello Assembly!\0"
 	.globl	uc
-	.type	uc, @object
-	.size	uc, 1
 uc:
 	.byte	-56
 	.globl	c
-	.type	c, @object
-	.size	c, 1
 c:
 	.byte	65
 	.globl	us
 	.align 2
-	.type	us, @object
-	.size	us, 2
 us:
-	.value	-1
+	.word	-1
 	.globl	s
 	.align 2
-	.type	s, @object
-	.size	s, 2
 s:
-	.value	-1
+	.word	-1
 	.globl	ul
-	.align 8
-	.type	ul, @object
-	.size	ul, 8
+	.align 4
 ul:
-	.quad	-1
+	.long	-1
 	.globl	l
-	.align 8
-	.type	l, @object
-	.size	l, 8
+	.align 4
 l:
-	.quad	-1
+	.long	-1
 	.globl	u
 	.align 4
-	.type	u, @object
-	.size	u, 4
 u:
 	.long	-2147483648
 	.globl	x
 	.align 4
-	.type	x, @object
-	.size	x, 4
 x:
 	.long	-1
-	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609"
-	.section	.note.GNU-stack,"",@progbits
+	.def	__main;	.scl	2;	.type	32;	.endef
+	.ident	"GCC: (Rev8, Built by MSYS2 project) 15.2.0"
+	.def	printf;	.scl	2;	.type	32;	.endef

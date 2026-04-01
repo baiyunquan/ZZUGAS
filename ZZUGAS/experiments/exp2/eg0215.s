@@ -1,92 +1,101 @@
 	.file	"eg0215.c"
 	.intel_syntax noprefix
-	.section	.rodata.str1.1,"aMS",@progbits,1
+	.text
+	.section .rdata,"dr"
 .LC0:
-	.string	" %.2x"
+	.ascii " %.2x\0"
 	.text
 	.globl	show_bytes
-	.type	show_bytes, @function
+	.def	show_bytes;	.scl	2;	.type	32;	.endef
+	.seh_proc	show_bytes
 show_bytes:
-.LFB23:
-	.cfi_startproc
-	push	r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
 	push	rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	push	rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	mov	r12, rdi
-	mov	rbp, rsi
-	mov	ebx, 0
+	.seh_pushreg	rbp
+	mov	rbp, rsp
+	.seh_setframe	rbp, 0
+	sub	rsp, 48
+	.seh_stackalloc	48
+	.seh_endprologue
+	mov	QWORD PTR 16[rbp], rcx
+	mov	QWORD PTR 24[rbp], rdx
+	mov	QWORD PTR -8[rbp], 0
 	jmp	.L2
 .L3:
-	movzx	edx, BYTE PTR [r12+rbx]
-	mov	esi, OFFSET FLAT:.LC0
-	mov	edi, 1
-	mov	eax, 0
-	call	__printf_chk
-	add	rbx, 1
+	mov	rdx, QWORD PTR 16[rbp]
+	mov	rax, QWORD PTR -8[rbp]
+	add	rax, rdx
+	movzx	eax, BYTE PTR [rax]
+	movzx	eax, al
+	lea	rcx, .LC0[rip]
+	mov	edx, eax
+	call	printf
+	add	QWORD PTR -8[rbp], 1
 .L2:
-	cmp	rbx, rbp
+	mov	rax, QWORD PTR -8[rbp]
+	cmp	rax, QWORD PTR 24[rbp]
 	jb	.L3
-	mov	edi, 10
+	mov	ecx, 10
 	call	putchar
-	pop	rbx
-	.cfi_def_cfa_offset 24
+	nop
+	add	rsp, 48
 	pop	rbp
-	.cfi_def_cfa_offset 16
-	pop	r12
-	.cfi_def_cfa_offset 8
 	ret
-	.cfi_endproc
-.LFE23:
-	.size	show_bytes, .-show_bytes
-	.section	.rodata.str1.1
-.LC1:
-	.string	"f= %f,d= %lf\n"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB24:
-	.cfi_startproc
-	sub	rsp, 8
-	.cfi_def_cfa_offset 16
-	cvtss2sd	xmm0, DWORD PTR f[rip]
-	movsd	xmm1, QWORD PTR d[rip]
-	mov	esi, OFFSET FLAT:.LC1
-	mov	edi, 1
-	mov	eax, 2
-	call	__printf_chk
-	mov	esi, 4
-	mov	edi, OFFSET FLAT:f
-	call	show_bytes
-	mov	esi, 8
-	mov	edi, OFFSET FLAT:d
-	call	show_bytes
-	mov	eax, 0
-	add	rsp, 8
-	.cfi_def_cfa_offset 8
-	ret
-	.cfi_endproc
-.LFE24:
-	.size	main, .-main
-	.globl	d
+	.seh_endproc
+	.globl	f
 	.data
+	.align 4
+f:
+	.long	-1027014656
+	.globl	d
 	.align 8
-	.type	d, @object
-	.size	d, 8
 d:
 	.long	0
 	.long	-1067900928
-	.globl	f
-	.align 4
-	.type	f, @object
-	.size	f, 4
-f:
-	.long	3267952640
-	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609"
-	.section	.note.GNU-stack,"",@progbits
+	.section .rdata,"dr"
+.LC1:
+	.ascii "f= %f,d= %lf\12\0"
+	.text
+	.globl	main
+	.def	main;	.scl	2;	.type	32;	.endef
+	.seh_proc	main
+main:
+	push	rbp
+	.seh_pushreg	rbp
+	mov	rbp, rsp
+	.seh_setframe	rbp, 0
+	sub	rsp, 32
+	.seh_stackalloc	32
+	.seh_endprologue
+	call	__main
+	movsd	xmm1, QWORD PTR d[rip]
+	movss	xmm0, DWORD PTR f[rip]
+	cvtss2sd	xmm0, xmm0
+	movapd	xmm2, xmm1
+	movapd	xmm1, xmm2
+	movq	rcx, xmm2
+	movapd	xmm2, xmm0
+	movapd	xmm0, xmm2
+	movq	rdx, xmm2
+	lea	rax, .LC1[rip]
+	movapd	xmm2, xmm1
+	mov	r8, rcx
+	movapd	xmm1, xmm0
+	mov	rcx, rax
+	call	printf
+	lea	rax, f[rip]
+	mov	edx, 4
+	mov	rcx, rax
+	call	show_bytes
+	lea	rax, d[rip]
+	mov	edx, 8
+	mov	rcx, rax
+	call	show_bytes
+	mov	eax, 0
+	add	rsp, 32
+	pop	rbp
+	ret
+	.seh_endproc
+	.def	__main;	.scl	2;	.type	32;	.endef
+	.ident	"GCC: (Rev8, Built by MSYS2 project) 15.2.0"
+	.def	printf;	.scl	2;	.type	32;	.endef
+	.def	putchar;	.scl	2;	.type	32;	.endef
