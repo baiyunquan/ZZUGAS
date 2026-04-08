@@ -20,14 +20,19 @@ if (-not (Test-Path -LiteralPath $Source)) {
 $tmpRoot = Join-Path $env:TEMP 'vscode-asm-build'
 New-Item -ItemType Directory -Path $tmpRoot -Force | Out-Null
 
+$buildRoot = Join-Path $tmpRoot ([guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
+
 $fileName = [System.IO.Path]::GetFileName($Source)
 $baseName = [System.IO.Path]::GetFileNameWithoutExtension($Source)
 
-$srcTmp = Join-Path $tmpRoot $fileName
-$objTmp = Join-Path $tmpRoot ($baseName + '.o')
-$exeTmp = Join-Path $tmpRoot ($baseName + '.exe')
+$srcTmp = Join-Path $buildRoot $fileName
+$objTmp = Join-Path $buildRoot ($baseName + '.o')
+$exeTmp = Join-Path $buildRoot ($baseName + '.exe')
 
-Copy-Item -LiteralPath $Source -Destination $srcTmp -Force
+if ([System.IO.Path]::GetFullPath($Source) -ne [System.IO.Path]::GetFullPath($srcTmp)) {
+    Copy-Item -LiteralPath $Source -Destination $srcTmp -Force
+}
 
 $asmFlags = @()
 $linkFlags = @('-no-pie')
