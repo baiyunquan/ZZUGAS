@@ -1,0 +1,42 @@
+break main
+run
+printf "\n=== mov eax,0b10011100后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== and eax,0x80后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== or eax,0x7f后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== xor eax,0xfe后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== mov eax,0b1010后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== shr eax,2后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== shl eax,1后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== and eax,3后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== mov eax,0b1011后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== rol eax,2后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== rcr eax,1后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== or eax,3后的标志位 ===\n"
+stepi
+info registers eflags
+printf "\n=== xor eax,eax后的标志位 ===\n"
+stepi
+info registers eflags
+quit

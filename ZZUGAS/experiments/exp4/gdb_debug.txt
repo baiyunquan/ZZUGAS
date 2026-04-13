@@ -1,0 +1,44 @@
+break main
+run
+printf "=== 初始状态 ===\n"
+info registers eax
+printf "执行: mov eax,0b10011100\n"
+stepi
+info registers eax
+printf "执行: and eax,0x80\n"
+stepi
+info registers eax
+printf "执行: or eax,0x7f\n"
+stepi
+info registers eax
+printf "执行: xor eax,0xfe\n"
+stepi
+info registers eax
+printf "执行: mov eax,0b1010\n"
+stepi
+info registers eax
+printf "执行: shr eax,2\n"
+stepi
+info registers eax
+printf "执行: shl eax,1\n"
+stepi
+info registers eax
+printf "执行: and eax,3\n"
+stepi
+info registers eax
+printf "执行: mov eax,0b1011\n"
+stepi
+info registers eax
+printf "执行: rol eax,2\n"
+stepi
+info registers eax
+printf "执行: rcr eax,1\n"
+stepi
+info registers eax
+printf "执行: or eax,3\n"
+stepi
+info registers eax
+printf "执行: xor eax,eax\n"
+stepi
+info registers eax
+quit
