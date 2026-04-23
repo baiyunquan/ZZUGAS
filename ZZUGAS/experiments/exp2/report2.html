@@ -1,0 +1,785 @@
+<!DOCTYPE html><html><head>
+      <title>report2</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/liaic/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.22/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="1-实验报告">1. 实验报告 </h2>
+<hr>
+<ol>
+<li>记录按照实验步骤操作所得到的 <strong>exp0201.s</strong> 的内容。</li>
+</ol>
+<p>使用命令：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+<span class="token function">cat</span> exp0201.s
+</code></pre><p><code>exp0201.s</code> 内容较长（包含调试段 <code>.debug_*</code>），正文记录其核心代码如下：</p>
+<pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>	.file	"exp0201.c"
+	.intel_syntax noprefix
+	.text
+.Ltext0:
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	" %.2x"
+	.text
+	.globl	show_bytes
+	.type	show_bytes, @function
+show_bytes:
+...
+	.globl	main
+	.type	main, @function
+main:
+...
+	.globl	ps
+	.data
+	.align 8
+	.type	ps, @object
+	.size	ps, 8
+ps:
+	.quad	str
+	.globl	str1
+	.type	str1, @object
+	.size	str1, 6
+str1:
+	.byte	67
+	.byte	104
+	.byte	105
+	.byte	110
+	.byte	97
+	.byte	0
+	.globl	str
+	.align 16
+	.type	str, @object
+	.size	str, 16
+str:
+	.string	"Hello Assembly!"
+	.globl	uc
+	.type	uc, @object
+	.size	uc, 1
+uc:
+	.byte	-56
+	.globl	c
+	.type	c, @object
+	.size	c, 1
+c:
+	.byte	65
+	.globl	us
+	.align 2
+	.type	us, @object
+	.size	us, 2
+us:
+	.value	-1
+	.globl	s
+	.align 2
+	.type	s, @object
+	.size	s, 2
+s:
+	.value	-1
+	.globl	ul
+	.align 8
+	.type	ul, @object
+	.size	ul, 8
+ul:
+	.quad	-1
+	.globl	l
+	.align 8
+	.type	l, @object
+	.size	l, 8
+l:
+	.quad	-1
+	.globl	u
+	.align 4
+	.type	u, @object
+	.size	u, 4
+u:
+	.long	-2147483648
+	.globl	x
+	.align 4
+	.type	x, @object
+	.size	x, 4
+x:
+	.long	-1
+	.globl	d
+	.align 8
+	.type	d, @object
+	.size	d, 8
+d:
+	.long	0
+	.long	-1067900928
+	.globl	f
+	.align 4
+	.type	f, @object
+	.size	f, 4
+f:
+	.long	3267952640
+</code></pre><ol start="2">
+<li>记录 <strong>exp0201</strong> 运行结果截图。</li>
+</ol>
+<p>执行命令：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+./exp0201
+</code></pre><p>终端运行结果：</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>x = ffffffff = -1 = 4294967295 u = 80000000 = -2147483648 = 2147483648 l = ffffffffffffffff = -1 = 18446744073709551615 s = ffffffff = -1 = 4294967295 us = ffff = 65535 = 65535 c = 41 = 65 = 65 = A uc = c8 = 200 = 200 = � str = Hello Assembly! str1 = China ps = 0x601060 f = -100.500000, d = -100.500000 00 00 c9 c2 00 00 00 00 00 20 59 c0
+</code></pre><p>截图:<br>
+<img src="./p0.png" alt="exp0201运行结果截图"></p>
+<ol>
+<li>用 <strong>GDB</strong> 观察 exp0201 中的变量，填写表 1（下表仅做格式展示，表格内容不一定正确）。</li>
+</ol>
+<p>使用的 GDB 指令如下：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+gdb <span class="token parameter variable">-q</span> ./exp0201 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set pagination off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"break main"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"run"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;x"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d x"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;u"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/u u"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;u"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;l"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d l"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;l"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;ul"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/u ul"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;ul"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;s"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d s"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/2xb &amp;s"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;us"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/u us"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/2xb &amp;us"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;c"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d c"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/1xb &amp;c"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;uc"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/u uc"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/1xb &amp;uc"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;str"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/s &amp;str"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/16xb &amp;str"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;str1"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/s &amp;str1"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/6xb &amp;str1"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;ps"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/x ps"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;ps"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;f"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/f f"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;f"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;d"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p d"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;d"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"quit"</span>
+</code></pre><p><strong>表 1 exp0201 中的变量</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">变量起始地址</th>
+<th style="text-align:left">变量的值十进制</th>
+<th style="text-align:left">变量在内存中从低字节到高字节的存储顺序</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">0x60107c</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">0x601078</td>
+<td style="text-align:left">2147483648</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">80</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">l</td>
+<td style="text-align:left">0x601070</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">ul</td>
+<td style="text-align:left">0x601068</td>
+<td style="text-align:left">18446744073709551615</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">0x601064</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">us</td>
+<td style="text-align:left">0x601062</td>
+<td style="text-align:left">65535</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">c</td>
+<td style="text-align:left">0x601061</td>
+<td style="text-align:left">65</td>
+<td style="text-align:left">41</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">uc</td>
+<td style="text-align:left">0x601060</td>
+<td style="text-align:left">200</td>
+<td style="text-align:left">c8</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">str</td>
+<td style="text-align:left">0x601050</td>
+<td style="text-align:left">字符串"Hello Assembly!"</td>
+<td style="text-align:left">48</td>
+<td style="text-align:left">65</td>
+<td style="text-align:left">6c</td>
+<td style="text-align:left">6c</td>
+<td style="text-align:left">6f</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">41</td>
+<td style="text-align:left">73</td>
+<td style="text-align:left">...</td>
+</tr>
+<tr>
+<td style="text-align:left">str1</td>
+<td style="text-align:left">0x601048</td>
+<td style="text-align:left">字符串"China"</td>
+<td style="text-align:left">43</td>
+<td style="text-align:left">68</td>
+<td style="text-align:left">69</td>
+<td style="text-align:left">6e</td>
+<td style="text-align:left">61</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">ps</td>
+<td style="text-align:left">0x601040</td>
+<td style="text-align:left">6295632(0x601050)</td>
+<td style="text-align:left">50</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">60</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">f</td>
+<td style="text-align:left">0x601088</td>
+<td style="text-align:left">-100.5</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">c9</td>
+<td style="text-align:left">c2</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">0x601080</td>
+<td style="text-align:left">-100.5</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">59</td>
+<td style="text-align:left">c0</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>在 <strong>GDB</strong> 修改 x 后，填写下表（下表仅做格式展示，表格内容不一定正确）。</li>
+</ol>
+<p>使用的 GDB 指令如下：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+gdb <span class="token parameter variable">-q</span> ./exp0201 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set pagination off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set confirm off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"break main"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"run"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set var x=305419896"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/d x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"continue"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"quit"</span>
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">变量起始地址</th>
+<th style="text-align:left">变量的值十进制</th>
+<th style="text-align:left">变量在内存中从低字节到到字节的存储顺序</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">0x60107c</td>
+<td style="text-align:left">305419896</td>
+<td style="text-align:left">78</td>
+<td style="text-align:left">56</td>
+<td style="text-align:left">34</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>在 <strong>GDB</strong> 继续执行 exp0201，结果是什么？为什么？</li>
+</ol>
+<p>继续执行后程序正常结束，且第一项输出由原来的 <code>x = ffffffff = -1 = 4294967295</code> 变成：</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>x = 12345678 = 305419896 = 305419896
+</code></pre><p>原因：<code>x</code> 是全局变量，<code>set var x=305419896</code> 直接改写了其内存（小端存储为 <code>78 56 34 12</code>），后续 <code>main</code> 中 <code>printf</code> 读取到的就是被修改后的值。</p>
+<ol start="2">
+<li>用 <strong>GDB</strong> 观察 eg0216 中的变量，填写表 2。</li>
+</ol>
+<p>该程序无调试类型信息，需显式强制类型转换。使用的 GDB 指令如下：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+gdb <span class="token parameter variable">-q</span> ./eg0216 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set pagination off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set confirm off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"break main"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"run"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;i"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d *(int*)&amp;i"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;i"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;l"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d *(long*)&amp;l"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;l"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;c"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/d *(signed char*)&amp;c"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/1xb &amp;c"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;f"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p/f *(float*)&amp;f"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/4xb &amp;f"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;d"</span> <span class="token parameter variable">-ex</span> <span class="token string">"p *(double*)&amp;d"</span> <span class="token parameter variable">-ex</span> <span class="token string">"x/8xb &amp;d"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"quit"</span>
+</code></pre><p><strong>表 2 eg0216 中的变量</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">变量起始地址</th>
+<th style="text-align:left">变量的值十进制</th>
+<th style="text-align:left">变量在内存中从低字节到到字节的存储顺序</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">0x601058</td>
+<td style="text-align:left">-12345</td>
+<td style="text-align:left">c7</td>
+<td style="text-align:left">cf</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">l</td>
+<td style="text-align:left">0x601050</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">c</td>
+<td style="text-align:left">0x60104c</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">f</td>
+<td style="text-align:left">0x601048</td>
+<td style="text-align:left">-1.0</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">80</td>
+<td style="text-align:left">bf</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">0x601040</td>
+<td style="text-align:left">-1.0</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">f0</td>
+<td style="text-align:left">bf</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>用 <strong>GDB</strong> 观察 eg0217 中的变量，填写表 3。</li>
+</ol>
+<p>该程序同样无调试类型信息，使用指针转换读取结构体成员。GDB 指令如下：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+gdb <span class="token parameter variable">-q</span> ./eg0217 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set pagination off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"set confirm off"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"break main"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"run"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/x &amp;x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/d *(int*)&amp;x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/d *(char*)((char*)&amp;x+4)"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"p/d *(int*)((char*)&amp;x+8)"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"x/12xb &amp;x"</span> <span class="token punctuation">\</span>
+	<span class="token parameter variable">-ex</span> <span class="token string">"quit"</span>
+</code></pre><p><strong>表 3 eg0217 中的变量</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">变量起始地址</th>
+<th style="text-align:left">变量的值十进制</th>
+<th style="text-align:left">变量在内存中从低字节到到字节的存储顺序</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">0x601040</td>
+<td style="text-align:left">{a=-100,c=97,b=-200}</td>
+<td style="text-align:left">9c</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">61</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">00</td>
+<td style="text-align:left">38...</td>
+</tr>
+<tr>
+<td style="text-align:left">x.a</td>
+<td style="text-align:left">0x601040</td>
+<td style="text-align:left">-100</td>
+<td style="text-align:left">9c</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">x.b</td>
+<td style="text-align:left">0x601048</td>
+<td style="text-align:left">-200</td>
+<td style="text-align:left">38</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left">ff</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">x.c</td>
+<td style="text-align:left">0x601044</td>
+<td style="text-align:left">97</td>
+<td style="text-align:left">61</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>写出 <strong>eg0204.s</strong> 源程序，粘贴运行结果截图。</li>
+</ol>
+<p>源码如下：</p>
+<pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>	.file	"exp0204.c"
+	.intel_syntax noprefix
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB23:
+	.cfi_startproc
+	sub	rsp, 392
+	.cfi_def_cfa_offset 400
+	mov	rax, QWORD PTR fs:40
+	mov	QWORD PTR [rsp+376], rax
+	xor	eax, eax
+	movabs	rax, 3539882223192780849
+	mov	QWORD PTR [rsp+288], rax
+	movabs	rax, 3828116996166267424
+	mov	QWORD PTR [rsp+296], rax
+	movabs	rax, 4116351770431600160
+	mov	QWORD PTR [rsp+304], rax
+	movabs	rax, 4908997399661265184
+	mov	QWORD PTR [rsp+312], rax
+	mov	DWORD PTR [rsp+320], 1176519968
+	mov	BYTE PTR [rsp+324], 0
+	movabs	rax, 3255307721844469037
+	mov	QWORD PTR [rsp+336], rax
+	movabs	rax, 3255307777713450285
+	mov	QWORD PTR [rsp+344], rax
+	mov	QWORD PTR [rsp+352], rax
+	mov	QWORD PTR [rsp+360], rax
+	mov	DWORD PTR [rsp+368], 757935405
+	mov	WORD PTR [rsp+372], 45
+	movabs	rax, 2315167007338672178
+	mov	QWORD PTR [rsp+48], rax
+	movabs	rax, 2316292922882072610
+	mov	QWORD PTR [rsp+56], rax
+	movabs	rax, 2317418839969046566
+	mov	QWORD PTR [rsp+64], rax
+	movabs	rax, 2318544757056020522
+	mov	QWORD PTR [rsp+72], rax
+	mov	DWORD PTR [rsp+80], 3088430
+	movabs	rax, 2319670675685519411
+	mov	QWORD PTR [rsp+96], rax
+	movabs	rax, 2320796591229968434
+	mov	QWORD PTR [rsp+104], rax
+	movabs	rax, 2321922508316942390
+	mov	QWORD PTR [rsp+112], rax
+	movabs	rax, 2323048425403916346
+	mov	QWORD PTR [rsp+120], rax
+	mov	DWORD PTR [rsp+128], 4137022
+	movabs	rax, 2324174344032366644
+	mov	QWORD PTR [rsp+144], rax
+	movabs	rax, 2325300259577864258
+	mov	QWORD PTR [rsp+152], rax
+	movabs	rax, 2326426176664838214
+	mov	QWORD PTR [rsp+160], rax
+	movabs	rax, 2327552093751812170
+	mov	QWORD PTR [rsp+168], rax
+	mov	DWORD PTR [rsp+176], 5185614
+	movabs	rax, 2328678012379213877
+	mov	QWORD PTR [rsp], rax
+	movabs	rax, 2329803927925760082
+	mov	QWORD PTR [rsp+8], rax
+	movabs	rax, 2330929845012734038
+	mov	QWORD PTR [rsp+16], rax
+	movabs	rax, 6782523431383146586
+	mov	QWORD PTR [rsp+24], rax
+	mov	WORD PTR [rsp+32], 24352
+	mov	BYTE PTR [rsp+34], 0
+	movabs	rax, 2333181680726061110
+	mov	QWORD PTR [rsp+192], rax
+	movabs	rax, 2334307596273655906
+	mov	QWORD PTR [rsp+200], rax
+	movabs	rax, 2335433513360629862
+	mov	QWORD PTR [rsp+208], rax
+	movabs	rax, 2336559430447603818
+	mov	QWORD PTR [rsp+216], rax
+	mov	DWORD PTR [rsp+224], 7282798
+	movabs	rax, 2337685349072908343
+	mov	QWORD PTR [rsp+240], rax
+	movabs	rax, 2338811264621551730
+	mov	QWORD PTR [rsp+248], rax
+	movabs	rax, 2339937181708525686
+	mov	QWORD PTR [rsp+256], rax
+	movabs	rax, 2341063098795499642
+	mov	QWORD PTR [rsp+264], rax
+	mov	DWORD PTR [rsp+272], 2105470
+	lea	rdi, [rsp+288]
+	call	puts
+	lea	rdi, [rsp+336]
+	call	puts
+	lea	rdi, [rsp+48]
+	call	puts
+	lea	rdi, [rsp+96]
+	call	puts
+	lea	rdi, [rsp+144]
+	call	puts
+	mov	rdi, rsp
+	call	puts
+	lea	rdi, [rsp+192]
+	call	puts
+	lea	rdi, [rsp+240]
+	call	puts
+	mov	rdx, QWORD PTR [rsp+376]
+	xor	rdx, QWORD PTR fs:40
+	je	.L2
+	call	__stack_chk_fail
+.L2:
+	mov	eax, 0
+	add	rsp, 392
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE23:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609"
+	.section	.note.GNU-stack,"",@progbits
+</code></pre><p>运行命令与结果：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> /mnt/software/workspace/ZZUGAS/ZZUGAS/experiments/exp2
+./exp0204
+</code></pre><pre data-role="codeBlock" data-info="text" class="language-text text"><code>10 | 0 1 2 3 4 5 6 7 8 9 A B C D E F
+-- + --------------------------------
+20 |  ! " # $ % &amp; ' ( ) * + , - . /
+30 |0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
+40 |@ A B C D E F G H I J K L M N O
+50 |P Q R S T U V W X Y Z [  ] ^ _
+60 |` a b c d e f g h i j k l m n o
+70 |p q r s t u v w x y z { | } ~
+</code></pre><p>截图:<br>
+<img src="./p1.png" alt="exp0204运行结果截图"></p>
+<ol>
+<li>总结汇编语言程序开发过程的经验体会，写出自己遇到的或感到困惑的问题等。</li>
+</ol>
+<p>总结如下：</p>
+<ol>
+<li>先看 C 源程序再看 <code>.s</code> 文件更容易理解，特别是变量布局、结构体对齐和调用约定。</li>
+<li>通过 <code>x/Nxb 地址</code> 观察字节序最直观，能快速验证小端存储和补码表示。</li>
+<li>对无调试类型信息的可执行文件，GDB 里需要显式类型转换（如 <code>*(int*)&amp;i</code>），否则会出现 unknown type。</li>
+<li>修改变量建议在 <code>break main</code> 后进行，程序尚未输出时修改最容易观察影响。</li>
+<li>我的困惑主要是：
+<ul>
+<li>浮点数（二进制IEEE754）手工换算难度大，建议结合在线工具或 <code>printf</code> 双重验证；</li>
+<li>结构体填充字节（padding）在内存查看时容易误判为成员值，需要结合偏移地址分析。</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

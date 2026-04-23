@@ -1,5 +1,7 @@
 # 郑州大学汇编语言实验 2026
 
+抄完拜托点个Star欧内该，~~不然我就删了这个仓库~~
+
 ## 关于平台
 正常开启时xfce桌面未完全启动，需要Terminal手动输入
 ``` bash 
@@ -11,7 +13,7 @@ ssh-keygen
 apt update && apt install git
 git clone git@github.com:baiyunquan/ZZUGAS.git
 cd ZZUGAS
-cp ./ZZUGAS ~/Desktop/ZZUassembly
+cp ./ZZUGAS ~/Desktop/ZZUAssembly
 ```
 
 ## 关于实验
