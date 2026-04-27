@@ -13,7 +13,7 @@ bubble_sort:
 	add   r10,4
       sub	eax, 1
 .L5:
-	cmp	eax,0 #内循环计数是否为0
+	cmp	eax,0 #鍐呭惊鐜鏁版槸鍚︿负0
 	jle	.L7
 	
 	mov	r9d, DWORD PTR [r10]
@@ -29,7 +29,7 @@ bubble_sort:
 .L2:
 	cmp	r11d, edx
 	jge	.L8
-	mov	r10, rcx     # r10 = &a[0]，等同于 lea r10，[rcx]
+	mov	r10, rcx     # r10 = &a[0]锛岀瓑鍚屼簬 lea r10锛孾rcx]
       mov   eax, edx
 	sub	eax, r11d   # eax =n-i 
 	jmp	.L5

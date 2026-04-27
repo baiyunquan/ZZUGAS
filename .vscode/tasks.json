@@ -124,6 +124,75 @@
             }
         },
         {
+            "label": "Auto Build ASM (Script, Debug)",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/.vscode/auto-build-asm.ps1",
+                "-Source",
+                "${file}",
+                "-Mode",
+                "Debug"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Auto Build ASM (Script, Release)",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/.vscode/auto-build-asm.ps1",
+                "-Source",
+                "${file}",
+                "-Mode",
+                "Release"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Auto Build ASM (Script, x86 Debug)",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/.vscode/auto-build-asm.ps1",
+                "-Source",
+                "${file}",
+                "-Mode",
+                "DebugX86"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
             "type": "cppbuild",
             "label": "C/C++: clang.exe build active file",
             "command": "C:\\workspace\\soft\\msys2\\clang64\\bin\\clang.exe",

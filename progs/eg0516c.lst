@@ -13,9 +13,9 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cccU82c4.s 			page 1
   10              	 .seh_proc bubble_sort
   11              	bubble_sort:
   12              	 .seh_endprologue
-  13 0000 4989CC   	       mov r12, rcx #r12 = &a[0]£¬µÈÍ¬ÓÚ lea r12£¬[rcx]
+  13 0000 4989CC   	       mov r12, rcx #r12 = &a[0]ï¼Œç­‰åŒäº lea r12ï¼Œ[rcx]
   14 0003 89D1     	       mov ecx, edx
-  15 0005 83E901   	       sub ecx, 1 #ÍâÑ­»·´ÎÊıecx = n-1
+  15 0005 83E901   	       sub ecx, 1 #å¤–å¾ªç¯æ¬¡æ•°ecx = n-1
   16              	
   17 0008 EB5A     	      jmp .L2
   18 000a 66662E0F 	 .p2align 6
@@ -27,7 +27,7 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cccU82c4.s 			page 1
   20 0040 83E801   	 sub eax, 1
   21 0043 4983C204 	      add r10,4
   22              	.L5:
-  23 0047 83F800   	 cmp eax,0 #ÄÚÑ­»·¼ÆÊıÊÇ·ñÎª0
+  23 0047 83F800   	 cmp eax,0 #å†…å¾ªç¯è®¡æ•°æ˜¯å¦ä¸º0
   24 004a 7E15     	 jle .L7
   25              	
   26 004c 458B0A   	 mov r9d, DWORD PTR [r10]
@@ -38,13 +38,13 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\cccU82c4.s 			page 1
   31 005b 45894A04 	 mov DWORD PTR 4[r10], r9d
   32 005f EBDF     	 jmp .L3
   33              	.L7:
-  34 0061 E201     	      loop .L2 #ÍâÑ­»·
+  34 0061 E201     	      loop .L2 #å¤–å¾ªç¯
   35              	.L8:
   36 0063 C3       	 ret
   37              	.L2:
-  38 0064 89C8     	 mov eax, ecx # ÄÚÑ­»·´ÎÊı eax =n-i
+  38 0064 89C8     	 mov eax, ecx # å†…å¾ªç¯æ¬¡æ•° eax =n-i
   39 0066 4D89E2   	   mov r10, r12
-  40 0069 EBDC     	   jmp .L5 # ¿ªÊ¼ÄÚÑ­»·
+  40 0069 EBDC     	   jmp .L5 # å¼€å§‹å†…å¾ªç¯
   41              	
   42              	
   43              	      .seh_endproc

@@ -1,15 +1,29 @@
 	.file	"eg0101.c"
 	.intel_syntax noprefix
 	.text
-	.globl	add
-	.type	add, @function
-add:
-.LFB0:
-	.cfi_startproc
-	lea	eax, [rdi+rsi]
+	.section .rdata,"dr"
+.LC0:
+	.ascii "Hello\0"
+	.text
+	.globl	main
+	.def	main;	.scl	2;	.type	32;	.endef
+	.seh_proc	main
+main:
+	push	rbp
+	.seh_pushreg	rbp
+	mov	rbp, rsp
+	.seh_setframe	rbp, 0
+	sub	rsp, 32
+	.seh_stackalloc	32
+	.seh_endprologue
+	call	__main
+	lea	rax, .LC0[rip]
+	mov	rcx, rax
+	call	__mingw_printf
+	mov	eax, 0
+	add	rsp, 32
+	pop	rbp
 	ret
-	.cfi_endproc
-.LFE0:
-	.size	add, .-add
-	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609"
-	.section	.note.GNU-stack,"",@progbits
+	.seh_endproc
+	.def	__main;	.scl	2;	.type	32;	.endef
+	.ident	"GCC: (Rev8, Built by MSYS2 project) 15.2.0"

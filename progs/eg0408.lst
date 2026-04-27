@@ -44,8 +44,8 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccHV6fYD.s 			page 1
   31 0028 58       	        pop rax
   32 0029 E8000000 	        call disprf
   32      00
-  33              	        #·µ»ØÖµ
-  34 002e 31C0     	       xor eax,eax #·µ»Ø0
+  33              	        #è¿”å›žå€¼
+  34 002e 31C0     	       xor eax,eax #è¿”å›ž0
   35 0030 C3909090 	       ret
   35      90909090 
   35      90909090 

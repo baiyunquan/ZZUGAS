@@ -26,6 +26,6 @@
         pop rax
         call disprf
         
-        #·µ»ØÖµ
-       xor eax,eax        #·µ»Ø0
+        #è¿”å›žå€¼
+       xor eax,eax        #è¿”å›ž0
        ret
