@@ -2,6 +2,9 @@
 
 抄完拜托点个Star欧内该，~~不然我就删了这个仓库~~
 
+## 在Windows上调试运行汇编语言的branch
+[Windows](https://github.com/baiyunquan/ZZUGAS/tree/gdb_on_windows)
+
 ## 关于平台
 正常开启时xfce桌面未完全启动，需要Terminal手动输入
 ``` bash 
@@ -13,7 +16,7 @@ ssh-keygen
 apt update && apt install git
 git clone git@github.com:baiyunquan/ZZUGAS.git
 cd ZZUGAS
-cp ./ZZUGAS ~/Desktop/ZZUAssembly
+cp ./ZZUGAS ~/Desktop/ZZUassembly
 ```
 
 ## 关于实验
