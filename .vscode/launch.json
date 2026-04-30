@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "version": "0.2.0",
     "configurations": [
@@ -58,111 +57,9 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Use Intel assembly syntax in disassembly view",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "Build ASM x64 (Debug)"
-        },
-        {
-            "name": "Debug ASM (GDB, x64 Release)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}_release.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Use Intel assembly syntax in disassembly view",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "Build ASM x64 (Release)"
-        },
-    ]
-=======
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "(gdb) Attach",
-            "type": "cppdbg",
-            "request": "attach",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
-            "MIMode": "gdb",
             "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:/workspace/soft/msys2/mingw64/bin/gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "Debug ASM (GDB, x64 Debug)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": true,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:/workspace/soft/msys2/mingw64/bin/gdb.exe",
-            "setupCommands": [
-                {
                     "description": "Enable pretty printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
@@ -186,7 +83,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/workspace/soft/msys2/mingw64/bin/gdb.exe",
+            "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty printing for gdb",
@@ -212,7 +109,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/workspace/soft/msys2/mingw64/bin/gdb.exe",
+            "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty printing for gdb",
@@ -238,7 +135,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/workspace/soft/msys2/mingw64/bin/gdb.exe",
+            "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty printing for gdb",
@@ -254,5 +151,4 @@
             "preLaunchTask": "Auto Build ASM (Script, Release)"
         }
     ]
->>>>>>> 750178f574b477a2242a7ae08a647736e874d173
 }
