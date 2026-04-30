@@ -15,13 +15,13 @@ int main(){
 int a[]={587,-632,777,234,-34};
 int n = sizeof(a)/4;
 
-printf("ÅÅĞòÇ°:\n");
+printf("æ’åºå‰:\n");
 for(int i=0;i<n;i++)
   printf("%d ",a[i]);
 
 bubble_sort(a,n);
 
-printf("\nÅÅĞòºó:\n");
+printf("\næ’åºå:\n");
 for(int i=0;i<n;i++)
   printf("%d ",a[i]);
   

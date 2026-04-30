@@ -15,12 +15,12 @@
         lea r10,dvar3[rip]
                
         mov eax,[r8]
-        sub eax,[r9]#µÍÎ»Ë«×ÖÏà¼õ£¬eax=0x6fffeebe,EFLAGS=0x00000A16
+        sub eax,[r9]#ä½ä½åŒå­—ç›¸å‡ï¼Œeax=0x6fffeebe,EFLAGS=0x00000A16
         mov [r10],eax
               
         mov eax,[r8+4]
         sbb eax,[r9+4]
-        #¸ßÎ»Ë«×ÖÏà¼õ£¬ÔÙ¼õCF£¬eax=0x00021000,EFLAGS=0x00000206
+        #é«˜ä½åŒå­—ç›¸å‡ï¼Œå†å‡CFï¼Œeax=0x00021000,EFLAGS=0x00000206
         mov [r10+4],eax
         
                  
@@ -28,6 +28,6 @@
         call disphx
         call dispcrlf
         
-        #·µ»ØÖµ
-       xor eax,eax        #·µ»Ø0
+        #è¿”å›å€¼
+       xor eax,eax        #è¿”å›0
        ret

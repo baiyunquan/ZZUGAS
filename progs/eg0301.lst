@@ -10,7 +10,7 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccOIjdJm.s 			page 1
    7              	.data
    8              	.text
    9              	 .globl main
-  10              	main: # 程序执行起始位置
+  10              	main: # 绋嬪簭鎵ц璧峰浣嶇疆
   11 0000 B064     	mov al, 100
   12 0002 E8000000 	call disphb
   12      00

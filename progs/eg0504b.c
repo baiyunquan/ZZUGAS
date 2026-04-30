@@ -13,6 +13,6 @@ f=sub_of(1234567890,-999999999,&d);
 if(!f)
 printf("x-y = %d = %u = %x",d,d,d);
 else
-printf("Òç³ö");
+printf("æº¢å‡º");
 return 0;
 }

@@ -1,4 +1,11 @@
 //eg0101.c
-int add(int x, int y){
-return x+y;
+#include <stdio.h>
+/*int add(int x, int y){
+    return x+y;
+}*/
+
+int main(){
+    printf("Hello");
+
+    return 0;
 }

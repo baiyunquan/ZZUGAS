@@ -25,7 +25,7 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccYxTRym.s 			page 1
   17 0040 4983C204 	 add r10,4
   18 0044 83E801   	      sub eax, 1
   19              	.L5:
-  20 0047 83F800   	 cmp eax,0 #内循环计数是否为0
+  20 0047 83F800   	 cmp eax,0 #鍐呭惊鐜鏁版槸鍚︿负0
   21 004a 7E15     	 jle .L7
   22              	
   23 004c 458B0A   	 mov r9d, DWORD PTR [r10]
@@ -41,7 +41,7 @@ GAS LISTING C:\Users\Lenovo\AppData\Local\Temp\ccYxTRym.s 			page 1
   33              	.L2:
   34 0065 4139D3   	 cmp r11d, edx
   35 0068 7D0A     	 jge .L8
-  36 006a 4989CA   	 mov r10, rcx # r10 = &a[0]，等同于 lea r10，[rcx]
+  36 006a 4989CA   	 mov r10, rcx # r10 = &a[0]锛岀瓑鍚屼簬 lea r10锛孾rcx]
   37 006d 89D0     	      mov eax, edx
   38 006f 4429D8   	 sub eax, r11d # eax =n-i
   39 0072 EBD3     	 jmp .L5
