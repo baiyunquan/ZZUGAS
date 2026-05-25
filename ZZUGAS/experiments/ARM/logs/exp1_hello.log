@@ -1,0 +1,6 @@
+=== BUILD: exp1_hello ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp1_hello /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp1/hello.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/../../lib/libtest.a
+
+=== RUN: exp1_hello ===
+Hello, World!
+

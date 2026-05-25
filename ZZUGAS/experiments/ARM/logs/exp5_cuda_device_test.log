@@ -1,0 +1,9 @@
+=== BUILD: exp5_cuda_device_test ===
+Command: nvcc -O2 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5_cuda_device_test /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5/cuda_device_test.cu
+
+=== RUN: exp5_cuda_device_test ===
+CUDA device count: 1
+Using device 0: Orin
+Compute capability: 8.7
+Kernel verification: PASS
+

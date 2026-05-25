@@ -1,0 +1,6 @@
+=== BUILD: exp4_c_strcpy ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4_c_strcpy /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4/strcpy1.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4/main.c
+
+=== RUN: exp4_c_strcpy ===
+dst = C calls an ARM64 subroutine
+

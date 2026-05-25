@@ -1,0 +1,6 @@
+=== BUILD: exp2_strcpy ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2_strcpy /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2/strcpy.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2/strcpy_demo.c
+
+=== RUN: exp2_strcpy ===
+dst = AArch64 strcpy demo
+

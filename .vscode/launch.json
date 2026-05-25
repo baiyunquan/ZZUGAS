@@ -1,0 +1,110 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug exp1 hello",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp1/hello",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp1",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build exp1 hello",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug exp2 max",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp2/max_find",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp2",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build exp2 max",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug exp3 strcpy sub",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp3/strcpy_sub_demo",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp3",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build exp3 strcpy sub",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug exp4 compare",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp4/compare_main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp4",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build exp4 compare",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug exp5 memorycopy m1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp5/m1",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/ZZUGAS/experiments/ARM/exp5",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build exp5 m1",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

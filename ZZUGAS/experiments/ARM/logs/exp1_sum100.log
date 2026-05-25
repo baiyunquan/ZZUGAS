@@ -1,0 +1,6 @@
+=== BUILD: exp1_sum100 ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp1_sum100 /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp1/sum100.s
+
+=== RUN: exp1_sum100 ===
+sum(1..100) = 5050
+

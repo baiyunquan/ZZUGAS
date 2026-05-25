@@ -1,0 +1,80 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build exp1 hello",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-O0",
+                "-o",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp1/hello",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp1/hello.s",
+                "${workspaceFolder}/ZZUGAS/lib/libtest.a"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build exp2 max",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-O0",
+                "-o",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp2/max_find",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp2/find_max.s",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp2/max_find.c"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build exp3 strcpy sub",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-O0",
+                "-o",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp3/strcpy_sub_demo",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp3/strcpy_sub.s",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp3/strcpy_sub_demo.c"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build exp4 compare",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-O0",
+                "-o",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp4/compare_main",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp4/main.s",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp4/compare.c"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build exp5 m1",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-O0",
+                "-o",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp5/m1",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp5/copyfunc.s",
+                "${workspaceFolder}/ZZUGAS/experiments/ARM/exp5/memorycopy.c"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

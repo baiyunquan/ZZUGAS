@@ -1,0 +1,6 @@
+=== BUILD: exp4_inline_compare ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4_inline_compare /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4/inline_compare.c
+
+=== RUN: exp4_inline_compare ===
+inline compare result = 73
+

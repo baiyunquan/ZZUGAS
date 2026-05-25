@@ -1,0 +1,13 @@
+=== BUILD: exp5_cuda_memcpy_bench ===
+Command: nvcc -O3 -lineinfo -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5_cuda_memcpy_bench /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5/memorycopy_cuda_bench.cu
+
+=== RUN: exp5_cuda_memcpy_bench ===
+GPU memcpy benchmark
+Device: Orin (cc 8.7)
+Bytes per iteration: 268435456 (256.00 MiB)
+Iterations: 80
+D2D cudaMemcpyAsync: 673.880 ms total, 31.87 GB/s
+D2D vector kernel:   447.012 ms total, 48.04 GB/s
+Verification: PASS
+Best path: vector copy kernel
+

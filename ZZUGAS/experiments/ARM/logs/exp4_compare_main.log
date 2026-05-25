@@ -1,0 +1,6 @@
+=== BUILD: exp4_compare_main ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4_compare_main /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4/main.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp4/compare.c
+
+=== RUN: exp4_compare_main ===
+compare_data(23, 42) = 42
+

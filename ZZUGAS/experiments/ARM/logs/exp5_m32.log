@@ -1,0 +1,7 @@
+=== BUILD: exp5_m32 ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5_m32 /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5/copyfunc_v3_2.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp5/memorycopy.c
+
+=== RUN: exp5_m32 ===
+memorycopy time is 15594155 ns
+verify = ok
+

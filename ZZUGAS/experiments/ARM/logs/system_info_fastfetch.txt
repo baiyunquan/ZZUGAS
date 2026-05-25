@@ -1,0 +1,54 @@
+=== fastfetch (2026-05-25 12:42:24) ===
+[1m[31m                             ....
+              [31m.',:clooo:  [31m.:looooo:.
+           [31m.;looooooooc  [31m.oooooooooo'
+        [31m.;looooool:,''.  [31m:ooooooooooc
+       [31m;looool;.         [31m'oooooooooo,
+      [31m;clool'             [31m.cooooooc.  [31m,,
+         [31m...                [31m......  [31m.:oo,
+  [31m.;clol:,.                        [31m.loooo'
+ [31m:ooooooooo,                        [31m'ooool
+[31m'ooooooooooo.                        [31mloooo.
+[31m'ooooooooool                         [31mcoooo.
+ [31m,loooooooc.                        [31m.loooo.
+   [31m.,;;;'.                          [31m;ooooc
+       [31m...                         [31m,ooool.
+    [31m.cooooc.              [31m..',,'.  [31m.cooo.
+      [31m;ooooo:.           [31m;oooooooc.  [31m:l.
+       [31m.coooooc,..      [31mcoooooooooo.
+         [31m.:ooooooolc:. [31m.ooooooooooo'
+           [31m.':loooooo;  [31m,oooooooooc
+               [31m..';::c'  [31m.;loooo:'[m[1G[19A[m[47C[m[1m[31mliaic[m@[1m[31mubuntu[m
+[47C------------
+[47C[m[1m[31mOS[m: [mUbuntu 22.04.5 LTS (Jammy Jellyfish) aarch64
+[47C[m[1m[31mHost[m: [mNVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super
+[47C[m[1m[31mKernel[m: [mLinux 5.15.148-tegra
+[47C[m[1m[31mUptime[m: [m1 hour, 59 mins
+[47C[m[1m[31mPackages[m: [m2349 (dpkg)
+[47C[m[1m[31mShell[m: [mbash 5.1.16
+[47C[m[1m[31mTerminal[m: [mnode
+[47C[m[1m[31mCPU[m: [m2 x tegra234 (6) @ 1.73 GHz
+[47C[m[1m[31mGPU[m: [mNVIDIA Tegra Orin (nvgpu) [Integrated]
+[47C[m[1m[31mMemory[m: [m1.87 GiB / 7.44 GiB ([32m25%[m)
+[47C[m[1m[31mSwap[m: [m0 B / 13.41 GiB ([32m0%[m)
+[47C[m[1m[31mDisk (/)[m: [m37.54 GiB / 115.38 GiB ([32m33%[m) - ext4
+[47C[m[1m[31mLocal IP (enP8p1s0)[m: [m192.168.68.69/24
+[47C[m[1m[31mLocale[m: [men_US.UTF-8
+[47C
+[47C[m[40m   [41m   [42m   [43m   [44m   [45m   [46m   [47m   [m
+[47C[100m   [101m   [102m   [103m   [104m   [105m   [106m   [107m   [m
+
+
+=== basic uname info ===
+Linux ubuntu 5.15.148-tegra #1 SMP PREEMPT Mon Jun 16 08:24:48 PDT 2025 aarch64 aarch64 aarch64 GNU/Linux
+
+=== gcc version ===
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+=== nvcc version ===
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Wed_Aug_14_10:14:07_PDT_2024
+Cuda compilation tools, release 12.6, V12.6.68
+Build cuda_12.6.r12.6/compiler.34714021_0

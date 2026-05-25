@@ -1,0 +1,21 @@
+[2026-05-25 12:42:24] Start all ARM experiment builds/tests
+Script dir: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM
+Output dir: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM
+Saved system info to /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/system_info_fastfetch.txt
+OK: exp1_hello (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp1_hello.log)
+OK: exp1_sum100 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp1_sum100.log)
+OK: exp2_max_find (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp2_max_find.log)
+OK: exp2_strcpy (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp2_strcpy.log)
+OK: exp3_strcpy_sub (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp3_strcpy_sub.log)
+OK: exp4_compare_main (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp4_compare_main.log)
+OK: exp4_c_strcpy (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp4_c_strcpy.log)
+OK: exp4_inline_compare (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp4_inline_compare.log)
+OK: exp5_m1 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m1.log)
+OK: exp5_m21 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m21.log)
+OK: exp5_m22 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m22.log)
+OK: exp5_m31 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m31.log)
+OK: exp5_cuda_device_test (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_cuda_device_test.log)
+OK: exp5_m32 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m32.log)
+OK: exp5_m33 (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_m33.log)
+OK: exp5_cuda_memcpy_bench (log: /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs/exp5_cuda_memcpy_bench.log)
+All done. Logs are in /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/logs

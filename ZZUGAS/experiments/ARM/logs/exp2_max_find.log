@@ -1,0 +1,6 @@
+=== BUILD: exp2_max_find ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2_max_find /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2/find_max.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp2/max_find.c
+
+=== RUN: exp2_max_find ===
+max value = 99
+

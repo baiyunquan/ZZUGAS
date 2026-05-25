@@ -1,0 +1,6 @@
+=== BUILD: exp3_strcpy_sub ===
+Command: gcc -g -O0 -o /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp3_strcpy_sub /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp3/strcpy_sub.s /home/liaic/Documents/ZZUGAS/ZZUGAS/experiments/ARM/exp3/strcpy_sub_demo.c
+
+=== RUN: exp3_strcpy_sub ===
+dst = Stack-aware strcpy subroutine
+
