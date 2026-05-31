@@ -1,47 +1,51 @@
+.intel_syntax noprefix
+
 .data
-msg1: .string "Enter 10 numbers:\n"
-msg2: .string "The mean is:"
+msg1: .asciz "Enter 10 numbers:\n"
+msg2: .asciz "The mean is:"
 
-	.text
-	.globl main
+.text
+.globl main
+.extern printf
+.extern read10sid
+.extern mean_sid32
+.extern write_sid
+
 main:
-    # init, malloc stack for ten num
-    subl $40, %esp
-    movl $9, %ecx
+    push ebp
+    mov ebp, esp
+    sub esp, 48
 
-    leaq msg1(%rip) , %rax
-    call dispmsg
+    lea eax, [msg1]
+    push eax
+    call printf
+    add esp, 4
 
-InputNums:
-    push %rcx
-    call readsid
-    pop  %rcx
-    nop
-    movl %eax , 0(%esp , %ecx , 4)
-    decl %ecx             
-    cmpl $0, %ecx 
-    jge InputNums
+    lea eax, [ebp-40]
+    push 10
+    push eax
+    call read10sid
+    add esp, 8
 
-    # reload ecx, reset eax
-    leaq msg2(%rip) , %rax
-    call dispmsg
-    movl $9, %ecx
-    xorl %eax, %eax
+    lea eax, [ebp-40]
+    push 10
+    push eax
+    call mean_sid32
+    add esp, 8
 
-SumNums:
-    addl 0(%esp , %ecx , 4) , %eax
-    decl %ecx             
-    cmpl $0, %ecx 
-    jge SumNums
+    mov [ebp-44], eax
 
-# AVG calculate and display
-    movl $10 , %ebx
-    xorl %edx , %edx
-    cltd
-    idivl %ebx
-    call dispuid
+    lea eax, [msg2]
+    push eax
+    call printf
+    add esp, 4
 
-# restore stack
-    addl $40, %esp
-	xorl %eax, %eax
-	ret
+    mov eax, [ebp-44]
+    push eax
+    call write_sid
+    add esp, 4
+
+    mov esp, ebp
+    pop ebp
+    xor eax, eax
+    ret
