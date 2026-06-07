@@ -21,12 +21,12 @@
 #### 实验（1）二进制显示子程序流程图
 
 ```mermaid
-flowchart TD
+graph TD
     A[开始 printEAX] --> B[i = 31]
     B --> C{i >= 0?}
     C -->|是| D[取val的第i位: val>>i & 1]
     D --> E[打印该位]
-    E --> F{i % 4 == 0 且 i != 0?}
+    E --> F{"i % 4 == 0 且 i != 0?"}
     F -->|是| G[打印空格]
     F -->|否| H[i--]
     G --> H
@@ -38,11 +38,11 @@ flowchart TD
 #### 实验（2）逐字节显示主存子程序流程图
 
 ```mermaid
-flowchart TD
+graph TD
     A[开始 printMemArea] --> B[i = 0]
     B --> C{i < index?}
-    C -->|是| D[取p[i]字节值]
-    D --> E[以%02x格式打印]
+    C -->|是| D["取p[i]字节值"]
+    D --> E["以%02x格式打印"]
     E --> F[i++]
     F --> C
     C -->|否| G[返回]
@@ -51,38 +51,38 @@ flowchart TD
 #### 实验（3）dprflags子程序流程图
 
 ```mermaid
-flowchart TD
+graph TD
     A[开始 dprflags] --> B[PUSHFQ 保存EFLAGS]
     B --> C[POPQ 弹出到寄存器]
     C --> D[检查CF位 Bit 0]
     D --> E{CF=1?}
-    E -->|是| F[打印 'C.']
-    E -->|否| G[打印 '..']
+    E -->|是| F["打印 'C.'"]
+    E -->|否| G["打印 '..'"]
     F --> H[检查ZF位 Bit 6]
     G --> H
     H --> I{ZF=1?}
-    I -->|是| J[打印 'Z.']
-    I -->|否| K[打印 '..']
+    I -->|是| J["打印 'Z.'"]
+    I -->|否| K["打印 '..'"]
     J --> L[检查SF位 Bit 7]
     K --> L
     L --> M{SF=1?}
-    M -->|是| N[打印 'S.']
-    M -->|否| O[打印 '..']
+    M -->|是| N["打印 'S.'"]
+    M -->|否| O["打印 '..'"]
     N --> P[检查OF位 Bit 11]
     O --> P
     P --> Q{OF=1?}
-    Q -->|是| R[打印 'O.']
-    Q -->|否| S[打印 '..']
+    Q -->|是| R["打印 'O.'"]
+    Q -->|否| S["打印 '..'"]
     R --> T[检查AF位 Bit 4]
     S --> T
     T --> U{AF=1?}
-    U -->|是| V[打印 'A.']
-    U -->|否| W[打印 '..']
+    U -->|是| V["打印 'A.'"]
+    U -->|否| W["打印 '..'"]
     V --> X[检查PF位 Bit 2]
     W --> X
     X --> Y{PF=1?}
-    Y -->|是| Z[打印 'P.']
-    Y -->|否| AA[打印 '..']
+    Y -->|是| Z["打印 'P.'"]
+    Y -->|否| AA["打印 '..'"]
     Z --> AB[打印换行]
     AA --> AB
     AB --> AC[返回]
@@ -91,14 +91,14 @@ flowchart TD
 #### 实验（4）素数计算程序流程图
 
 ```mermaid
-flowchart TD
+graph TD
     A[开始] --> B[初始化布尔数组nums为false]
     B --> C[i = 2]
     C --> D{i < 100001?}
-    D -->|是| E{nums[i]为false?}
+    D -->|是| E{"nums[i]为false?"}
     E -->|是| F[j = i*2]
     F --> G{j < 100001?}
-    G -->|是| H[nums[j] = true 标记为合数]
+    G -->|是| H["nums[j] = true 标记为合数"]
     H --> I[j += i]
     I --> G
     G -->|否| J[i++]
@@ -107,7 +107,7 @@ flowchart TD
     D -->|否| K[count = 0]
     K --> L[i = 2]
     L --> M{i < 100001?}
-    M -->|是| N{nums[i]为false?}
+    M -->|是| N{"nums[i]为false?"}
     N -->|是| O[count++]
     N -->|否| P[i++]
     O --> P
