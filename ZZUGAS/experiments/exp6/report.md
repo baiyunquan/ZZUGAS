@@ -1,14 +1,14 @@
-实验6 循环程序设计
-实验目的
+## 实验6 循环程序设计
+### 一.实验目的
 理解循环程序结构的特点，掌握循环结构程序的编写。
-实验内容
+### 二.实验内容
 编写循环结构的斐波那契数列程序，输出斐波那契数。
 编写求最大N值的自然数求和程序（循环结构），具体要求是：进行自
 然数相加（1＋2＋3＋……＋N），无符号整数的累加和用一个32位寄存器存
 储，求出（显示）有效累加和的最大值及对应的最大N值。
 编写多重循环的冒泡法排序程序，并运行正确。
 编写显示ASCII表程序，并运行正确。
-三、实验分析
+### 三、实验分析
 画出自己编写实现的实验内容（1）、（2）、（3）和（4）的程序流程
 图，给出核心代码、注释以及运行结果截图。
 1. 实验内容（1）斐波那契数列流程图（`exp0602.s`）
@@ -42,15 +42,15 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-	A[输入数组] --> B[从i=1开始外层循环]
-	B --> C[取key=a[i], j=i-1]
-	C --> D{j>=0 且 a[j]>key?}
-	D -- 是 --> E[a[j+1]=a[j], j--]
-	E --> D
-	D -- 否 --> F[a[j+1]=key]
-	F --> G{i<n?}
-	G -- 是 --> B
-	G -- 否 --> H[输出有序数组并结束]
+    A["输入数组"] --> B["从 i=1 开始外层循环"]
+    B --> C["取 key = a[i], j = i-1"]
+    C --> D{"j >= 0 且 a[j] > key ?"}
+    D -- "是" --> E["a[j+1] = a[j], j自减"]
+    E --> D
+    D -- "否" --> F["a[j+1] = key"]
+    F --> G{"i < n ?"}
+    G -- "是" --> B
+    G -- "否" --> H["输出有序数组并结束"]
 ```
 
 4. 实验内容（4）ASCII表显示流程图（`exp0604`）
@@ -66,28 +66,76 @@ flowchart TD
 （1）斐波那契循环核心（`exp0602.s`）
 
 ```asm
-movl $1, %eax
-movl $1, %ebx
-movl $45, %ecx
+.section .data
+
+.section .text
+.globl main
+.type  main, @function
+
+
+main:
+    subq $40, %rsp
+    movl $1, %eax
+    call dispuid
+    call dispcrlf
+    movl $1, %eax
+    call dispuid
+    call dispcrlf
+    movl $1, %eax
+    movl $1, %ebx
+    movl $45, %ecx
 
 Fib:
-	addl %ebx, %eax      # a = a + b
-	...                  # 保存寄存器并输出当前项
-	xchgl %eax, %ebx     # 交换a、b，为下一轮做准备
-	loop Fib             # ecx--，非0继续
+    addl %ebx, %eax
+    push %rcx
+    push %rbx
+    push %rax
+    call dispuid
+    call dispcrlf
+    pop %rax
+    pop %rbx
+    pop %rcx
+    xchgl %eax, %ebx
+    loop Fib 
+    
+Done:
+    addq $40, %rsp
+    xorl %eax, %eax
+    ret
+
+
 ```
 
 （2）自然数求和核心（`exp0601.s`）
 
 ```asm
-xorl %eax, %eax          # sum = 0
-xorl %ebx, %ebx          # n = 0
-movl $92681, %ecx        # 循环次数(最大有效N)
+.section .data
+
+.section .text
+.globl main
+.type  main, @function
+
+
+main:
+    xorl %eax, %eax
+	xorl %ebx, %ebx
+	movl $92681, %ecx
 
 Sum:
-	incl %ebx            # n++
-	addl %ebx, %eax      # sum += n
+	incl %ebx
+	addl %ebx, %eax
 	loop Sum
+	
+Done:
+	call dispuid
+    call dispcrlf
+	movl $92681, %eax
+    call dispuid
+    call dispcrlf
+
+	xorl %eax, %eax
+	ret
+
 ```
 
 （3）排序核心（`exp0603`，由C编译得到汇编）
@@ -107,7 +155,40 @@ for (i = 1; i < n; i++) {
 （4）ASCII表显示核心（`exp0604`）
 
 ```c
-fwrite(table, 1, 289, stdout);
+	.file	"exp0604.c"
+	.intel_syntax noprefix
+	.section	.rodata
+	.align 8
+.LC0:
+	.ascii	"10 | 0 1 2 3 4 5 6 7 8 9 A B C D "
+	.string	"E F\n-- + --------------------------------\n20 |  ! \" # $ % & ' ( ) * + , - . /\n30 |0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n40 |@ A B C D E F G H I J K L M N O\n50 |P Q R S T U V W X Y Z [ \\ ] ^ _\n60 |` a b c d e f g h i j k l m n o\n70 |p q r s t u v w x y z { | } ~\n"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
+	.cfi_startproc
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register 6
+	mov	rax, QWORD PTR stdout[rip]
+	mov	rcx, rax
+	mov	edx, 289
+	mov	esi, 1
+	mov	edi, OFFSET FLAT:.LC0
+	call	fwrite
+	mov	eax, 0
+	pop	rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609"
+	.section	.note.GNU-stack,"",@progbits
+
 ```
 
 6. 程序运行结果
@@ -168,7 +249,7 @@ fwrite(table, 1, 289, stdout);
 说明：ASCII可显示字符区间排版正确。
 
 
-四、实验总结
+### 四、实验总结
 （1）总结实验中出现的问题及解决方法
 
 - 循环边界最容易出错，尤其是 `loop` 指令会自动修改 `ecx`。解决方法是先确定循环次数，再把“初始化、循环体、终止条件”分块写清。
