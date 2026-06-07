@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\liaic\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.27\crossnote\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///c:\Users\liaic\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.29\crossnote\dependencies\katex\katex.min.css">
       
       
       
@@ -34,248 +34,187 @@
 </ol>
 <h2 id="二-实验环境">二、实验环境 </h2>
 <ul>
-<li>操作系统：Windows</li>
-<li>开发工具：VS Code</li>
-<li>汇编与连接：GCC 32位模式（<code>-m32</code>）</li>
-<li>运行库：标准 C 运行库 <code>printf/scanf</code></li>
+<li>操作系统：Windows (MSYS2)</li>
+<li>开发工具：VS Code + MSYS2 GCC</li>
+<li>I/O 库：<code>io_windows64</code>（自定义 C+汇编混合库，路径：<code>ZZUGAS/lib/</code>）</li>
+<li>运行方式：64 位模式（<code>-no-pie</code>），链接 <code>io_windows64.a</code></li>
 </ul>
-<h2 id="三-实验步骤2实现">三、实验步骤2实现 </h2>
+<h2 id="三-实验步骤">三、实验步骤 </h2>
 <h3 id="1-程序结构">1. 程序结构 </h3>
-<p>按题目要求拆分为两个模块，并改写为完整 32 位程序：</p>
+<h4 id="实验步骤2输入10个数求平均值">实验步骤2：输入10个数求平均值 </h4>
+<p>按题目要求拆分为两个模块：</p>
 <ol>
 <li>主程序文件：<code>exp0801.s</code></li>
 <li>子程序文件：<code>exp0801s.s</code></li>
 </ol>
-<p>其中 <code>exp0801s.s</code> 的实现参考了例5-24、例5-25和例5-22，包含3个子程序过程定义：</p>
+<p>其中 <code>exp0801s.s</code> 包含3个子程序过程定义：</p>
 <ol>
-<li><code>read10sid</code>：用 <code>scanf</code> 读取10个有符号十进制数</li>
-<li><code>mean_sid32</code>：按照例5-25的思路计算10个32位有符号数平均值</li>
-<li><code>write_sid</code>：按照例5-22的缓冲区转换方式输出有符号十进制结果</li>
+<li><code>read10sid</code>：基于 <code>io_windows64</code> 库的 <code>readsid</code> 函数循环读取10个有符号十进制数</li>
+<li><code>mean_sid32</code>：计算10个32位有符号数平均值（64位累加防溢出，32位 <code>idiv</code> 求商）</li>
+<li><code>write_sid</code>：基于 <code>io_windows64</code> 库的 <code>dispsid</code> 函数输出有符号十进制结果</li>
 </ol>
+<blockquote>
+<p>本次实验抛弃了原本的 32 位模式（<code>-m32</code>）和 <code>scanf/printf</code> 标准库调用，改用 <strong>64 位模式</strong>并链接自定义 <code>io_windows64</code> 库完成输入输出。</p>
+</blockquote>
 <h3 id="2-主程序源码exp0801s">2. 主程序源码（exp0801.s） </h3>
 <pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>.intel_syntax noprefix
 
 .data
 msg1: .asciz "Enter 10 numbers:\n"
-msg2: .asciz "The mean is:"
+msg2: .asciz "The mean is: "
 
 .text
 .globl main
-.extern printf
+.extern dispmsg
 .extern read10sid
 .extern mean_sid32
 .extern write_sid
 
 main:
-    push ebp
-    mov ebp, esp
-    sub esp, 48
+    push rbp
+    mov rbp, rsp
+    sub rsp, 64                     # 数组(40B)+局部变量+对齐
 
-    lea eax, [msg1]
-    push eax
-    call printf
-    add esp, 4
+    # 显示提示信息
+    lea rax, [rip + msg1]
+    call dispmsg
 
-    lea eax, [ebp-40]
-    push 10
-    push eax
+    # 调用 read10sid 读10个数到栈上数组
+    lea rcx, [rbp-48]               # 参数1: 数组地址
+    mov edx, 10                     # 参数2: 个数
     call read10sid
-    add esp, 8
 
-    lea eax, [ebp-40]
-    push 10
-    push eax
+    # 调用 mean_sid32 计算平均值
+    lea rcx, [rbp-48]
+    mov edx, 10
     call mean_sid32
-    add esp, 8
+    mov [rbp-52], eax               # 保存平均值
 
-    mov [ebp-44], eax
+    # 显示结果
+    lea rax, [rip + msg2]
+    call dispmsg
 
-    lea eax, [msg2]
-    push eax
-    call printf
-    add esp, 4
-
-    mov eax, [ebp-44]
-    push eax
+    mov ecx, [rbp-52]               # 参数1: 平均值(Windows x64第一参数在RCX)
     call write_sid
-    add esp, 4
 
-    mov esp, ebp
-    pop ebp
     xor eax, eax
+    leave
     ret
 </code></pre><h3 id="3-子程序源码exp0801ss">3. 子程序源码（exp0801s.s） </h3>
-<pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>.data
-writebuf: .space 13
-
-.intel_syntax noprefix
-
-.data
-input_fmt: .asciz "%d"
-output_fmt: .asciz "%s"
-writebuf: .space 16
+<pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>.intel_syntax noprefix
 
 .text
 .globl read10sid
 .globl mean_sid32
 .globl write_sid
-.extern scanf
-.extern printf
+.extern readsid
+.extern dispsid
 
 # read10sid(int *array, int count)
+# 使用 io_windows64 库的 readsid 循环读取10个有符号十进制数
 read10sid:
-    push ebp
-    mov ebp, esp
-    push ebx
-    push esi
+    push rbp
+    mov rbp, rsp
+    push rbx
+    push r12
 
-    mov esi, [ebp+8]
-    mov ebx, [ebp+12]
+    mov r12, rcx                   # r12 = 数组指针
+    mov ebx, edx                   # ebx = 计数器
 
 .L_read_loop:
-    lea eax, [input_fmt]
-    push esi
-    push eax
-    call scanf
-    add esp, 8
-    add esi, 4
+    sub rsp, 32                    # 为 readsid 预留影子空间
+    call readsid                   # 调用 io_windows64 读取一个有符号数
+    add rsp, 32
+    mov [r12], eax                 # 存入数组
+    add r12, 4                     # 指针后移
     dec ebx
-    jnz .L_read_loop
+    jnz .L_read_loop               # 循环10次
 
-    pop esi
-    pop ebx
-    mov esp, ebp
-    pop ebp
+    pop r12
+    pop rbx
+    pop rbp
     ret
 
 # mean_sid32(int *array, int count) -&gt; EAX
+# 求32位有符号数组的平均值，返回 EAX
 mean_sid32:
-    push ebp
-    mov ebp, esp
-    push ebx
-    push esi
-    push edi
+    push rbp
+    mov rbp, rsp
+    push rbx
+    push r12
+    push r13
 
-    mov esi, [ebp+8]
-    mov ecx, [ebp+12]
-    xor eax, eax
-    xor edx, edx
+    mov r12, rcx                   # r12 = 数组指针
+    mov r13d, edx                  # r13d = 原始个数(保存供除法使用)
+    mov ecx, edx                   # ecx = 循环计数器
+    xor eax, eax                   # 累加和低32位
+    xor edx, edx                   # 累加和高32位(符号扩展)
 
 .L_mean_loop:
-    mov ebx, [esi]
-    mov edi, ebx
-    sar edi, 31
-    add eax, ebx
-    adc edx, edi
-    add esi, 4
+    mov ebx, [r12]                 # 取数组元素
+    mov r10d, ebx
+    sar r10d, 31                   # 符号扩展到 r10d
+    add eax, ebx                   # 累加
+    adc edx, r10d                  # 带进位加符号扩展
+    add r12, 4                     # 指针后移
     dec ecx
     jnz .L_mean_loop
 
-    mov ecx, [ebp+12]
-    idiv ecx
+    mov ecx, r13d                  # 恢复除数(元素个数)
+    idiv ecx                       # EDX:EAX / ECX -&gt; EAX(商), EDX(余数)
 
-    pop edi
-    pop esi
-    pop ebx
-    mov esp, ebp
-    pop ebp
+    pop r13
+    pop r12
+    pop rbx
+    pop rbp
     ret
 
 # write_sid(int value)
+# 使用 io_windows64 库的 dispsid 输出有符号十进制数
 write_sid:
-    push ebp
-    mov ebp, esp
-    push ebx
-    push ecx
-    push edx
-    push esi
-    push edi
+    push rbp
+    mov rbp, rsp
 
-    mov eax, [ebp+8]
-    lea edi, [writebuf]
-    test eax, eax
-    jnz .L_write_nonzero
+    mov eax, ecx                   # 参数在 RCX 中，传给 EAX
+    call dispsid                   # 调用 io_windows64 输出有符号数
 
-    mov byte ptr [edi], '0'
-    inc edi
-    jmp .L_write_finish
-
-.L_write_nonzero:
-    jns .L_write_positive
-    mov byte ptr [edi], '-'
-    inc edi
-    neg eax
-
-.L_write_positive:
-    mov ebx, 10
-    push ebx
-
-.L_write_digits:
-    test eax, eax
-    jz .L_write_pop
-    xor edx, edx
-    div ebx
-    add edx, '0'
-    push edx
-    jmp .L_write_digits
-
-.L_write_pop:
-    pop edx
-    cmp edx, ebx
-    je .L_write_finish
-    mov byte ptr [edi], dl
-    inc edi
-    jmp .L_write_pop
-
-.L_write_finish:
-    mov byte ptr [edi], 0
-    lea eax, [writebuf]
-    push eax
-    lea eax, [output_fmt]
-    push eax
-    call printf
-    add esp, 8
-
-    pop edi
-    pop esi
-    pop edx
-    pop ecx
-    pop ebx
-    mov esp, ebp
-    pop ebp
+    pop rbp
     ret
-</code></pre><h3 id="4-模块连接开发过程上机实现">4. 模块连接开发过程（上机实现） </h3>
-<h4 id="方式a直接连接两个模块">方式A：直接连接两个模块 </h4>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>m32 <span class="token operator">-</span>c ZZUGAS/experiments/exp8/exp0801<span class="token punctuation">.</span>s <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0801<span class="token punctuation">.</span>o
-gcc <span class="token operator">-</span>m32 <span class="token operator">-</span>c ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>s <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>o
-gcc <span class="token operator">-</span>m32 ZZUGAS/experiments/exp8/exp0801<span class="token punctuation">.</span>o ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>o <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0801_32<span class="token punctuation">.</span>exe
-</code></pre><h4 id="方式b先做子程序库再连接主程序">方式B：先做子程序库，再连接主程序 </h4>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>m32 <span class="token operator">-</span>c ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>s <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>o
-ar rcs ZZUGAS/lib/libmysub<span class="token punctuation">.</span>a ZZUGAS/experiments/exp8/exp0801s<span class="token punctuation">.</span>o
+</code></pre><h3 id="4-模块连接开发过程">4. 模块连接开发过程 </h3>
+<h4 id="编译链接命令">编译链接命令 </h4>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code><span class="token comment"># 分别汇编两个模块</span>
+gcc <span class="token operator">-</span>g <span class="token operator">-</span>c exp0801<span class="token punctuation">.</span>s <span class="token operator">-</span>o exp0801<span class="token punctuation">.</span>o
+gcc <span class="token operator">-</span>g <span class="token operator">-</span>c exp0801s<span class="token punctuation">.</span>s <span class="token operator">-</span>o exp0801s<span class="token punctuation">.</span>o
 
-gcc <span class="token operator">-</span>m32 ZZUGAS/experiments/exp8/exp0801<span class="token punctuation">.</span>o \
-    ZZUGAS/lib/libmysub<span class="token punctuation">.</span>a \
-    <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0801_lib<span class="token punctuation">.</span>exe
-</code></pre><p>已生成库文件：<code>ZZUGAS/lib/libmysub.a</code></p>
+<span class="token comment"># 链接为目标文件 + io_windows64 库</span>
+gcc <span class="token operator">-</span>no-pie exp0801<span class="token punctuation">.</span>o exp0801s<span class="token punctuation">.</span>o <span class="token operator">-</span>o exp0801<span class="token punctuation">.</span>exe ZZUGAS/lib/io_windows64<span class="token punctuation">.</span>a
+</code></pre><blockquote>
+<p>编译器自动检测源文件中使用了 <code>readsid</code>/<code>dispsid</code>/<code>dispmsg</code> 等符号，通过 <code>io_windows64.a</code> 提供实现。<br>
+<code>io_windows64.a</code> 由 <code>io_windows64_impl.c</code>（C 实现层）和 <code>io_windows64_wrappers.S</code>（汇编包装层）预先编译而成。</p>
+</blockquote>
 <h3 id="5-运行输入与结果">5. 运行输入与结果 </h3>
-<h4 id="指定输入10个">指定输入（10个） </h4>
-<p><code>1234567890, -1234, 0, 1, -987654321, 32767, -32768, 5678, -5678, 9000</code></p>
-<h4 id="实际运行输出">实际运行输出 </h4>
+<h4 id="输入数据10个有符号十进制数每行一个">输入数据（10个有符号十进制数，每行一个） </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>1234567890
+-1234
+0
+1
+-987654321
+32767
+-32768
+5678
+-5678
+9000
+</code></pre><h4 id="实际运行输出">实际运行输出 </h4>
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>Enter 10 numbers:
-The mean is:24692133
-</code></pre><p>说明：本机当前未安装完整的 32 位 MinGW 链接库，因此上面的 32 位链接指令为标准可复现写法；源码已通过 <code>gcc -m32 -c</code> 汇编语法检查。</p>
-<h4 id="结果校验">结果校验 </h4>
-<p>和为 <code>246921335</code>，平均值整数部分：</p>
-<p><code>246921335 / 10 = 24692133</code></p>
-<p>与程序运行结果一致。</p>
-<h2 id="四-实验步骤3实现">四、实验步骤3实现 </h2>
-<h3 id="1-代码要求">1. 代码要求 </h3>
-<p>定义宏：</p>
-<ol>
-<li><code>LOGICAL</code>：支持 <code>AND</code>、<code>OR</code>、<code>XOR</code>、<code>TEST</code></li>
-<li><code>LOGICAL_NOT</code>：支持 <code>NOT</code></li>
-</ol>
-<h3 id="2-程序源码exp0802s">2. 程序源码（exp0802.s） </h3>
+The mean is: 24692133
+</code></pre><h4 id="结果校验">结果校验 </h4>
+<p>求和：<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1234567890</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>1234</mn><mo stretchy="false">)</mo><mo>+</mo><mn>0</mn><mo>+</mo><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>987654321</mn><mo stretchy="false">)</mo><mo>+</mo><mn>32767</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>32768</mn><mo stretchy="false">)</mo><mo>+</mo><mn>5678</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>5678</mn><mo stretchy="false">)</mo><mo>+</mo><mn>9000</mn><mo>=</mo><mn>246921335</mn></mrow><annotation encoding="application/x-tex">1234567890 + (-1234) + 0 + 1 + (-987654321) + 32767 + (-32768) + 5678 + (-5678) + 9000 = 246921335</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1234567890</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1234</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">987654321</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">32767</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">32768</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5678</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">5678</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">246921335</span></span></span></span></span></p>
+<p>平均值（整数除法）：<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>246921335</mn><mspace linebreak="newline"></mspace><mi>d</mi><mi>i</mi><mi>v</mi><mn>10</mn><mo>=</mo><mn>24692133</mn></mrow><annotation encoding="application/x-tex">246921335 \\div 10 = 24692133</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">246921335</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord">10</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">24692133</span></span></span></span></span></p>
+<p>与程序输出一致 ✓</p>
+<h3 id="6-逻辑宏定义实验步骤3">6. 逻辑宏定义（实验步骤3） </h3>
+<h4 id="源码exp0802s">源码（exp0802.s） </h4>
 <pre data-role="codeBlock" data-info="asm" class="language-asm asm"><code>.intel_syntax noprefix
 
 .section .text
@@ -326,30 +265,192 @@ The mean is:24692133
 .globl main
 main:
     LOGICAL AND, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL OR,  0xF0, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL XOR, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL TEST, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL_NOT 0
+    call dispsid
+    mov eax, 10
+    call dispc
 
     mov eax, 0
     ret
-</code></pre><h3 id="3-编译与运行">3. 编译与运行 </h3>
-<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>g <span class="token operator">-</span>no-pie ZZUGAS/experiments/exp8/exp0802<span class="token punctuation">.</span>s <span class="token operator">-</span>o ZZUGAS/experiments/exp8/exp0802<span class="token punctuation">.</span>exe
-</code></pre><p>运行后退出码：</p>
-<pre data-role="codeBlock" data-info="text" class="language-text text"><code>exit=0
-</code></pre><p>说明宏定义可正常汇编、连接并执行。</p>
-<h2 id="六-实验总结">六、实验总结 </h2>
-<ol>
-<li>通过将主程序与子程序分离，代码结构更清晰，便于复用与维护。</li>
-<li>使用 <code>ar rcs</code> 生成静态库后，主程序连接流程更加工程化。</li>
-<li>求平均值时采用高低32位累加可避免简单32位累加溢出风险，输出部分则用缓冲区转字符串的方式更贴近教材例5-22。</li>
-<li>宏定义在汇编中非常实用，能够统一常见逻辑操作写法。</li>
-</ol>
-<p>遇到的问题：</p>
-<ol>
-<li>Windows 环境下链接外部IO接口时需要正确引入 <code>io_windows64.a</code>。</li>
-<li>汇编语法（AT&amp;T 与 Intel）切换时容易混淆操作数顺序，需要注意。</li>
-</ol>
+</code></pre><h4 id="编译与运行">编译与运行 </h4>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>g <span class="token operator">-</span>no-pie exp0802<span class="token punctuation">.</span>s <span class="token operator">-</span>o exp0802<span class="token punctuation">.</span>exe ZZUGAS/lib/io_windows64<span class="token punctuation">.</span>a
+</code></pre><h4 id="运行结果">运行结果 </h4>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>15
+255
+240
+255
+-1
+</code></pre><h4 id="结果分析">结果分析 </h4>
+<table>
+<thead>
+<tr>
+<th>宏调用</th>
+<th>运算</th>
+<th>结果（十进制）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LOGICAL AND, 0xFF, 0x0F</code></td>
+<td>0xFF AND 0x0F</td>
+<td>15</td>
+<td>保留低4位</td>
+</tr>
+<tr>
+<td><code>LOGICAL OR, 0xF0, 0x0F</code></td>
+<td>0xF0 OR 0x0F</td>
+<td>255</td>
+<td>合并为全1</td>
+</tr>
+<tr>
+<td><code>LOGICAL XOR, 0xFF, 0x0F</code></td>
+<td>0xFF XOR 0x0F</td>
+<td>240</td>
+<td>高4位取反、低4位不变</td>
+</tr>
+<tr>
+<td><code>LOGICAL TEST, 0xFF, 0x0F</code></td>
+<td>TEST 0xFF, 0x0F</td>
+<td>255</td>
+<td>不改变操作数，EAX 仍为 0xFF</td>
+</tr>
+<tr>
+<td><code>LOGICAL_NOT 0</code></td>
+<td>NOT 0</td>
+<td>-1</td>
+<td>0 取反得全1，以有符号输出为 -1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四-实验总结">四、实验总结 </h2>
+<h3 id="1源程序包含-模块连接和子程序库的开发方法比较">（1）源程序包含、模块连接和子程序库的开发方法比较 </h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>源程序包含</strong>（<code>#include</code>）</td>
+<td>预处理器将源码合并编译，简单直接</td>
+<td>小型程序、快速原型</td>
+</tr>
+<tr>
+<td><strong>模块连接</strong>（分别汇编后链接）</td>
+<td>模块独立编译，可单独修改重编，通过 <code>.globl</code>/<code>.extern</code> 共享符号</td>
+<td>中大型项目、多人协作</td>
+</tr>
+<tr>
+<td><strong>子程序库</strong>（<code>.a</code> 归档）</td>
+<td>将常用子程序打包为静态库，链接时按需提取，无需重复编译</td>
+<td>通用功能复用（如本实验的 <code>io_windows64.a</code>）</td>
+</tr>
+</tbody>
+</table>
+<p>本次实验同时实践了<strong>模块连接</strong>（<code>exp0801.o</code> + <code>exp0801s.o</code>）和<strong>子程序库</strong>（链接 <code>io_windows64.a</code>）两种方式。</p>
+<h3 id="2宏和子程序的区别">（2）宏和子程序的区别 </h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>宏（Macro）</th>
+<th>子程序（Subroutine）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>展开方式</strong></td>
+<td>编译时文本替换，每次调用都复制代码</td>
+<td>运行时通过 <code>call</code>/<code>ret</code> 跳转，代码仅一份</td>
+</tr>
+<tr>
+<td><strong>代码大小</strong></td>
+<td>多次调用导致代码膨胀</td>
+<td>节省代码空间</td>
+</tr>
+<tr>
+<td><strong>执行速度</strong></td>
+<td>无调用/返回开销，较快</td>
+<td>有 <code>call</code>/<code>ret</code> 及栈操作开销</td>
+</tr>
+<tr>
+<td><strong>参数传递</strong></td>
+<td>直接文本替换，灵活但有副作用风险</td>
+<td>通过寄存器或栈传递，规范严格</td>
+</tr>
+<tr>
+<td><strong>调试</strong></td>
+<td>展开后难以追踪</td>
+<td>单步跟踪方便</td>
+</tr>
+<tr>
+<td><strong>典型用途</strong></td>
+<td>短小、频繁使用的操作（如本实验的 <code>LOGICAL</code>/<code>LOGICAL_NOT</code>）</td>
+<td>较大、功能完整的逻辑单元（如 <code>read10sid</code>/<code>mean_sid32</code>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3以编写数据输入求平均值以及输出程序为例的模块连接和子程序库开发过程">（3）以"编写数据输入，求平均值以及输出程序"为例的模块连接和子程序库开发过程 </h3>
+<p><strong>步骤1：编写子程序模块</strong> <code>exp0801s.s</code></p>
+<ul>
+<li>定义三个子程序：<code>read10sid</code>（输入）、<code>mean_sid32</code>（求均值）、<code>write_sid</code>（输出）</li>
+<li>使用 <code>.globl</code> 导出符号，<code>.extern</code> 引用 <code>io_windows64</code> 库函数</li>
+</ul>
+<p><strong>步骤2：编写主程序模块</strong> <code>exp0801.s</code></p>
+<ul>
+<li>按逻辑顺序调用子程序：提示 → 输入 → 求均值 → 输出</li>
+<li>通过 Windows x64 调用约定（<code>RCX</code>/<code>RDX</code> 传参）与子程序通信</li>
+</ul>
+<p><strong>步骤3：分别汇编</strong></p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>g <span class="token operator">-</span>c exp0801<span class="token punctuation">.</span>s <span class="token operator">-</span>o exp0801<span class="token punctuation">.</span>o
+gcc <span class="token operator">-</span>g <span class="token operator">-</span>c exp0801s<span class="token punctuation">.</span>s <span class="token operator">-</span>o exp0801s<span class="token punctuation">.</span>o
+</code></pre><p><strong>步骤4：链接生成可执行文件</strong></p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>gcc <span class="token operator">-</span>no-pie exp0801<span class="token punctuation">.</span>o exp0801s<span class="token punctuation">.</span>o <span class="token operator">-</span>o exp0801<span class="token punctuation">.</span>exe ZZUGAS/lib/io_windows64<span class="token punctuation">.</span>a
+</code></pre><p><strong>步骤5（可选）：制作子程序库</strong></p>
+<pre data-role="codeBlock" data-info="powershell" class="language-powershell powershell"><code>ar rcs ZZUGAS/lib/libmysub<span class="token punctuation">.</span>a exp0801s<span class="token punctuation">.</span>o
+gcc <span class="token operator">-</span>no-pie exp0801<span class="token punctuation">.</span>o ZZUGAS/lib/libmysub<span class="token punctuation">.</span>a <span class="token operator">-</span>o exp0801_lib<span class="token punctuation">.</span>exe ZZUGAS/lib/io_windows64<span class="token punctuation">.</span>a
+</code></pre><h3 id="4实验结果截图">（4）实验结果截图 </h3>
+<p><strong>exp0801 运行结果：</strong></p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>Enter 10 numbers:
+The mean is: 24692133
+</code></pre><p><strong>exp0802 运行结果：</strong></p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>15
+255
+240
+255
+-1
+</code></pre><h3 id="5遇到的问题及解决方法">（5）遇到的问题及解决方法 </h3>
+<p><strong>问题1：32位模式链接失败</strong><br>
+最初的代码使用 <code>-m32</code> 模式和 <code>scanf</code>/<code>printf</code>，但本机 MSYS2 环境缺少完整的 32 位 MinGW 运行库。<br>
+<strong>解决方法</strong>：放弃 <code>-m32</code>，改用 64 位模式，并使用自定义 <code>io_windows64</code> 库完成输入输出。</p>
+<p><strong>问题2：Windows x64 调用约定中的参数传递</strong><br>
+一开始在 <code>write_sid</code> 中写成了 <code>mov eax, [rbp-52]</code> 再 <code>call write_sid</code>，但 <code>write_sid</code> 内部从 <code>ECX</code> 取值，而 <code>EAX</code> 并没有传递给 <code>ECX</code>。<br>
+<strong>解决方法</strong>：在 <code>main</code> 中用 <code>mov ecx, [rbp-52]</code> 将值放入第一参数寄存器 <code>RCX</code>，<code>write_sid</code> 内部再 <code>mov eax, ecx</code> 传给 <code>dispsid</code>。</p>
+<p><strong>问题3：输入数据需要每行一个</strong><br>
+<code>readsid</code> 函数基于 <code>fgets</code> 按行读取，所有数字在同一行（空格分隔）时只能读到第一个数。<br>
+<strong>解决方法</strong>：输入时将每个数字单独放在一行，或用 <code>printf</code> 的换行符分隔。</p>
+<p><strong>问题4：RIP相对寻址</strong><br>
+64 位模式下，引用 <code>.data</code> 段的标号需要使用 <code>[rip + symbol]</code> 形式，否则链接时报 <code>relocation truncated to fit</code> 错误。<br>
+<strong>解决方法</strong>：将 <code>lea rax, [msg1]</code> 改为 <code>lea rax, [rip + msg1]</code>。</p>
 
       </div>
       

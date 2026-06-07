@@ -48,10 +48,25 @@
 .globl main
 main:
     LOGICAL AND, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL OR,  0xF0, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL XOR, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL TEST, 0xFF, 0x0F
+    call dispuid
+    mov eax, 10
+    call dispc
     LOGICAL_NOT 0
+    call dispsid
+    mov eax, 10
+    call dispc
 
     mov eax, 0
     ret
