@@ -1,0 +1,89 @@
+jetson@nano:~/Documents/ZZUGAS/ZZUGAS/experiments/ARM$ fastfetch --logo none
+jetson@nano
+-----------
+OS: Ubuntu focal 20.04 aarch64
+Host: NVIDIA Jetson Nano Developer Kit
+Kernel: Linux 4.9.253-tegra
+Uptime: 10 mins
+Packages: 2520 (dpkg), 9 (snap)
+Shell: bash 5.0.17
+DE: GNOME 3.36.9
+WM: Mutter (X11)
+WM Theme: Yaru
+Theme: Yaru [GTK2/3/4]
+Icons: Adwaita [GTK2/3/4]
+Font: Cantarell (11pt) [GTK2/3/4]
+Cursor: Adwaita (24px)
+Terminal: /dev/pts/0
+CPU: Cortex-A57*4 (4) @ 1.48 GHz
+GPU: NVIDIA Tegra X1 (nvgpu) [Integrated]
+Memory: 1.20 GiB / 3.87 GiB (31%)
+Swap: 20.00 KiB / 1.94 GiB (0%)
+Disk (/): 19.84 GiB / 58.37 GiB (34%) - ext4
+Local IP (eth0): 192.168.68.162/24
+Locale: en_US.UTF-8
+
+
+
+jetson@nano:~/Documents/ZZUGAS/ZZUGAS/experiments/ARM$ bash build_all.sh
+==> building exp1_hello
+==> running exp1_hello
+Hello, World!
+
+==> building exp1_sum100
+==> running exp1_sum100
+sum(1..100) = 5050
+
+==> building exp2_max_find
+==> running exp2_max_find
+max value = 99
+
+==> building exp2_strcpy
+==> running exp2_strcpy
+dst = AArch64 strcpy demo
+
+==> building exp3_strcpy_sub
+==> running exp3_strcpy_sub
+dst = Stack-aware strcpy subroutine
+
+==> building exp4_compare_main
+==> running exp4_compare_main
+compare_data(23, 42) = 42
+
+==> building exp4_c_strcpy
+==> running exp4_c_strcpy
+dst = C calls an ARM64 subroutine
+
+==> building exp4_inline_compare
+==> running exp4_inline_compare
+inline compare result = 73
+
+==> building exp5_m1
+==> running exp5_m1
+memorycopy time is 119255818 ns
+verify = ok
+
+==> building exp5_m21
+==> running exp5_m21
+memorycopy time is 98985035 ns
+verify = ok
+
+==> building exp5_m22
+==> running exp5_m22
+memorycopy time is 84494557 ns
+verify = ok
+
+==> building exp5_m31
+==> running exp5_m31
+memorycopy time is 54693597 ns
+verify = ok
+
+==> building exp5_m32
+==> running exp5_m32
+memorycopy time is 54519222 ns
+verify = ok
+
+==> building exp5_m33
+==> running exp5_m33
+memorycopy time is 55871842 ns
+verify = ok

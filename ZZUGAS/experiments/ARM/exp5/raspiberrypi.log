@@ -1,0 +1,75 @@
+liaic@alanrpi
+-------------
+OS: Debian GNU/Linux 13 (trixie) aarch64
+Host: Raspberry Pi 4 Model B Rev 1.5
+Kernel: Linux 6.12.75+rpt-rpi-v8
+Uptime: 3 mins
+Packages: 1803 (dpkg)
+Shell: bash 5.2.37
+Display (Headless output 2): 1920x1080
+WM: labwc (Wayland)
+Cursor: Adwaita
+Terminal: /dev/pts/0
+CPU: BCM2711 (4) @ 1.80 GHz
+GPU: Broadcom bcm2711-vc5 [Integrated]
+Memory: 397.92 MiB / 7.64 GiB (5%)
+Swap: 0 B / 2.00 GiB (0%)
+Disk (/): 8.17 GiB / 14.03 GiB (58%) - ext4
+Local IP (eth0): 192.168.1.138/24
+Locale: en_GB.UTF-8
+
+
+
+
+==> building exp5_m1
+
+==> running exp5_m1
+
+memorycopy time is 336823672 ns
+
+verify = ok
+
+
+==> building exp5_m21
+
+==> running exp5_m21
+
+memorycopy time is 99665676 ns
+
+verify = ok
+
+
+==> building exp5_m22
+
+==> running exp5_m22
+
+memorycopy time is 263383610 ns
+
+verify = ok
+
+
+==> building exp5_m31
+
+==> running exp5_m31
+
+memorycopy time is 78311513 ns
+
+verify = ok
+
+
+==> building exp5_m32
+
+==> running exp5_m32
+
+memorycopy time is 159205612 ns
+
+verify = ok
+
+
+==> building exp5_m33
+
+==> running exp5_m33
+
+memorycopy time is 149022996 ns
+
+verify = ok 

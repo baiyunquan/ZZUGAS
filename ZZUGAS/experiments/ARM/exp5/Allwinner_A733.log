@@ -1,0 +1,85 @@
+radxa@radxa-cubie-a7z:~/ZZUGAS/ZZUGAS/experiments/ARM$ bash build_all.sh
+==> building exp1_hello
+==> running exp1_hello
+Hello, World!
+
+==> building exp1_sum100
+==> running exp1_sum100
+sum(1..100) = 5050
+
+==> building exp2_max_find
+==> running exp2_max_find
+max value = 99
+
+==> building exp2_strcpy
+==> running exp2_strcpy
+dst = AArch64 strcpy demo
+
+==> building exp3_strcpy_sub
+==> running exp3_strcpy_sub
+dst = Stack-aware strcpy subroutine
+
+==> building exp4_compare_main
+==> running exp4_compare_main
+compare_data(23, 42) = 42
+
+==> building exp4_c_strcpy
+==> running exp4_c_strcpy
+dst = C calls an ARM64 subroutine
+
+==> building exp4_inline_compare
+==> running exp4_inline_compare
+inline compare result = 73
+
+==> building exp5_m1
+==> running exp5_m1
+memorycopy time is 140624272 ns
+verify = ok
+
+==> building exp5_m21
+==> running exp5_m21
+memorycopy time is 108218133 ns
+verify = ok
+
+==> building exp5_m22
+==> running exp5_m22
+memorycopy time is 101165335 ns
+verify = ok
+
+==> building exp5_m31
+==> running exp5_m31
+memorycopy time is 53811918 ns
+verify = ok
+
+==> building exp5_m32
+==> running exp5_m32
+memorycopy time is 53192907 ns
+verify = ok
+
+==> building exp5_m33
+==> running exp5_m33
+memorycopy time is 53077455 ns
+verify = ok
+
+radxa@radxa-cubie-a7z:~/ZZUGAS/ZZUGAS/experiments/ARM$ fastfetch --logo none
+radxa@radxa-cubie-a7z
+---------------------
+OS: Debian GNU/Linux bullseye 11.11 aarch64
+Host: sun60iw2
+Kernel: Linux 5.15.147-7-a733
+Uptime: 9 mins
+Packages: 1660 (dpkg)
+Shell: bash 5.1.4
+Cursor: breeze
+Terminal: /dev/pts/0
+CPU: Cortex-A55*6 + Cortex-A76*2 (8) @ 2.00 GHz
+GPU: Img gpu
+ [Integrated]
+Memory: 240.02 MiB / 961.57 MiB (25%)
+Swap: 0 B / 480.79 MiB (0%)
+Disk (/): 4.86 GiB / 116.95 GiB (4%) - ext4
+Disk (/config): 2.00 KiB / 15.95 MiB (0%) - vfat
+Local IP (wlan0): 10.197.119.118/24
+Locale: en_US.UTF-8
+
+

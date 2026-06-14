@@ -1,0 +1,88 @@
+~/.../experiments/ARM $ fastfetch --logo none
+u0_a178@localhost
+-----------------
+OS: Android REL 16 aarch64
+Host: samsung SM-S9110
+Kernel: Linux 5.15.178-android13-8-2755199-abS9110ZCS7EZCI
+Uptime: 7 days, 8 hours, 7 mins
+Packages: 111 (dpkg)
+Shell: bash 5.3.9
+DE: BP2A.250605.031.A3.S9110ZCS7EZCI
+WM: WindowManager (SurfaceFlinger)
+Terminal: linker64
+CPU: 3 x Qualcomm Snapdragon 8 Gen 2 [SM8550] (8) @ 3.36 GHz
+GPU: Qualcomm Adreno (TM) 740 [Integrated]
+Memory: 5.63 GiB / 6.91 GiB (82%)
+Swap: 5.95 GiB / 12.00 GiB (50%)
+Disk (/): 6.91 GiB / 6.91 GiB (100%) - erofs [Read-only]
+Disk (/storage/emulated): 154.38 GiB / 225.13 GiB (69%) - fuse
+Local IP (rmnet_data0): 10.45.154.156/29
+Local IP (swlan0): 10.88.112.138/24
+Local IP (wlan0): 10.167.168.181/15
+Locale: en_US.UTF-8
+
+
+
+~/.../experiments/ARM $ bash build_all.sh
+==> building exp1_hello
+==> running exp1_hello
+Hello, World!
+
+==> building exp1_sum100
+==> running exp1_sum100
+sum(1..100) = 5050
+
+==> building exp2_max_find
+==> running exp2_max_find
+max value = 99
+
+==> building exp2_strcpy
+==> running exp2_strcpy
+dst = AArch64 strcpy demo
+
+==> building exp3_strcpy_sub
+==> running exp3_strcpy_sub
+dst = Stack-aware strcpy subroutine
+
+==> building exp4_compare_main
+==> running exp4_compare_main
+compare_data(23, 42) = 42
+
+==> building exp4_c_strcpy
+==> running exp4_c_strcpy
+dst = C calls an ARM64 subroutine
+
+==> building exp4_inline_compare
+==> running exp4_inline_compare
+inline compare result = 73
+
+==> building exp5_m1
+==> running exp5_m1
+memorycopy time is 34331354 ns
+verify = ok
+
+==> building exp5_m21
+==> running exp5_m21
+memorycopy time is 27014636 ns
+verify = ok
+
+==> building exp5_m22
+==> running exp5_m22
+memorycopy time is 28178125 ns
+verify = ok
+
+==> building exp5_m31
+==> running exp5_m31
+memorycopy time is 15775052 ns
+verify = ok
+
+==> building exp5_m32
+==> running exp5_m32
+memorycopy time is 15352239 ns
+verify = ok
+
+==> building exp5_m33
+==> running exp5_m33
+memorycopy time is 15294792 ns
+verify = ok
+我在手机termux试了试

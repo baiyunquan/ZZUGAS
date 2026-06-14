@@ -1,0 +1,82 @@
+liaic@pbsbc01h3lite
+-------------------
+OS: Armbian-unofficial 26.05.0-trunk jammy armv7l
+Host: Xunlong pbsbc01h3 Lite
+Kernel: Linux 6.18.33-current-sunxi
+Uptime: 3 days, 10 hours, 38 mins
+Packages: 680 (dpkg)
+Shell: bash 5.1.16
+Terminal: /dev/pts/0
+CPU: sun8i-h3 (4) @ 1.30 GHz
+GPU: Allwinner sun8i-h3-mali [Integrated]
+Memory: 569.44 MiB / 991.82 MiB (57%)
+Swap: 808.00 KiB / 495.91 MiB (0%)
+Disk (/): 3.45 GiB / 113.39 GiB (3%) - ext4 [External]
+Disk (/var/log): 1.02 MiB / 46.84 MiB (2%) - ext4
+Local IP (eth0): 192.168.1.191/24
+Locale: en_US.UTF-8
+
+
+
+
+==> building exp1_hello
+==> running exp1_hello
+Hello, World!
+
+==> building exp1_sum100
+==> running exp1_sum100
+sum(1..100) = 5050
+
+==> building exp2_max_find
+==> running exp2_max_find
+max value = 99
+
+==> building exp2_strcpy
+==> running exp2_strcpy
+dst = AArch64 strcpy demo
+
+==> building exp3_strcpy_sub
+==> running exp3_strcpy_sub
+dst = Stack-aware strcpy subroutine
+
+==> building exp4_compare_main
+==> running exp4_compare_main
+compare_data(23, 42) = 42
+
+==> building exp4_c_strcpy
+==> running exp4_c_strcpy
+dst = C calls an ARM64 subroutine
+
+==> building exp4_inline_compare
+==> running exp4_inline_compare
+inline compare result = 73
+
+==> building exp5_m1
+==> running exp5_m1
+memorycopy time is 352205407 ns
+verify = ok
+
+==> building exp5_m21
+==> running exp5_m21
+memorycopy time is 327764157 ns
+verify = ok
+
+==> building exp5_m22
+==> running exp5_m22
+memorycopy time is 249034741 ns
+verify = ok
+
+==> building exp5_m31
+==> running exp5_m31
+memorycopy time is 187536610 ns
+verify = ok
+
+==> building exp5_m32
+==> running exp5_m32
+memorycopy time is 191435624 ns
+verify = ok
+
+==> building exp5_m33
+==> running exp5_m33
+memorycopy time is 191445665 ns
+verify = ok
