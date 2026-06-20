@@ -1,0 +1,362 @@
+% x86-64 GAS Assembly Quick Reference Card
+% Compile: pdflatex card.tex
+\documentclass[landscape,a4paper]{article}
+\usepackage[landscape,margin=0.3cm,top=0.45cm,bottom=0.3cm]{geometry}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\pagestyle{empty}
+\tcbuselibrary{skins}
+
+%%% Compact font sizes %%%
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{7.5pt}{9pt}%
+  \abovedisplayskip 4\p@ \@plus1\p@ \@minus1\p@
+  \abovedisplayshortskip \abovedisplayskip
+  \belowdisplayshortskip \abovedisplayskip
+  \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\small{\@setfontsize\small{7pt}{8.5pt}}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{6.5pt}{8pt}}
+\renewcommand\scriptsize{\@setfontsize\scriptsize{5.5pt}{6.5pt}}
+\renewcommand\tiny{\@setfontsize\tiny{5pt}{6pt}}
+\makeatother
+
+%%% Operand type colours %%%
+\definecolor{tL}{RGB}{0,80,180}
+\definecolor{tM}{RGB}{180,30,30}
+\definecolor{tR}{RGB}{0,110,50}
+\newcommand{\Lc}{\textcolor{tL}{\textbf{L}}}
+\newcommand{\Mc}{\textcolor{tM}{\textbf{M}}}
+\newcommand{\Rc}{\textcolor{tR}{\textbf{R}}}
+
+%%% tcolorbox style %%%
+\tcbset{
+  mysec/.style={
+    colback=white, colframe=black!60,
+    boxrule=0.2pt, arc=1pt,
+    fonttitle=\footnotesize\bfseries,
+    left=2pt, right=2pt, top=0pt, bottom=0pt,
+    before skip=1pt, after skip=0pt,
+  }
+}
+
+%%% Listing style %%%
+\lstdefinestyle{asmcode}{
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle=\color{gray}\itshape,
+  morecomment=[l]{\#},
+  showstringspaces=false,
+  breaklines=true,
+  frame=none,
+  xleftmargin=0pt, xrightmargin=0pt,
+  aboveskip=0pt, belowskip=0pt,
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=4,
+}
+
+\begin{document}
+\tiny
+\setlength{\tabcolsep}{1.5pt}
+\setlength{\extrarowheight}{0.5pt}
+\setlength{\columnsep}{3pt}
+\setlength{\columnseprule}{0.2pt}
+\renewcommand{\arraystretch}{0.92}
+
+% ====================== TITLE ======================
+\noindent
+{\footnotesize\bfseries x86-64 GAS Assembly Quick Reference Card}
+\hfill
+{\scriptsize
+  \Lc\ = Immediate/Literal \quad
+  \Mc\ = Memory \quad
+  \Rc\ = Register \quad
+  \{S\} = Size suffix: b(byte) w(word) l(dword) q(qword)}
+
+\vspace{1pt}
+
+% ===================== PART 1 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 1: Instruction Set --- AT\&T: \texttt{op src, dst}
+         \quad$|$\quad Intel: \texttt{op dst, src}}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+
+% ---------- AT&T Syntax ----------
+{\scriptsize\bfseries\sffamily AT\&T Syntax}\par\vspace{-2pt}
+{
+\begin{tabular}{@{}l l l l p{2.5cm}@{}}
+\toprule
+\textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
+  & \textbf{Description} \\
+\midrule
+\texttt{mov\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Copy src$\to$dst \\
+\texttt{movsx}     & \Rc/\Mc     & \Rc     & --- & Sign-extension move \\
+\texttt{movzx}     & \Rc/\Mc     & \Rc     & --- & Zero-extension move \\
+\texttt{lea}       & \Mc         & \Rc     & --- & Load effective addr \\
+\midrule
+\texttt{add\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & $dst \mathrel{+}= src$ \\
+\texttt{sub\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & $dst \mathrel{-}= src$ \\
+\texttt{imul}      & \Rc/\Mc/\Lc & \Rc     & \Lc
+  & Signed mul (1/2/3-op) \\
+\texttt{mul\{S\}}  & \Rc/\Mc & --- & --- & Unsigned: RDX:RAX=RAX$*$src \\
+\texttt{div\{S\}}  & \Rc/\Mc & --- & --- & Unsigned: RAX=quot,RDX=rem \\
+\texttt{idiv\{S\}} & \Rc/\Mc & --- & --- & Signed: RAX=quot,RDX=rem \\
+\texttt{inc\{S\}}  & \Rc/\Mc & --- & --- & Increment by 1 \\
+\texttt{dec\{S\}}  & \Rc/\Mc & --- & --- & Decrement by 1 \\
+\texttt{neg\{S\}}  & \Rc/\Mc & --- & --- & Two's complement negate \\
+\midrule
+\texttt{and\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise AND \\
+\texttt{or\{S\}}   & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise OR \\
+\texttt{xor\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise XOR \\
+\texttt{not\{S\}}  & \Rc/\Mc & --- & --- & Bitwise NOT \\
+\midrule
+\texttt{shl\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift left \\
+\texttt{shr\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift right (logical) \\
+\texttt{sar\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift right (arith) \\
+\midrule
+\texttt{cmp\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Flags on $dst - src$ \\
+\texttt{test\{S\}} & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Flags on $dst\mathbin{\&}src$ \\
+\midrule
+\texttt{push\{S\}} & \Rc/\Mc/\Lc & --- & --- & Push (RSP$-=$8) \\
+\texttt{pop\{S\}}  & \Rc         & --- & --- & Pop (RSP$+=$8) \\
+\midrule
+\texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
+\texttt{jcc}       & \Lc         & --- & --- & Conditional jump \\
+\texttt{call}      & \Lc/\Mc/\Rc & --- & --- & Call subroutine \\
+\texttt{ret}       & ---         & --- & --- & Return \\
+\midrule
+\texttt{syscall}   & --- & --- & --- & Linux syscall (RAX=\#) \\
+\texttt{nop}       & --- & --- & --- & No operation \\
+\texttt{cdq/cqo}   & --- & --- & --- & Sign-ext RAX$\to$RDX:RAX \\
+\bottomrule
+\end{tabular}
+}
+
+\columnbreak
+
+% ---------- Intel Syntax ----------
+{\scriptsize\bfseries\sffamily Intel Syntax}\par\vspace{-2pt}
+{
+\begin{tabular}{@{}l l l l p{2.5cm}@{}}
+\toprule
+\textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
+  & \textbf{Description} \\
+\midrule
+\texttt{mov}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Copy src$\to$dst \\
+\texttt{movsx}     & \Rc     & \Rc/\Mc     & --- & Sign-extension move \\
+\texttt{movzx}     & \Rc     & \Rc/\Mc     & --- & Zero-extension move \\
+\texttt{lea}       & \Rc     & \Mc         & --- & Load effective addr \\
+\midrule
+\texttt{add}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & $dst \mathrel{+}= src$ \\
+\texttt{sub}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & $dst \mathrel{-}= src$ \\
+\texttt{imul}      & \Rc     & \Rc/\Mc     & \Lc
+  & Signed mul (1/2/3-op) \\
+\texttt{mul}       & \Rc/\Mc & --- & --- & Unsigned: RDX:RAX=RAX$*$src \\
+\texttt{div}       & \Rc/\Mc & --- & --- & Unsigned: RAX=quot,RDX=rem \\
+\texttt{idiv}      & \Rc/\Mc & --- & --- & Signed: RAX=quot,RDX=rem \\
+\texttt{inc}       & \Rc/\Mc & --- & --- & Increment by 1 \\
+\texttt{dec}       & \Rc/\Mc & --- & --- & Decrement by 1 \\
+\texttt{neg}       & \Rc/\Mc & --- & --- & Two's complement negate \\
+\midrule
+\texttt{and}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise AND \\
+\texttt{or}        & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise OR \\
+\texttt{xor}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise XOR \\
+\texttt{not}       & \Rc/\Mc & --- & --- & Bitwise NOT \\
+\midrule
+\texttt{shl}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift left \\
+\texttt{shr}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift right (logical) \\
+\texttt{sar}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift right (arith) \\
+\midrule
+\texttt{cmp}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Flags on $dst - src$ \\
+\texttt{test}      & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Flags on $dst\mathbin{\&}src$ \\
+\midrule
+\texttt{push}      & \Rc/\Mc/\Lc & --- & --- & Push (RSP$-=$8) \\
+\texttt{pop}       & \Rc         & --- & --- & Pop (RSP$+=$8) \\
+\midrule
+\texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
+\texttt{jcc}       & \Lc         & --- & --- & Conditional jump \\
+\texttt{call}      & \Lc/\Mc/\Rc & --- & --- & Call subroutine \\
+\texttt{ret}       & ---         & --- & --- & Return \\
+\midrule
+\texttt{syscall}   & --- & --- & --- & Linux syscall (RAX=\#) \\
+\texttt{nop}       & --- & --- & --- & No operation \\
+\texttt{cdq/cqo}   & --- & --- & --- & Sign-ext RAX$\to$RDX:RAX \\
+\bottomrule
+\end{tabular}
+}
+
+\end{multicols}
+
+\vspace{-2pt}
+{\scriptsize
+\textbf{jcc variants:}\quad
+\texttt{je}/\texttt{jz}~($=$)\quad
+\texttt{jne}/\texttt{jnz}~($\neq$)\quad
+\texttt{jg}~(signed$>$)\quad
+\texttt{jl}~(signed$<$)\quad
+\texttt{jge}~($\geq$)\quad
+\texttt{jle}~($\leq$)\quad
+\texttt{ja}~(unsigned$>$)\quad
+\texttt{jb}~(unsigned$<$)\quad
+\texttt{jae}~($\geq$)\quad
+\texttt{jbe}~($\leq$)\quad
+\texttt{js}~(SF=1)\quad
+\texttt{jns}~(SF=0)}
+
+\end{tcolorbox}
+
+% ===================== PART 2 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 2: General Purpose Registers --- x86-64}]
+
+{
+\begin{tabular}{@{}l l l l l p{3.8cm}@{}}
+\toprule
+\textbf{8-bit} & \textbf{16-bit} & \textbf{32-bit} & \textbf{64-bit}
+  & \textbf{Save} & \textbf{Purpose / Calling Convention} \\
+\midrule
+AL & AX & EAX & RAX & No  & Accumulator; return value \\
+BL & BX & EBX & RBX & Yes & Base; callee-saved \\
+CL & CX & ECX & RCX & No  & Counter; Win:arg1/SysV:arg4 \\
+DL & DX & EDX & RDX & No  & Data; Win:arg2/SysV:arg3 \\
+SIL & SI & ESI & RSI & No & Source idx; SysV:arg2 \\
+DIL & DI & EDI & RDI & No & Dest idx; SysV:arg1 \\
+SPL & SP & ESP & RSP & --- & Stack pointer \\
+BPL & BP & EBP & RBP & Yes & Frame ptr; callee-saved \\
+\midrule
+R8B  & R8W  & R8D  & R8  & No  & arg5 (Win+SysV) \\
+R9B  & R9W  & R9D  & R9  & No  & arg6 (Win+SysV) \\
+R10B & R10W & R10D & R10 & No  & caller-saved; Win:static chain \\
+R11B & R11W & R11D & R11 & No  & caller-saved; Win:tail-call tmp \\
+R12B & R12W & R12D & R12 & Yes & callee-saved \\
+R13B & R13W & R13D & R13 & Yes & callee-saved \\
+R14B & R14W & R14D & R14 & Yes & callee-saved \\
+R15B & R15W & R15D & R15 & Yes & callee-saved \\
+\midrule
+--- & FLAGS & EFLAGS & RFLAGS & --- & CF(carry) ZF(zero) SF(sign) OF(overflow) PF(parity) \\
+--- & IP    & EIP    & RIP    & --- & Instruction pointer \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{-1pt}
+{\scriptsize
+\textbf{Win x64:} RCX,RDX,R8,R9$\to$stack (32B shadow)\qquad
+\textbf{Linux SysV:} RDI,RSI,RDX,RCX,R8,R9$\to$stack\qquad
+\textit{Ret: RAX(64b) / RDX:RAX(128b)}}
+
+\end{tcolorbox}
+
+% ===================== PART 3 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 3: GAS Program Templates (AT\&T Syntax, x86-64 Linux)}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+
+% ---------- Template 1: libc ----------
+{\scriptsize\bfseries\sffamily Template 1: With C Library (libc)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# Build: gcc tmpl.s -o tmpl
+#-------------------------------------------
+    .section .data          # [Data Segment]
+fmt: .asciz "Result: %d\n"
+
+    .section .bss           # [BSS Segment]
+buf: .space 256
+
+    .section .text          # [Text Segment]
+    .extern printf          # [Extern Declarations]
+    .extern exit
+
+# [Function Segment]
+# helper:
+#   pushq  %rbp
+#   movq   %rsp, %rbp
+#   ... body ...
+#   popq   %rbp
+#   ret
+
+# [Main Entry Point]
+    .globl main
+# Windows: .globl _main
+# Windows: _main:
+main:
+    pushq  %rbp
+    movq   %rsp, %rbp
+    leaq   fmt(%rip), %rdi  # arg1 (SysV)
+    movl   $42, %esi        # arg2 (SysV)
+    # Win: mov rcx, offset fmt
+    # Win: mov edx, 42
+    xorl   %eax, %eax
+    call   printf
+    xorl   %eax, %eax       # return 0
+    leave
+    ret
+\end{lstlisting}
+
+\columnbreak
+
+% ---------- Template 2: standalone ----------
+{\scriptsize\bfseries\sffamily Template 2: Standalone (syscall)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# Build: as --64 tmpl.s -o tmpl.o
+#         ld tmpl.o -o tmpl
+#-------------------------------------------
+    .section .data          # [Data Segment]
+msg: .ascii "Hello!\n"
+.equ msglen, . - msg
+
+    .section .bss           # [BSS Segment]
+
+    .section .text          # [Text Segment]
+    # (no extern for syscall-only)
+
+# [Function Segment]
+print_msg:
+    pushq  %rbp
+    movq   %rsp, %rbp
+    movq   $1, %rax         # sys_write
+    movq   $1, %rdi         # stdout
+    leaq   msg(%rip), %rsi
+    movq   $msglen, %rdx
+    syscall
+    popq   %rbp
+    ret
+
+# [Main Entry Point]
+    .globl _start
+# Windows: .globl mainCRTStartup
+# Windows: mainCRTStartup:
+_start:
+    call   print_msg
+    movq   $60, %rax        # sys_exit
+    xorq   %rdi, %rdi
+    syscall
+\end{lstlisting}
+
+\end{multicols}
+
+\vspace{-1pt}
+{\scriptsize
+\textbf{Key:} \texttt{main}=libc (printf,malloc...);
+\texttt{\_start}=bare Linux (syscall only, no libc).
+RSP must be 16-byte aligned before \texttt{call}.
+\quad\textit{Syscalls:} read=0 write=1 open=2 close=3 exit=60.}
+
+\end{tcolorbox}
+
+\end{document}

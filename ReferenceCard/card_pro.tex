@@ -1,0 +1,875 @@
+% x86-64 GAS Assembly Quick Reference Card — PRO
+% Compile: pdflatex card_pro.tex
+\documentclass[landscape,a4paper]{article}
+\usepackage[landscape,margin=0.4cm,top=0.5cm,bottom=0.4cm]{geometry}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\pagestyle{empty}
+\tcbuselibrary{skins}
+
+%%% Font sizes %%%
+\makeatletter
+\renewcommand\normalsize{\@setfontsize\normalsize{8pt}{9.5pt}}
+\renewcommand\small{\@setfontsize\small{7.5pt}{9pt}}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{7pt}{8.5pt}}
+\renewcommand\scriptsize{\@setfontsize\scriptsize{6pt}{7pt}}
+\renewcommand\tiny{\@setfontsize\tiny{5pt}{6pt}}
+\makeatother
+
+%%% Operand type colours %%%
+\definecolor{tL}{RGB}{0,80,180}
+\definecolor{tM}{RGB}{180,30,30}
+\definecolor{tR}{RGB}{0,110,50}
+\newcommand{\Lc}{\textcolor{tL}{\textbf{L}}}
+\newcommand{\Mc}{\textcolor{tM}{\textbf{M}}}
+\newcommand{\Rc}{\textcolor{tR}{\textbf{R}}}
+
+%%% tcolorbox style %%%
+\tcbset{
+  mysec/.style={
+    colback=white, colframe=black!60,
+    boxrule=0.3pt, arc=1pt,
+    fonttitle=\normalsize\bfseries,
+    left=3pt, right=3pt, top=1pt, bottom=1pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+%%% Listing style %%%
+\lstdefinestyle{asmcode}{
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\color{gray}\itshape,
+  morecomment=[l]{\#},
+  showstringspaces=false,
+  breaklines=true,
+  frame=none,
+  xleftmargin=0pt, xrightmargin=0pt,
+  aboveskip=0pt, belowskip=0pt,
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=4,
+}
+
+\begin{document}
+\small
+\setlength{\tabcolsep}{2.5pt}
+\setlength{\extrarowheight}{1pt}
+\setlength{\columnsep}{4pt}
+\setlength{\columnseprule}{0.2pt}
+\renewcommand{\arraystretch}{1.0}
+
+% ====================== TITLE ======================
+\noindent
+{\large\bfseries x86-64 GAS Assembly Quick Reference Card\enspace\texttt{PRO}}
+\hfill
+{\footnotesize
+  \Lc\ = Immediate/Literal \quad
+  \Mc\ = Memory \quad
+  \Rc\ = Register \quad
+  \{S\} = Size suffix: b(byte) w(word) l(dword) q(qword)}
+
+\vspace{2pt}
+
+% ===================== PART 1 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 1: Instruction Set --- AT\&T: \texttt{op src, dst}
+         \quad$|$\quad Intel: \texttt{op dst, src}}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+
+% ---------- AT&T Syntax ----------
+{\small\bfseries\sffamily AT\&T Syntax}\par\vspace{-3pt}
+{
+\begin{tabular}{@{}l l l l p{4.2cm}@{}}
+\toprule
+\textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
+  & \textbf{Description} \\
+\midrule
+\texttt{mov\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Copy src$\to$dst \\
+\texttt{movsx}     & \Rc/\Mc     & \Rc     & --- & Move with sign-extension \\
+\texttt{movzx}     & \Rc/\Mc     & \Rc     & --- & Move with zero-extension \\
+\texttt{lea}       & \Mc         & \Rc     & --- & Load effective address \\
+\texttt{xchg\{S\}} & \Rc/\Mc     & \Rc/\Mc & --- & Exchange two operands \\
+\midrule
+\texttt{add\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & ---
+  & $dst \mathrel{+}= src$ \\
+\texttt{sub\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & ---
+  & $dst \mathrel{-}= src$ \\
+\texttt{imul}      & \Rc/\Mc/\Lc & \Rc     & \Lc
+  & Signed multiply (1/2/3-op) \\
+\texttt{mul\{S\}}  & \Rc/\Mc & --- & ---
+  & Unsigned mul: RDX:RAX = RAX $\times$ src \\
+\texttt{div\{S\}}  & \Rc/\Mc & --- & ---
+  & Unsigned divide: RAX=quot, RDX=rem \\
+\texttt{idiv\{S\}} & \Rc/\Mc & --- & ---
+  & Signed divide: RAX=quot, RDX=rem \\
+\texttt{inc\{S\}}  & \Rc/\Mc & --- & --- & Increment by 1 \\
+\texttt{dec\{S\}}  & \Rc/\Mc & --- & --- & Decrement by 1 \\
+\texttt{neg\{S\}}  & \Rc/\Mc & --- & --- & Two's complement negate \\
+\midrule
+\texttt{and\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise AND \\
+\texttt{or\{S\}}   & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise OR \\
+\texttt{xor\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & --- & Bitwise XOR \\
+\texttt{not\{S\}}  & \Rc/\Mc & --- & --- & Bitwise NOT (ones' complement) \\
+\midrule
+\texttt{shl\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift left \\
+\texttt{shr\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift right (logical) \\
+\texttt{sar\{S\}}  & \Lc/\Rc(CL) & \Rc/\Mc & --- & Shift right (arithmetic) \\
+\midrule
+\texttt{cmp\{S\}}  & \Rc/\Mc/\Lc & \Rc/\Mc & ---
+  & Compare: set flags on $dst - src$ \\
+\texttt{test\{S\}} & \Rc/\Mc/\Lc & \Rc/\Mc & ---
+  & Test: set flags on $dst \mathbin{\&} src$ \\
+\midrule
+\texttt{push\{S\}} & \Rc/\Mc/\Lc & --- & --- & Push onto stack (RSP $-=$ 8) \\
+\texttt{pop\{S\}}  & \Rc         & --- & --- & Pop from stack  (RSP $+=$ 8) \\
+\midrule
+\texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
+\texttt{jcc}       & \Lc         & --- & --- & Conditional jump (see below) \\
+\texttt{call}      & \Lc/\Mc/\Rc & --- & --- & Call subroutine \\
+\texttt{ret}       & ---         & --- & --- & Return from subroutine \\
+\midrule
+\texttt{cbw}       & --- & --- & --- & Sign-extend AL $\to$ AX \\
+\texttt{cwde}      & --- & --- & --- & Sign-extend AX $\to$ EAX \\
+\texttt{cdqe}      & --- & --- & --- & Sign-extend EAX $\to$ RAX \\
+\texttt{cwd}       & --- & --- & --- & Sign-extend AX $\to$ DX:AX \\
+\texttt{cdq}       & --- & --- & --- & Sign-extend EAX $\to$ EDX:EAX \\
+\texttt{cqo}       & --- & --- & --- & Sign-extend RAX $\to$ RDX:RAX \\
+\midrule
+\texttt{syscall}   & --- & --- & --- & Linux system call (RAX = number) \\
+\texttt{nop}       & --- & --- & --- & No operation \\
+\bottomrule
+\end{tabular}
+}
+
+\columnbreak
+
+% ---------- Intel Syntax ----------
+{\small\bfseries\sffamily Intel Syntax}\par\vspace{-3pt}
+{
+\begin{tabular}{@{}l l l l p{4.2cm}@{}}
+\toprule
+\textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
+  & \textbf{Description} \\
+\midrule
+\texttt{mov}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Copy src$\to$dst \\
+\texttt{movsx}     & \Rc     & \Rc/\Mc     & --- & Move with sign-extension \\
+\texttt{movzx}     & \Rc     & \Rc/\Mc     & --- & Move with zero-extension \\
+\texttt{lea}       & \Rc     & \Mc         & --- & Load effective address \\
+\texttt{xchg}      & \Rc/\Mc & \Rc/\Mc     & --- & Exchange two operands \\
+\midrule
+\texttt{add}       & \Rc/\Mc & \Rc/\Mc/\Lc & ---
+  & $dst \mathrel{+}= src$ \\
+\texttt{sub}       & \Rc/\Mc & \Rc/\Mc/\Lc & ---
+  & $dst \mathrel{-}= src$ \\
+\texttt{imul}      & \Rc     & \Rc/\Mc     & \Lc
+  & Signed multiply (1/2/3-op) \\
+\texttt{mul}       & \Rc/\Mc & --- & ---
+  & Unsigned mul: RDX:RAX = RAX $\times$ src \\
+\texttt{div}       & \Rc/\Mc & --- & ---
+  & Unsigned divide: RAX=quot, RDX=rem \\
+\texttt{idiv}      & \Rc/\Mc & --- & ---
+  & Signed divide: RAX=quot, RDX=rem \\
+\texttt{inc}       & \Rc/\Mc & --- & --- & Increment by 1 \\
+\texttt{dec}       & \Rc/\Mc & --- & --- & Decrement by 1 \\
+\texttt{neg}       & \Rc/\Mc & --- & --- & Two's complement negate \\
+\midrule
+\texttt{and}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise AND \\
+\texttt{or}        & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise OR \\
+\texttt{xor}       & \Rc/\Mc & \Rc/\Mc/\Lc & --- & Bitwise XOR \\
+\texttt{not}       & \Rc/\Mc & --- & --- & Bitwise NOT (ones' complement) \\
+\midrule
+\texttt{shl}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift left \\
+\texttt{shr}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift right (logical) \\
+\texttt{sar}       & \Rc/\Mc & \Lc/\Rc(CL) & --- & Shift right (arithmetic) \\
+\midrule
+\texttt{cmp}       & \Rc/\Mc & \Rc/\Mc/\Lc & ---
+  & Compare: set flags on $dst - src$ \\
+\texttt{test}      & \Rc/\Mc & \Rc/\Mc/\Lc & ---
+  & Test: set flags on $dst \mathbin{\&} src$ \\
+\midrule
+\texttt{push}      & \Rc/\Mc/\Lc & --- & --- & Push onto stack (RSP $-=$ 8) \\
+\texttt{pop}       & \Rc         & --- & --- & Pop from stack  (RSP $+=$ 8) \\
+\midrule
+\texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
+\texttt{jcc}       & \Lc         & --- & --- & Conditional jump (see below) \\
+\texttt{call}      & \Lc/\Mc/\Rc & --- & --- & Call subroutine \\
+\texttt{ret}       & ---         & --- & --- & Return from subroutine \\
+\midrule
+\texttt{cbw}       & --- & --- & --- & Sign-extend AL $\to$ AX \\
+\texttt{cwde}      & --- & --- & --- & Sign-extend AX $\to$ EAX \\
+\texttt{cdqe}      & --- & --- & --- & Sign-extend EAX $\to$ RAX \\
+\texttt{cwd}       & --- & --- & --- & Sign-extend AX $\to$ DX:AX \\
+\texttt{cdq}       & --- & --- & --- & Sign-extend EAX $\to$ EDX:EAX \\
+\texttt{cqo}       & --- & --- & --- & Sign-extend RAX $\to$ RDX:RAX \\
+\midrule
+\texttt{syscall}   & --- & --- & --- & Linux system call (RAX = number) \\
+\texttt{nop}       & --- & --- & --- & No operation \\
+\bottomrule
+\end{tabular}
+}
+
+\end{multicols}
+
+\vspace{-2pt}
+{\footnotesize
+\textbf{Conditional jump (\texttt{jcc}) variants:}\quad
+\texttt{je}/\texttt{jz}~($=$)\quad
+\texttt{jne}/\texttt{jnz}~($\neq$)\quad
+\texttt{jg}~(signed$>$)\quad
+\texttt{jl}~(signed$<$)\quad
+\texttt{jge}~($\geq$)\quad
+\texttt{jle}~($\leq$)\quad
+\texttt{ja}~(unsigned$>$)\quad
+\texttt{jb}~(unsigned$<$)\quad
+\texttt{jae}~($\geq$)\quad
+\texttt{jbe}~($\leq$)\quad
+\texttt{js}~(SF=1)\quad
+\texttt{jns}~(SF=0)}
+
+\end{tcolorbox}
+
+\newpage
+
+% ===================== PART 2 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 2: General Purpose Registers \& Calling Conventions --- x86-64}]
+
+{
+\footnotesize
+\begin{tabular}{@{}l l l p{3.2cm} p{3.2cm} p{3.2cm} p{1.5cm}@{}}
+\toprule
+\textbf{Reg} & \textbf{Alias} & \textbf{Saved}
+  & \textbf{Role (General)}
+  & \textbf{Microsoft x64}
+  & \textbf{System V AMD64}
+  & \textbf{Notes} \\
+\midrule
+RAX & accumulator & No
+  & Return value; mul/div implicit
+  & Return value (64-bit)
+  & Return value (64-bit)
+  & Caller-saved \\
+RBX & base        & Yes
+  & General purpose; callee-saved
+  & Callee-saved
+  & Callee-saved
+  & Must preserve \\
+RCX & counter     & No
+  & Shift count (\texttt{cl}); loop
+  & \textbf{Arg 1} (integer)
+  & Arg 4 (integer)
+  & Caller-saved \\
+RDX & data        & No
+  & I/O; mul/div high half
+  & \textbf{Arg 2} (integer)
+  & Arg 3 (integer)
+  & Caller-saved \\
+RSI & source idx  & No
+  & String/memops source
+  & Callee-saved (non-arg)
+  & \textbf{Arg 2} (integer)
+  & SysV arg; Win saved \\
+RDI & dest idx    & No
+  & String/memops destination
+  & Callee-saved (non-arg)
+  & \textbf{Arg 1} (integer)
+  & SysV arg; Win saved \\
+RSP & stack ptr   & ---
+  & Top of stack (grows down)
+  & Stack pointer
+  & Stack pointer
+  & 16-byte aligned \\
+RBP & frame ptr   & Yes
+  & Stack frame base (optional)
+  & Callee-saved
+  & Callee-saved
+  & Often used as frame \\
+\midrule
+R8  & ---         & No
+  & General purpose
+  & \textbf{Arg 3} (integer)
+  & \textbf{Arg 5} (integer)
+  & Caller-saved \\
+R9  & ---         & No
+  & General purpose
+  & \textbf{Arg 4} (integer)
+  & \textbf{Arg 6} (integer)
+  & Caller-saved \\
+R10 & ---         & No
+  & General purpose; static chain
+  & Caller-saved; static chain ptr
+  & Caller-saved
+  & Win: used by closures \\
+R11 & ---         & No
+  & General purpose; scratch
+  & Caller-saved; tail-call temp
+  & Caller-saved
+  & Volatile \\
+R12 & ---         & Yes
+  & General purpose
+  & Callee-saved
+  & Callee-saved
+  & Must preserve \\
+R13 & ---         & Yes
+  & General purpose
+  & Callee-saved
+  & Callee-saved
+  & Must preserve \\
+R14 & ---         & Yes
+  & General purpose
+  & Callee-saved
+  & Callee-saved
+  & Must preserve \\
+R15 & ---         & Yes
+  & General purpose; TLS base
+  & Callee-saved; TEB pointer
+  & Callee-saved
+  & Must preserve \\
+\midrule
+XMM0--5 & ---     & No
+  & SSE 128-bit vector / FP args
+  & \textbf{Arg 1--6} (float)
+  & \textbf{Arg 1--8} (float)
+  & Caller-saved \\
+XMM6--7 & ---     & Yes / No
+  & SSE 128-bit vector
+  & \textbf{Callee-saved} (XMM6--7)
+  & Caller-saved (XMM6--15)
+  & Win preserves 6--7 \\
+\midrule
+RFLAGS & flags    & ---
+  & CF ZF SF OF PF AF (status)
+  & Volatile (except DF)
+  & Volatile
+  & Direction flag must be 0 \\
+RIP & instr ptr   & ---
+  & Address of next instruction
+  & Not directly accessible
+  & Not directly accessible
+  & RIP-relative addressing \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+
+\begin{minipage}[t]{0.48\textwidth}
+\footnotesize\bfseries Microsoft x64 Calling Convention\mdseries\par\vspace{2pt}
+\begin{tabular}{@{}l l@{}}
+Integer args: & RCX, RDX, R8, R9 (first 4) \\
+Float args:   & XMM0, XMM1, XMM2, XMM3 \\
+Stack args:   & Pushed right-to-left starting at [RSP+32] \\
+Shadow space: & \textbf{32 bytes} (caller must reserve) \\
+Return (int): & RAX (64-bit) \\
+Return (FP):  & XMM0 \\
+Return (128): & RDX:RAX \\
+Stack align:  & 16-byte before \texttt{call} \\
+Callee-saved: & RBX, RBP, RDI, RSI, R12--R15, XMM6--XMM15 \\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\footnotesize\bfseries System V AMD64 Calling Convention\mdseries\par\vspace{2pt}
+\begin{tabular}{@{}l l@{}}
+Integer args: & RDI, RSI, RDX, RCX, R8, R9 (first 6) \\
+Float args:   & XMM0--XMM7 (first 8) \\
+Stack args:   & Pushed right-to-left after [RSP+8] \\
+Shadow space: & \textbf{None} (no reserved area) \\
+Return (int): & RAX (64-bit) \\
+Return (FP):  & XMM0 \\
+Return (128): & RDX:RAX \\
+Stack align:  & 16-byte before \texttt{call} \\
+Callee-saved: & RBX, RBP, R12--R15 \\
+\end{tabular}
+\end{minipage}
+
+\vspace{3pt}
+\begin{minipage}[t]{0.48\textwidth}
+\footnotesize
+\textbf{Stack layout (Win x64):}\par
+[RSP] = return addr\par
+[RSP+8..31] = shadow space (32B, caller reserves for callee to spill regs)\par
+[RSP+32..] = 5th+ args pushed right-to-left.\par
+RSP must be 16-byte aligned before \texttt{call}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\footnotesize
+\textbf{Stack layout (SysV AMD64):}\par
+[RSP] = return addr\par
+[RSP+8..] = 7th+ args pushed right-to-left.\par
+No shadow space. No reserved area.\par
+RSP must be 16-byte aligned before \texttt{call}.
+\end{minipage}
+
+\end{tcolorbox}
+
+\newpage
+
+% ===================== PART 3 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 3: Program Templates --- Intel/Windows API \quad$|$\quad AT\&T/Linux API}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+
+% ---------- A: Win x64 API Template ----------
+{\small\bfseries\sffamily A. Win x64 API Template (Intel Syntax)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# Build: gcc -no-pie win.s -o win.exe -lkernel32
+#-----------------------------------------------
+    .intel_syntax noprefix
+    .section .data
+msg:    .asciz "Hello!\n"
+    .section .text
+    .extern printf
+    .extern exit
+    .globl main
+main:
+    push    rbp
+    mov     rbp, rsp
+    sub     rsp, 32             # shadow space (32B)
+    lea     rcx, msg[rip]       # arg1 (Win x64)
+    xor     eax, eax
+    call    printf
+    xor     ecx, ecx            # arg1: exit code
+    call    exit
+\end{lstlisting}
+
+% ---------- B: Win x64 ABI Function Demo ----------
+{\small\bfseries\sffamily B. Win x64 Function Calling (Intel)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# --- Callee: receives args in RCX,RDX,R8 ---
+sum3:
+    push    rbp
+    mov     rbp, rsp
+    mov     rax, rcx            # rax = x
+    add     rax, rdx            # rax += y
+    add     rax, r8             # rax += z
+    pop     rbp
+    ret
+# --- Caller: set args + shadow space ---
+main:
+    push    rbp
+    mov     rbp, rsp
+    sub     rsp, 32             # shadow space (32B)
+    mov     ecx, 10             # arg1
+    mov     edx, 20             # arg2
+    mov     r8d, 30             # arg3
+    call    sum3                # result in RAX
+    add     rsp, 32
+    pop     rbp
+    ret
+\end{lstlisting}
+
+\columnbreak
+
+% ---------- C: Linux API Template ----------
+{\small\bfseries\sffamily C. Linux API Template (AT\&T Syntax)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# Build: gcc -no-pie lin.s -o lin
+#-----------------------------------------------
+    .section .data
+msg:    .asciz "Hello!\n"
+    .section .text
+    .extern printf
+    .extern exit
+    .globl main
+main:
+    pushq   %rbp
+    movq    %rsp, %rbp
+    leaq    msg(%rip), %rdi     # arg1 (SysV)
+    xorl    %eax, %eax
+    call    printf
+    xorl    %edi, %edi          # arg1: exit code
+    call    exit
+# Standalone (no libc):
+# _start: movq $1,%rax; movq $1,%rdi
+#   leaq msg(%rip),%rsi; movq $6,%rdx
+#   syscall; movq $60,%rax; xorq %rdi,%rdi; syscall
+\end{lstlisting}
+
+% ---------- D: Linux ABI Function Demo ----------
+{\small\bfseries\sffamily D. SysV Function Calling (AT\&T)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# --- Callee: receives args in RDI,RSI,RDX ---
+sum3:
+    pushq   %rbp
+    movq    %rsp, %rbp
+    movq    %rdi, %rax          # rax = x
+    addq    %rsi, %rax          # rax += y
+    addq    %rdx, %rax          # rax += z
+    popq    %rbp
+    ret
+# --- Caller: set args, no shadow space ---
+main:
+    pushq   %rbp
+    movq    %rsp, %rbp
+    movl    $10, %edi           # arg1
+    movl    $20, %esi           # arg2
+    movl    $30, %edx           # arg3
+    call    sum3                # result in RAX
+    leave
+    ret
+\end{lstlisting}
+
+\end{multicols}
+
+\vspace{-1pt}
+{\footnotesize
+\textbf{Win x64:}\quad
+RCX, RDX, R8, R9 (first 4 int args). Caller reserves 32B shadow space. 5th arg at [RSP+32].
+\qquad
+\textbf{SysV:}\quad
+RDI, RSI, RDX, RCX, R8, R9 (first 6 int args). No shadow space. 7th+ arg on stack.}
+
+\end{tcolorbox}
+
+\newpage
+
+% ===================== PART 4 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 4: GAS Directives \& Pseudo-Operations}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+
+% ---------- Left: Section & Data directives ----------
+{\small\bfseries\sffamily Section \& Data Directives}\par\vspace{-2pt}
+{
+\footnotesize
+\begin{tabular}{@{}l p{5cm} p{4.5cm}@{}}
+\toprule
+\textbf{Directive} & \textbf{Description} & \textbf{Example} \\
+\midrule
+\texttt{.data}    & Begin initialized data segment
+  & \texttt{.data} \\
+\texttt{.section .data} & Same, explicit section name
+  & \texttt{.section .data} \\
+\texttt{.text}    & Begin code (text) segment
+  & \texttt{.text} \\
+\texttt{.section .text} & Same, explicit section name
+  & \texttt{.section .text} \\
+\texttt{.bss}     & Begin uninitialized data segment
+  & \texttt{.bss} \\
+\texttt{.section .bss} & Same, explicit section name
+  & \texttt{.section .bss} \\
+\midrule
+\texttt{.byte}    & Emit 8-bit integer(s)
+  & \texttt{.byte 0x41, 65} \\
+\texttt{.word} / \texttt{.value} & Emit 16-bit integer(s)
+  & \texttt{.word 1024} \\
+\texttt{.long} / \texttt{.int} & Emit 32-bit integer(s)
+  & \texttt{.long 0xDEADBEEF} \\
+\texttt{.quad}    & Emit 64-bit integer(s)
+  & \texttt{.quad 0x123456789} \\
+\texttt{.ascii}   & Emit string (no null terminator)
+  & \texttt{.ascii "Hello"} \\
+\texttt{.asciz} / \texttt{.string} & Emit string with null terminator
+  & \texttt{.asciz "Hello"} \\
+\texttt{.float}   & Emit 32-bit IEEE float
+  & \texttt{.float 3.14} \\
+\texttt{.double}  & Emit 64-bit IEEE double
+  & \texttt{.double 2.71828} \\
+\texttt{.space} / \texttt{.skip} & Emit $n$ zero bytes
+  & \texttt{.space 256} \\
+\texttt{.fill}    & Fill $n$ copies of $s$-byte value $v$
+  & \texttt{.fill 10, 4, 0} \\
+\midrule
+\texttt{.zero}    & Zero-fill in BSS (no file size)
+  & \texttt{.zero 4096} \\
+\bottomrule
+\end{tabular}
+}
+
+\columnbreak
+
+% ---------- Right: Symbol & Control directives ----------
+{\small\bfseries\sffamily Symbol \& Control Directives}\par\vspace{-2pt}
+{
+\footnotesize
+\begin{tabular}{@{}l p{5cm} p{4.5cm}@{}}
+\toprule
+\textbf{Directive} & \textbf{Description} & \textbf{Example} \\
+\midrule
+\texttt{.globl} / \texttt{.global} & Export symbol (visible to linker)
+  & \texttt{.globl main} \\
+\texttt{.extern}  & Declare external symbol (optional in GAS)
+  & \texttt{.extern printf} \\
+\midrule
+\texttt{.equ}     & Define constant (immutable)
+  & \texttt{.equ BUFSIZ, 1024} \\
+\texttt{.set}     & Define symbol (mutable)
+  & \texttt{.set counter, 0} \\
+\texttt{.equiv}   & Define constant (error if redefined)
+  & \texttt{.equiv TRUE, 1} \\
+\midrule
+\texttt{.align}   & Align to $2^n$ boundary
+  & \texttt{.align 4} (=16 bytes) \\
+\texttt{.balign}  & Align to $n$-byte boundary
+  & \texttt{.balign 16} \\
+\texttt{.p2align} & Align to $2^n$ boundary (explicit)
+  & \texttt{.p2align 4} \\
+\midrule
+\texttt{.type}    & Set ELF symbol type
+  & \texttt{.type main, @function} \\
+\texttt{.size}    & Set ELF symbol size
+  & \texttt{.size main, .-main} \\
+\texttt{.section} & Switch to named section with flags
+  & \texttt{.section .rodata,"a"} \\
+\midrule
+\texttt{.intel\_syntax noprefix} & Switch to Intel syntax (GAS)
+  & \texttt{.intel\_syntax noprefix} \\
+\texttt{.att\_syntax prefix} & Switch back to AT\&T syntax (GAS)
+  & \texttt{.att\_syntax prefix} \\
+\midrule
+\texttt{.org}     & Set location counter
+  & \texttt{.org 0x100} \\
+\texttt{.incbin}  & Include raw binary file
+  & \texttt{.incbin "data.bin"} \\
+\texttt{.macro} / \texttt{.endm} & Define macro
+  & \texttt{.macro pusha} ... \texttt{.endm} \\
+\texttt{.rept} / \texttt{.endr} & Repeat block $n$ times
+  & \texttt{.rept 16} ... \texttt{.endr} \\
+\midrule
+\texttt{.code16} / \texttt{.code32} / \texttt{.code64} & Set instruction mode
+  & \texttt{.code64} \\
+\texttt{.file}    & Set source file name (debug info)
+  & \texttt{.file "main.s"} \\
+\texttt{.loc}     & Emit debug line number
+  & \texttt{.loc 1 42} \\
+\bottomrule
+\end{tabular}
+}
+
+\end{multicols}
+
+% ---------- Macro Demo ----------
+\vspace{2pt}
+{\small\bfseries\sffamily Macro Demonstration (AT\&T Syntax)}\par
+\vspace{1pt}
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+\begin{lstlisting}[style=asmcode]
+# Simple: print via Linux syscall
+.macro print_str str, len
+    movq  $1, %rax
+    movq  $1, %rdi
+    leaq  \str(%rip), %rsi
+    movq  $\len, %rdx
+    syscall
+.endm
+
+# Default param: exit(code=0)
+.macro exit_prog code=0
+    movq  $60, %rax
+    movq  $\code, %rdi
+    syscall
+.endm
+\end{lstlisting}
+
+\begin{lstlisting}[style=asmcode]
+# Local labels: .L + \@ unique ID
+.macro safe_div dividend, divisor
+    cmpq  $0, \divisor
+    je    .Ldiv_zero\@
+    movq  \dividend, %rax
+    cqo
+    idivq \divisor
+    jmp   .Ldiv_done\@
+.Ldiv_zero\@:
+    xorq  %rax, %rax
+.Ldiv_done\@:
+.endm
+
+# Usage:
+_start:
+    print_str msg, 3
+    safe_div %rbx, %rcx
+    exit_prog 0
+\end{lstlisting}
+\end{multicols}
+
+\vspace{2pt}
+{\footnotesize
+\textbf{Notes:}
+\textbullet\enspace In GAS, \texttt{.data}, \texttt{.text}, \texttt{.bss} can be used as shorthand or with \texttt{.section}.
+\textbullet\enspace \texttt{.extern} is optional in GAS (all undefined symbols are implicitly external), but improves readability.
+\textbullet\enspace \texttt{.align $n$} aligns to $2^n$ bytes on most targets; use \texttt{.balign $n$} for unambiguous byte alignment.
+\textbullet\enspace Use \texttt{.intel\_syntax noprefix} at the top of a GAS file to switch to Intel syntax; default is AT\&T.
+\textbullet\enspace \texttt{.type}, \texttt{.size}, \texttt{.section} flags (e.g.\ \texttt{"a"@progbits, "w"@nobits}) are ELF-specific; Windows/PE uses \texttt{.def}/\texttt{.scl}/\texttt{.endef}.}
+
+\end{tcolorbox}
+
+% ===================== PART 5 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 5: GCC / Clang Extended Inline Assembly --- x86-64}]
+
+% ---------- Constraints Table ----------
+{\small\bfseries\sffamily Operand Constraint Reference}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l p{4.5cm} l p{4.5cm} l p{4cm}@{} l@{}}
+\toprule
+\textbf{Cstr.} & \textbf{Meaning} & \textbf{Size}
+  & \textbf{Cstr.} & \textbf{Meaning} & \textbf{Size} \\
+\midrule
+\multicolumn{6}{@{}l@{}}{\textit{Register class constraints}} \\
+\texttt{r}  & Any general-purpose reg       & 1/2/4/8
+  & \texttt{v}  & Any vector reg (SSE/AVX)     & 16/32 \\
+\texttt{q}  & Any 64-bit GPR                & 8
+  & \texttt{x}  & Any SSE reg (XMM)            & 16 \\
+\texttt{l}  & Any register (legacy)         & any
+  & \texttt{y}  & Any MMX register             & 8 \\
+\midrule
+\multicolumn{6}{@{}l@{}}{\textit{Specific register constraints}} \\
+\texttt{a}  & RAX / EAX / AX / AL           & 1/2/4/8
+  & \texttt{S}  & RSI / ESI / SI / SIL         & 1/2/4/8 \\
+\texttt{b}  & RBX / EBX / BX / BL           & 1/2/4/8
+  & \texttt{D}  & RDI / EDI / DI / DIL         & 1/2/4/8 \\
+\texttt{c}  & RCX / ECX / CX / CL           & 1/2/4/8
+  & \texttt{d}  & RDX / EDX / DX / DL          & 1/2/4/8 \\
+\texttt{A}  & RDX:RAX pair (for \texttt{div}) & 16
+  & ---   & ---                            & --- \\
+\midrule
+\multicolumn{6}{@{}l@{}}{\textit{Immediate \& memory constraints}} \\
+\texttt{i}  & Integer immediate (compile-time) & ---
+  & \texttt{m}  & Any memory operand             & --- \\
+\texttt{n}  & Integer immediate (run-time)    & ---
+  & \texttt{p}  & Valid memory address (pointer)  & 8 \\
+\texttt{I}  & Immediate 0--31 (for shift)     & ---
+  & \texttt{o}  & Offsetable memory operand       & --- \\
+\texttt{J}  & Immediate 0--63                 & ---
+  & \texttt{V}  & Non-offsetable memory           & --- \\
+\texttt{K}  & Immediate $-128$--$127$ (\texttt{movabs}) & ---
+  & \texttt{X}  & Any operand                     & --- \\
+\texttt{L}  & Immediate $\pm 2^{31}$ (for \texttt{jmp}) & ---
+  & \texttt{g}  & Any register or memory          & --- \\
+\texttt{M}  & Immediate 0--3 (for \texttt{lea}) & ---
+  & \texttt{E}  & Float immediate (standard)      & --- \\
+\texttt{N}  & Immediate $-128$--$127$ (for \texttt{in}) & ---
+  & \texttt{F}  & Float immediate (standard)      & --- \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+
+% ---------- Modifiers Table ----------
+{\small\bfseries\sffamily Output Modifiers (x86)}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l p{6cm} l p{6cm}@{} l@{}}
+\toprule
+\textbf{Mod.} & \textbf{Effect (on output operand)}
+  & \textbf{Mod.} & \textbf{Effect (on output operand)} \\
+\midrule
+\texttt{c}  & Print constant without \texttt{\$} prefix
+  & \texttt{P}  & Print only the raw constant (no \texttt{\$}, no \texttt{\%}) \\
+\texttt{h}  & Print high byte of register (e.g.\ \texttt{ah})
+  & \texttt{[0-9]} & Print digit \texttt{N} of the operand (sub-operand) \\
+\texttt{b}  & Print low byte register name (8-bit)
+  & \texttt{w}  & Print 16-bit register name \\
+\texttt{k}  & Print 32-bit register name
+  & \texttt{q}  & Print 64-bit register name \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+
+% ---------- Inline ASM Syntax ----------
+{\small\bfseries\sffamily Syntax: \texttt{\_\_asm\_\_\_ ( "template" : output : input : clobbers )}}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l p{10cm}@{} l@{}}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\texttt{template}  & Assembly instructions with \texttt{\%0}, \texttt{\%1}, ...\ operand placeholders. Use \texttt{\%k0} for 32-bit name, \texttt{\%q0} for 64-bit. \\
+\texttt{output}    & \texttt{"=r"(var)} write-only, \texttt{"=rm"(var)} reg-or-mem. \texttt{"+r"(var)} read-write. \\
+\texttt{input}     & \texttt{"r"(val)} register, \texttt{"i"(val)} immediate, \texttt{"m"(val)} memory, \texttt{"0"(var)} bind to output 0. \\
+\texttt{clobbers}  & \texttt{"memory"} (writes to memory), \texttt{"cc"} (modifies flags), \texttt{"rax"} (trashes reg). \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+
+% ---------- EFLAGS Example ----------
+{\small\bfseries\sffamily Example: Capture EFLAGS to a C variable}\par
+\vspace{-2pt}
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+\begin{lstlisting}[style=asmcode, basicstyle=\ttfamily\scriptsize]
+#include <stdint.h>
+
+// Method 1: lahf
+// captures SF,ZF,AF,PF,CF into AH
+static inline uint8_t
+get_flags_lahf(void) {
+    uint8_t f;
+    __asm__ volatile ("lahf"
+        : "=a"(f) : : "memory");
+    return f; // bits: CF=0 PF=2
+              //        AF=4 ZF=6 SF=7
+}
+
+// Method 2: pushfq/popq
+// captures full 64-bit RFLAGS
+static inline uint64_t
+get_rflags(void) {
+    uint64_t f;
+    __asm__ volatile (
+        "pushfq\n\tpopq %0"
+        : "=r"(f) : : "memory");
+    return f;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=asmcode, basicstyle=\ttfamily\scriptsize]
+// Usage: test if a == b
+int test_eq(int a, int b) {
+    uint64_t flags;
+    __asm__ (
+        "cmpl %2, %1\n\t"
+        "pushfq\n\tpopq %0"
+        : "=r"(flags)
+        : "r"(a), "r"(b)
+        : "cc"
+    );
+    // ZF bit is bit 6
+    return (flags & 0x40) != 0;
+}
+\end{lstlisting}
+\end{multicols}
+
+\vspace{2pt}
+{\scriptsize
+\textbf{Key points:}
+\textbullet\enspace \texttt{\%0}, \texttt{\%1}... reference operands in GAS (AT\&T) syntax by default; add \texttt{\%} as prefix for Intel via \texttt{\%[name]}.
+\textbullet\enspace Use \texttt{\%k0} to force 32-bit register name (e.g.\ \texttt{eax}), \texttt{\%q0} for 64-bit (e.g.\ \texttt{rax}).
+\textbullet\enspace \texttt{volatile} prevents compiler from removing or reordering the asm block.
+\textbullet\enspace \texttt{"cc"} clobber tells the compiler that flags are modified.
+\textbullet\enspace \texttt{lahf} is fast but only captures 5 flags; \texttt{pushfq}/\texttt{popq} captures all 64 bits of RFLAGS.}
+
+\end{tcolorbox}
+
+\end{document}

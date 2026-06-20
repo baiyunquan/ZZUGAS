@@ -3,7 +3,7 @@
 在Windows上进行汇编语言程序的开发和调试，将使用MSYS2 UCRT64的gcc和gdb进行编译调试，完成和在实验平台Ubuntu 16.04相同的功能。
 
 ## 安装MSYS2 UCRT64
-1. 访问MSYS2官网：https://www.msys2.org/，下载适用于Windows的安装程序并安装。
+1. 访问MSYS2官网：https://www.msys2.org/ ，下载适用于Windows的安装程序并安装。
 2. 安装完成后，打开MSYS2 UCRT64终端。
 3. 更新软件包数据库和基础系统：
 ```bash

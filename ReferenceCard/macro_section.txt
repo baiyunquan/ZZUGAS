@@ -1,0 +1,49 @@
+% ---------- Macro Demo ----------
+\vspace{2pt}
+{\small\bfseries\sffamily Macro Demonstration (AT\&T Syntax)}\par
+\vspace{1pt}
+\begin{lstlisting}[style=asmcode]
+# --- Define macros with .macro / .endm ---
+
+# Simple: print string via Linux syscall
+.macro print_str str, len
+    movq  $1, %rax              # sys_write
+    movq  $1, %rdi              # stdout
+    leaq  \str(%rip), %rsi      # buffer (\param)
+    movq  $\len, %rdx            # length
+    syscall
+.endm
+
+# With default: exit with optional code (default 0)
+.macro exit_prog code=0
+    movq  $60, %rax             # sys_exit
+    movq  $\code, %rdi           # status
+    syscall
+.endm
+
+# Local labels: .L prefix hides from linker
+.macro safe_div dividend, divisor
+    cmpq  $0, \divisor
+    je    .Ldiv_zero\@           # \@ = unique macro ID
+    movq  \dividend, %rax
+    cqo                         # sign-extend RAX->RDX:RAX
+    idivq \divisor
+    jmp   .Ldiv_done\@
+.Ldiv_zero\@:
+    xorq  %rax, %rax            # return 0 on /0
+.Ldiv_done\@
+.endm
+
+# --- Usage ---
+    .section .data
+msg: .asciz "hi\n"
+    .section .text
+    .globl _start
+_start:
+    print_str msg, 3            # expand macro
+    safe_div %rbx, %rcx         # rax = rbx/rcx
+    exit_prog 0                 # exit(0)
+\end{lstlisting}
+
+\vspace{2pt}
+{\footnotesize
