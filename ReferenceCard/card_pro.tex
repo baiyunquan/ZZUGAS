@@ -107,11 +107,11 @@
 \texttt{imul}      & \Rc/\Mc/\Lc & \Rc     & \Lc
   & Signed multiply (1/2/3-op) \\
 \texttt{mul\{S\}}  & \Rc/\Mc & --- & ---
-  & Unsigned mul: RDX:RAX = RAX $\times$ src \\
+  & Unsigned mul: (R)DX:(R)AX = (R)AX $\times$ src \\
 \texttt{div\{S\}}  & \Rc/\Mc & --- & ---
-  & Unsigned divide: RAX=quot, RDX=rem \\
+  & Unsigned div: (R)DX:(R)AX / src $\to$ RAX=quot, RDX=rem \\
 \texttt{idiv\{S\}} & \Rc/\Mc & --- & ---
-  & Signed divide: RAX=quot, RDX=rem \\
+  & Signed div: (R)DX:(R)AX / src $\to$ RAX=quot, RDX=rem (use CDQ/CQO first) \\
 \texttt{inc\{S\}}  & \Rc/\Mc & --- & --- & Increment by 1 \\
 \texttt{dec\{S\}}  & \Rc/\Mc & --- & --- & Decrement by 1 \\
 \texttt{neg\{S\}}  & \Rc/\Mc & --- & --- & Two's complement negate \\
@@ -131,7 +131,7 @@
   & Test: set flags on $dst \mathbin{\&} src$ \\
 \midrule
 \texttt{push\{S\}} & \Rc/\Mc/\Lc & --- & --- & Push onto stack (RSP $-=$ 8) \\
-\texttt{pop\{S\}}  & \Rc         & --- & --- & Pop from stack  (RSP $+=$ 8) \\
+\texttt{pop\{S\}}  & \Rc/\Mc     & --- & --- & Pop from stack  (RSP $+=$ 8) \\
 \midrule
 \texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
 \texttt{jcc}       & \Lc         & --- & --- & Conditional jump (see below) \\
@@ -174,11 +174,11 @@
 \texttt{imul}      & \Rc     & \Rc/\Mc     & \Lc
   & Signed multiply (1/2/3-op) \\
 \texttt{mul}       & \Rc/\Mc & --- & ---
-  & Unsigned mul: RDX:RAX = RAX $\times$ src \\
+  & Unsigned mul: (R)DX:(R)AX = (R)AX $\times$ src \\
 \texttt{div}       & \Rc/\Mc & --- & ---
-  & Unsigned divide: RAX=quot, RDX=rem \\
+  & Unsigned div: (R)DX:(R)AX / src $\to$ RAX=quot, RDX=rem \\
 \texttt{idiv}      & \Rc/\Mc & --- & ---
-  & Signed divide: RAX=quot, RDX=rem \\
+  & Signed div: (R)DX:(R)AX / src $\to$ RAX=quot, RDX=rem (use CDQ/CQO first) \\
 \texttt{inc}       & \Rc/\Mc & --- & --- & Increment by 1 \\
 \texttt{dec}       & \Rc/\Mc & --- & --- & Decrement by 1 \\
 \texttt{neg}       & \Rc/\Mc & --- & --- & Two's complement negate \\
@@ -198,7 +198,7 @@
   & Test: set flags on $dst \mathbin{\&} src$ \\
 \midrule
 \texttt{push}      & \Rc/\Mc/\Lc & --- & --- & Push onto stack (RSP $-=$ 8) \\
-\texttt{pop}       & \Rc         & --- & --- & Pop from stack  (RSP $+=$ 8) \\
+\texttt{pop}       & \Rc/\Mc     & --- & --- & Pop from stack  (RSP $+=$ 8) \\
 \midrule
 \texttt{jmp}       & \Lc/\Mc/\Rc & --- & --- & Unconditional jump \\
 \texttt{jcc}       & \Lc         & --- & --- & Conditional jump (see below) \\
@@ -246,7 +246,7 @@
 
 {
 \footnotesize
-\begin{tabular}{@{}l l l p{3.2cm} p{3.2cm} p{3.2cm} p{1.5cm}@{}}
+\begin{tabular}{@{}l l l p{2.9cm} p{2.9cm} p{2.9cm} p{2.5cm}@{}}
 \toprule
 \textbf{Reg} & \textbf{Alias} & \textbf{Saved}
   & \textbf{Role (General)}
@@ -341,11 +341,11 @@ XMM0--5 & ---     & No
   & \textbf{Arg 1--6} (float)
   & \textbf{Arg 1--8} (float)
   & Caller-saved \\
-XMM6--7 & ---     & Yes / No
+XMM6--15 & ---    & Yes / No
   & SSE 128-bit vector
-  & \textbf{Callee-saved} (XMM6--7)
-  & Caller-saved (XMM6--15)
-  & Win preserves 6--7 \\
+  & \textbf{Callee-saved} (XMM6--15)
+  & Caller-saved
+  & Win: low 64-bit preserved \\
 \midrule
 RFLAGS & flags    & ---
   & CF ZF SF OF PF AF (status)
@@ -498,7 +498,7 @@ main:
     call    exit
 # Standalone (no libc):
 # _start: movq $1,%rax; movq $1,%rdi
-#   leaq msg(%rip),%rsi; movq $6,%rdx
+#   leaq msg(%rip),%rsi; movq $7,%rdx
 #   syscall; movq $60,%rax; xorq %rdi,%rdi; syscall
 \end{lstlisting}
 
@@ -732,10 +732,9 @@ _start:
 \multicolumn{6}{@{}l@{}}{\textit{Register class constraints}} \\
 \texttt{r}  & Any general-purpose reg       & 1/2/4/8
   & \texttt{v}  & Any vector reg (SSE/AVX)     & 16/32 \\
-\texttt{q}  & Any 64-bit GPR                & 8
+\texttt{q}  & Byte-addressable reg (a,b,c,d) & 1/2/4/8
   & \texttt{x}  & Any SSE reg (XMM)            & 16 \\
-\texttt{l}  & Any register (legacy)         & any
-  & \texttt{y}  & Any MMX register             & 8 \\
+  & \texttt{y}  & Any MMX register              & 8 \\
 \midrule
 \multicolumn{6}{@{}l@{}}{\textit{Specific register constraints}} \\
 \texttt{a}  & RAX / EAX / AX / AL           & 1/2/4/8

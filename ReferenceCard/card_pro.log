@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.12)  21 JUN 2026 00:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.12)  21 JUN 2026 00:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -696,83 +696,33 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5.24997> on input line 92.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <3.75> on input line 92.
-
-Underfull \hbox (badness 6461) in paragraph at lines 112--113
-[]|\T1/lmr/m/n/7.5 Unsigned di-vide: RAX=quot,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
-[]|\T1/lmr/m/n/7.5 Signed di-vide: RAX=quot,
- []
-
-
-Underfull \hbox (badness 6461) in paragraph at lines 179--180
-[]|\T1/lmr/m/n/7.5 Unsigned di-vide: RAX=quot,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
-[]|\T1/lmr/m/n/7.5 Signed di-vide: RAX=quot,
- []
-
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <7> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 225.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 226.
-[1
+ [1
 
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/
 texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2024/texmf-dist/fonts/enc/d
 vips/lm/lm-mathsy.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
 enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
-Underfull \hbox (badness 1072) in paragraph at lines 263--264
-[]|\T1/lmr/m/n/7 General pur-pose; callee-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
-[]|\T1/lmr/m/n/7 Must pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 281--282
-[]|\T1/lmr/m/n/7 SysV arg;
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 283--284
-[]|\T1/lmr/m/n/7 String/memops des-ti-na-
+[]|\T1/lmr/m/n/7 String/memops des-ti-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
-[]|\T1/lmr/m/n/7 SysV arg;
+Underfull \hbox (badness 4505) in paragraph at lines 288--289
+[]|\T1/lmr/m/n/7 Top of stack (grows
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
-[]|\T1/lmr/m/n/7 16-byte
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+[]|\T1/lmr/m/n/7 Caller-saved; static
  []
 
 
-Underfull \hbox (badness 5592) in paragraph at lines 293--294
-[]|\T1/lmr/m/n/7 Stack frame base (op-
- []
-
-
-Underfull \hbox (badness 4846) in paragraph at lines 296--297
-[]|\T1/lmr/m/n/7 Often used
- []
-
-
-Underfull \hbox (badness 2772) in paragraph at lines 309--310
-[]|\T1/lmr/m/n/7 General pur-pose; static
- []
-
-
-Underfull \hbox (badness 1635) in paragraph at lines 312--313
-[]|\T1/lmr/m/n/7 Win: used
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+[]|\T1/lmr/m/n/7 General pur-pose;
  []
 
 
@@ -781,43 +731,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 315--316
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 322--323
-[]|\T1/lmr/m/n/7 Must pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 327--328
-[]|\T1/lmr/m/n/7 Must pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
-[]|\T1/lmr/m/n/7 Must pre-
- []
-
-
-Underfull \hbox (badness 8019) in paragraph at lines 334--335
-[]|\T1/lmr/m/n/7 General pur-pose; TLS
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
-[]|\T1/lmr/m/n/7 Must pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
-[]|\T1/lmr/m/n/7 Win pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 354--355
-[]|\T1/lmr/m/n/7 Direction
+Underfull \hbox (badness 10000) in paragraph at lines 335--336
+[]|\T1/lmr/m/n/7 Callee-saved; TEB
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 359--360
-[]|\T1/lmr/m/n/7 RIP-relative
+[]|\T1/lmr/m/n/7 RIP-relative ad-
  []
 
 [2] [3]
@@ -827,7 +747,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <7.5> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 798.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 797.
  [4{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [5] (./card_pro.
 aux)
  ***********
@@ -858,7 +778,7 @@ ive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2024/texmf-dist
 /lm/lmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/
 texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/texlive/2024/texmf-
 dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on card_pro.pdf (5 pages, 408349 bytes).
+Output written on card_pro.pdf (5 pages, 409079 bytes).
 PDF statistics:
  138 PDF objects out of 1000 (max. 8388607)
  87 compressed objects within 1 object stream
