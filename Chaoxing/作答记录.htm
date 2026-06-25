@@ -1,0 +1,958 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><script>
+    _HOST_ = "//mooc1.chaoxing.com";
+    _CP_ = "/mooc-ans";
+    _HOST_CP1_ = "//mooc1.chaoxing.com/mooc-ans";
+    // _HOST_CP2_ = _HOST_ + _CP_;
+    _HOST_CP2_ = _CP_;
+</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>作答记录</title><link rel="stylesheet" type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/teacherHeader_nOoa.css">
+<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/moocLeft_nOoa.css" type="text/css" rel="stylesheet">	<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/teacherclass_nOoa.css" rel="stylesheet" type="text/css">
+<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/teacherclassCH_nOoa.css" rel="stylesheet" type="text/css">	<link rel="stylesheet" type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/pop_nOoa.css">
+	<link rel="stylesheet" type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/common_nOoa.css">
+	<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/percentBar_nOoa.css" rel="stylesheet" type="text/css">
+	<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/viewRecord_nOoa.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/q_marking_icon_nOoa.css">
+	<link rel="stylesheet" type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/oralTest_nOoa.css">
+	<style type="text/css">
+		#ZyBottom .TiMu img{max-width:558px;}
+		.teacherComments img{max-width: 558px;}
+		.wrapper .load-bar {width:413px;}
+		.ulTop span{margin-right:0px;}
+		.thirdUlList{border-bottom:none;}
+		.ulTop a{color:#202020;}
+		.answerTable td:nth-child(3){width:43%;}
+		.groupTitile{width: 123px;}
+		.height_number span{color:#7b9e31}
+		.popWord {
+			padding: 26px 30px;
+		}
+		.myanswerScore .font14{font-weight:600;margin-bottom:16px}
+		.newAnswerBx .Py_tk{padding: 0 0 15px 0;}
+	</style>
+	<script src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/jquery.min_nOoa.js"></script>
+	<script src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/wayer_v1.2.mini_nOoa.js"></script>
+	<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/jquery.min_002_nOoa.js"></script>
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/jquery-migrate.min_nOoa.js"></script>	<!-- 代码高亮开始 start -->
+<link type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/default.min_nOoa.css" rel="stylesheet">
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/highlight.min_nOoa.js" charset="utf-8"></script>
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/highlightjs-line-numbers_nOoa.js" charset="utf-8"></script><style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style>
+<style>
+    pre,code {display: block;background: #F7F8FA;border: 1px solid #E1E3E5; font-size: 14px; border-radius: 4px; padding: 30px 20px; margin: 20px 0; font-family: CXHackSafariFont,CXEmojiFont,CXChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Tahoma, Arial,Segoe UI,PingFang SC, Hiragino Sans GB,Microsoft YaHei,sans-serif,Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,Noto Color Emoji; }
+    pre{overflow-x: auto;margin:.5em 0;padding:.4em .6em;border-radius:8px;background:#f8f8f8;}
+    pre.autolinebreak{white-space: normal; }
+    code.hljs{background: #F7F8FA;}
+    pre code,pre pre{ margin: 0; background: none;border: none;}/*padding: 0;*/
+    .code-tool-wrap{padding-bottom: 1em;left: 20px; top: 2px; width: calc(100% - 40px); height: 24px; font-size: 14px; user-select: none;}
+    .code-lang{ display:inline-block; color: #ACB4BF; }
+    .ans-cc .ans-noborder th,.ans-cc .ans-noborder td{border-color:transparent;}
+    .ans-cc pre,.ans-cc code{ position: relative; padding: 0px 20px 30px; margin: 20px 0;border: 1px solid #E1E3E5; border-radius: 4px; color: #474C59; background: #F7F8FA; font-size:14px; font-family: CXHackSafariFont,CXEmojiFont,CXChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Tahoma, Arial,Segoe UI,PingFang SC, Hiragino Sans GB,Microsoft YaHei,sans-serif,Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,Noto Color Emoji;  }
+    .ans-cc pre{overflow: auto}
+    .ans-cc pre code,.ans-cc pre pre{ padding: 0; border:none; margin: 0; background: none;border-radius: 0;}
+    .ans-cc pre.autolinebreak{white-space: pre-wrap;word-wrap: break-word;}
+    .hljs-ln-numbers {text-align: center;color: #ccc;border-right: 1px solid #CCC;vertical-align: top;padding-right: 5px !important;}
+    .hljs-ln-code {padding-left: 5px !important;}
+    /* 全局去掉表格样式 */
+    .ans-cc pre code table tr td {border: solid 0px #cfd4dc;text-align: left}
+    /* 作业表格适配，考试表格适配 */
+    .ans-cc pre table{table-layout: unset;}
+    .ans-cc pre code table{table-layout: unset;}
+    /* pre 标签未换行 */
+    .ans-cc pre.line-numbers{clear:both}
+    .ans-cc pre{clear:both}
+
+    /* app作业库 考试库 查看样式 */
+
+    .hljs-link, .hljs-operator, .hljs-regexp, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-symbol, .hljs-template-variable, .hljs-variable {
+        color: #ab5656 !important;
+    }
+    .hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type {
+        color: #800 !important;
+    }
+    /* 章节作业 */
+    .hljs-ln span{margin-right:0}
+
+    /* 学习通颜色覆盖 */
+    .hljs-type{color:#800 !important;}
+    .hljs-section,.hljs-title{color:#800 !important;font-weight:700}
+    /* 背景颜色 */
+    .ans-cc pre code td{background-color: unset;}
+</style>
+<link type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/newEditor_nOoa.css" rel="stylesheet">
+<script>
+    /**
+     * 保证最后加载
+     */
+    $(function () {
+        var pre = $(".ans-cc").find('pre')
+        if(pre){
+            pre.each(function () {
+                // debugger
+                var me = this;
+                if ($(me).hasClass('CodeMirror-line')) { //代码编辑器
+                    return;
+                }
+                var lang = me.firstChild && me.firstChild.lang;
+                if (typeof (lang) == 'undefined' || lang == null || lang == "" ) {
+                    lang = me.firstChild && me.firstChild.className;
+                    if (typeof (lang) != 'undefined' && lang != null && lang != "" ) {
+                        var split = lang.split("-");
+                        lang = split[1];
+                        if (lang == 'plain') {
+                            lang = 'Plain Text';
+                        }
+                    } else {
+                        lang = 'Plain Text';
+                    }
+                }
+                me.innerHTML = '<div class="code-tool-wrap clearfix"><div class="code-lang fl">' + lang
+                        + '</div><div class="copy1 fr"><i></i><span></span></div></div>' + me.innerHTML;
+                me.innerHTML = me.innerHTML.replace(/<br\s*\/?>/g, "\n");
+            })
+        }
+
+        try {
+            hljs.initHighlightingOnLoad();
+            hljs.initLineNumbersOnLoad({ singleLine:true });
+        } catch (e) {
+
+        }
+    })
+</script>
+<!-- 代码高亮结束 end -->
+	<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/poptoast_nOoa.js"></script>
+	<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/poplayout_nOoa.js"></script>
+
+	<script type="text/javascript">window.SUPPORT_AUDIO_SETTING = true; window.SUPPORT_AUDIO_CONTROL = true;</script>
+		<script src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/work-audio-playtimes_nOoa.js"></script>
+
+<style>.clearfix:after{content: " ";display: block;height: 0px;clear: both;}</style><style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style></head><body style="background: rgb(242, 244, 247); zoom: 1;" class="bg"><input type="hidden" id="fromDevice" value="mooc2" class="clearfix">
+
+<div class="maskDiv" style="display:none;z-index:1000;" id="audioLimitTimesWinNew">
+    <div class="popSetDiv wid440">
+        <div class="popHead RadisTop">
+            <a href="javascript:;" class="popClose fr" onclick="$('#audioLimitTimesWinNew').fullFadeOut();">
+                <img src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/popClose_nOoa.png">
+            </a>
+            <p class="fl fs18 color1">提示</p>
+        </div>
+        <div class="het62"></div>
+        <p class="popWord fs16 color2 audioLimitTimesTip">此附件仅支持打开 <span></span> 次，你已打开 <span></span> 次，不能再次打开</p>
+        <div class="popBottom RadisBom">
+            <a href="javascript:;" class="jb_btn jb_btn_92 fr fs14" onclick="$('#audioLimitTimesWinNew').fullFadeOut();">知道了</a>
+        </div>
+        <div class="het72"></div>
+    </div>
+</div>
+
+<div class="AlertCon02" style="width:400px; height:200px;display:none;" id="audioLimitTimesWin">
+    <h3 class="clearfix">
+        <a href="javascript:;" class="closed02 fr" onclick="WAY.box.hide();$('#audioLimitTimesWin').css('display','none')" style="margin-top:1px;"></a>
+    </h3>
+    <div class="con03">
+        <p class="audioLimitTimesTip" style="margin-top:16px;text-align:left;">此附件仅支持打开 <span></span> 次，你已打开 <span></span> 次，不能再次打开</p>
+        <div style="margin-top:60px;">
+            <a class="bluebtn" href="javascript:;" onclick="WAY.box.hide();$('#audioLimitTimesWin').css('display','none')">知道了</a>
+        </div>
+    </div>
+</div>
+
+		<input type="hidden" name="workId" id="workId" value="50075530">
+	<input type="hidden" name="classId" id="classId" value="139391362">
+	<input type="hidden" name="enc" id="enc" value="">
+	<input type="hidden" name="courseId" id="courseId" value="260357971">
+	<input type="hidden" name="workAnswerId" id="workAnswerId" value="54583632">
+	<input type="hidden" id="answerId" value="54583632">
+	<input type="hidden" name="isWork" id="isWork" value="false">
+	<input type="hidden" name="isdisplaytable" id="isdisplaytable" value="0">
+	<input type="hidden" name="firstHeader" id="firstHeader" value="2">
+	<input type="hidden" name="totalTimes" id="totalTimes" value="3">
+	<input type="hidden" name="times" id="times" value="0">
+	<div class="viewHead">
+		<a href="javascript:window.opener=null;window.close();" class="backTo">返回</a>
+		<span class="headName">单元测试2</span>
+	</div>
+	<div class="heit40"></div>
+	<div class="wrap1200 marTop30 clearfix">
+		<div class="viewMenu">
+			<h3 class="viewMenuTit">查看作答记录<span>（共3次）</span></h3>
+			<ul class="viewMenuList">
+													<li onclick="showRecord('0', this)" data="2026-03-15 16:44:47" class="active">
+						<div><span class="viewNum">第1次</span></div>
+																				<span class="viewScore">59.9分</span>
+											</li>
+														<li onclick="showRecord('1', this)" data="2026-03-15 16:57:07">
+						<div><span class="viewNum">第2次</span></div>
+																				<span class="viewScore">80.0分</span>
+											</li>
+														<li onclick="showRecord('2', this)" data="2026-03-15 17:01:04">
+						<div><span class="viewNum">第3次</span></div>
+																				<span class="viewScore">100.0分</span>
+											</li>
+												</ul>
+		</div>
+		<div class="fr viewBx" id="recordDetail"><div class="viewBx_tit">
+		<h3 class="viewMenuTit">第1次作答<span>(提交时间：</span><span class="viewMenuAnswerTime">2026-03-15 16:44:47</span><span>)</span></h3>
+			<span class="achievement">本次成绩<i>59.9</i>分</span>
+	
+</div>
+<div class="viewContain">
+	<div class="ZyBottom" id="ZyBottom" style="margin-top: 20px;">
+		
+	
+						<h3 class="newTestType">一. 单选题（共15题）</h3>
+		
+		
+		
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452527">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">1</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p><span style="text-wrap-mode: nowrap;">下面说法正确的是（ ）</span></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm1" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>CPU 能直接识别和执行的是高级语言。</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>CPU 能直接识别和执行的是机器语言。</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>CPU 不能直接识别和执行任何语言。</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>CPU 能直接识别和执行的是汇编语言。</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                B
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.6</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452536">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">2</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>关于GAS汇编语句中注释方法错误的是</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm2" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                                                                <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>；开始，直到回车结束<br></p></a></li>
+                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>可使用C语言的注释方式</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>#开始，直到回车结束</p></a></li>
+                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>可以用/**/多行注释</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452525">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">3</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>下面命令中能生成可执行文件的是( )</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm3" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -Og -c -o eg0101 eg0101.c</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -Og -o eg0101 ./progs/eg0101.c</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -i -o eg0101s eg0101.s</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -Og -S -masm=intel -o eg0101 eg0101.c</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                B
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.6</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452537">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">4</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>在GAS汇编语言程序中要采用Intel语法指令需要使用下面的伪指令</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm4" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.intel_code</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.intel_syntax noprefix&nbsp;&nbsp;</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.intel</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.intel_form</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                B
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.6</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452625">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">5</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>关于源程序框架中说法错误的是</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm5" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                                                                <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>必须有数据段</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>必须有代码段</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>入口标号必须用.globl声明<br></p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">必须有程序入口标号</span></p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                A
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.6</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452534">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">6</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>关于用gcc生成汇编语言程序的说法正确的是</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm6" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>必须使用参数-s</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>参数-o可以省略<br></p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>必须使用参数-S</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>参数-masm=intel 的作用是生成Intel格式的汇编语言，可以省略</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.7</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452540">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">7</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>GAS汇编语言程序中下面说法错误的是<br></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm7" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                                                                <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>每条语句以分号结束</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>说明性语句以.开始</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>标号的后面有冒号</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>汇编语言程序中包括说明性语句和执行性语句</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                A
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.7</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452533">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">8</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>以下关于预处理文件说法错误的是</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm8" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>预处理文件是文本文件<br></p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>预处理文件默认扩展名是*.i</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>生成预处理器文件的gcc命令是 -e</p></a></li>
+                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">生成预处理器文件的gcc命令是 -E</span></p></a></li>
+                                                            </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                D
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452529">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">9</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p><span style="text-wrap-mode: nowrap;">以下说法错误的是（ ）</span></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm9" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>汇编语言编写的源程序是文本文件。</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>高级语言编写的源程序是文本文件。</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>目标程序是文本文件。</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>预处理过的源程序是文本文件。</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.7</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452526">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">10</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>下面命令中不能生成二进制文件的是（）</p>
+<p><br></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm10" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -Og -c -o eg0101.o eg0101.c</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">gcc -Og -o eg0102 ./progs/eg0102.c</span></p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -c -o eg0101s.o eg0101.s</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc -Og -S -masm=intel -o eg0101.s eg0101.c</p></a></li>
+                                                                            </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                D
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.7</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452532">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">11</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>关于命令gcc -Og -o eg0102 eg0102.c说法错误的是</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm11" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>-Og是优化参数，可以省略</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>生成可执行程序eg0102</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>实际依次调用了预处理器、编译器、汇编器和连接器</p></a></li>
+                                                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>实际上调用了汇编器as和连接器ld</p></a></li>
+                                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452531">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">12</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>定义代码段的伪指令是()</p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm12" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                                                                <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.text</p></a></li>
+                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>code</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.code</p></a></li>
+                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>text</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452530">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">13</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>定义数据段的伪指令是（）<br></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm13" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>text<br></p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>data</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.data</p></a></li>
+                                                                                                    <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>.text</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                C
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_dui"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">6.7</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452528">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">14</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p><span style="text-wrap-mode: nowrap;">以下说法正确的是（D）</span></p>
+<p><br></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm14" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>尽管用汇编语言生成的执行代码较庞大，但其能够直接有效地控制硬件。</p></a></li>
+                                                                                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">汇编语言源程序需要通过汇编器翻译为目标程序。</span></p></a></li>
+                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>汇编语言是助记符表示的机器语言，所以可以被计算机直接识别和执行。</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">汇编语言源程序需要通过编译器翻译为目标程序。</span></p></a></li>
+                                                            </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                D
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+					
+			
+						
+			
+			<div class="TiMu newTiMu ans-cc singleQuesId" data="405452535">
+				<div class="Zy_TItle clearfix">
+					<i class="fl" tabindex="0" role="option">15</i>
+					<div class="clearfix font-cxsecret fontLabel" style="line-height: 1.5; font-size: 14px;padding-right:15px;" tabindex="0" role="option"><span class="newZy_TItle">【单选题】</span><p>下面指令中不能进行汇编连接的是<br></p></div>
+				</div>
+									<form action="http://fanyapbl.fy.chaoxing.com/questionError/addQuestion" method="post" id="questionErrorForm15" target="_blank">
+    <ul class="Zy_ulTop qtDetail" tabindex="-1" aria-hidden="true">
+                                            <li class="clearfix" tabindex="0" role="option"><i class="fl">A、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p style="text-wrap-mode: wrap;">gcc -c -o eg0103.o ./progs/eg0103.s</p>
+<p style="text-wrap-mode: wrap;">gcc -o eg0103 eg0103.o ./lib/winio64.a</p></a></li>
+                                                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">B、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p><span style="text-wrap-mode: wrap;">as -o eg0103.o ./progs/eg0103.s</span></p></a></li>
+                                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">C、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>as -o eg0103.o ./progs/eg0103.s</p>
+<p>gcc -o eg0103 eg0103.o ./lib/winio64.a</p></a></li>
+                                                                        <li class="clearfix" tabindex="0" role="option"><i class="fl">D、</i><a href="javascript:void(0)" class="fl" style="word-break: break-all;text-decoration: none;" tabindex="-1" aria-hidden="true"><p>gcc&nbsp; -o eg0103 ./progs/eg0103.s ./lib/winio64.a</p></a></li>
+                                                </ul>
+</form>
+<!--新的答案开始-->
+<div class="newAnswerBx">
+    <div class="myAnswerBx marBot16">
+        <div class="myAnswer">
+            <span class="answerFont fl">我的答案：</span>
+            <div class="fl answerCon">
+                A
+            </div>
+            <p class="clear"></p>
+        </div>
+                    <div class="answerScore">
+                <div class="CorrectOrNot fl">
+                                            <span class="marking_cuo"></span>
+                                    </div>
+                <div class="fr newAnswerScore"><span class="scoreNum">0.0</span>分</div>
+            </div>
+            </div>
+        <!--显示答案解析-->
+<!--显示答案解析--></div>
+<!--新的答案结束-->							</div>
+			<!--单选题结束-->
+						</div>
+</div>
+<script src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/right_nOoa.js"></script>
+<link href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/viewer.min_nOoa.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/jquery.md5_nOoa.js"></script>
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/viewer-jquery.min_nOoa.js"></script>
+<script type="text/javascript">
+try{
+	$(function(){
+		var imgList = $(".TiMu").find("div img:not(.workAttach img, .attach img, .attachNew img, .stuAnswerArea img, .popClose img, .ans-formula-moudle, .no_view)");
+		for (var i = 0, len = imgList.size(); i < len; i++) {
+			 var src = imgList.eq(i).attr("src");
+			 if(src){
+    			var index = src.indexOf("375_1024");
+    			if (index != -1) {
+    				src = src.replace("375_1024", "origin");
+    			}
+                 var index2 = src.indexOf("750_1024");
+                 if (index2 != -1) {
+                     src = src.replace("750_1024", "origin");
+                 }
+    			imgList.eq(i).attr("data-original", src);
+		   }
+		}
+        $(".TiMu").find("div img:not(.workAttach img, .attach img, .attachNew img, .stuAnswerArea img, .popClose img, .no_view)").viewer({
+			url : 'data-original',
+		});
+	})
+  }catch(error){}
+</script><script src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/preview-attach_nOoa.js"></script><!-- 代码高亮开始 start -->
+<link type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/default.min_nOoa.css" rel="stylesheet">
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/highlight.min_nOoa.js" charset="utf-8"></script>
+<script type="text/javascript" src="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/highlightjs-line-numbers_nOoa.js" charset="utf-8"></script>
+<style>
+    pre,code {display: block;background: #F7F8FA;border: 1px solid #E1E3E5; font-size: 14px; border-radius: 4px; padding: 30px 20px; margin: 20px 0; font-family: CXHackSafariFont,CXEmojiFont,CXChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Tahoma, Arial,Segoe UI,PingFang SC, Hiragino Sans GB,Microsoft YaHei,sans-serif,Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,Noto Color Emoji; }
+    pre{overflow-x: auto;margin:.5em 0;padding:.4em .6em;border-radius:8px;background:#f8f8f8;}
+    pre.autolinebreak{white-space: normal; }
+    code.hljs{background: #F7F8FA;}
+    pre code,pre pre{ margin: 0; background: none;border: none;}/*padding: 0;*/
+    .code-tool-wrap{padding-bottom: 1em;left: 20px; top: 2px; width: calc(100% - 40px); height: 24px; font-size: 14px; user-select: none;}
+    .code-lang{ display:inline-block; color: #ACB4BF; }
+    .ans-cc .ans-noborder th,.ans-cc .ans-noborder td{border-color:transparent;}
+    .ans-cc pre,.ans-cc code{ position: relative; padding: 0px 20px 30px; margin: 20px 0;border: 1px solid #E1E3E5; border-radius: 4px; color: #474C59; background: #F7F8FA; font-size:14px; font-family: CXHackSafariFont,CXEmojiFont,CXChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Tahoma, Arial,Segoe UI,PingFang SC, Hiragino Sans GB,Microsoft YaHei,sans-serif,Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,Noto Color Emoji;  }
+    .ans-cc pre{overflow: auto}
+    .ans-cc pre code,.ans-cc pre pre{ padding: 0; border:none; margin: 0; background: none;border-radius: 0;}
+    .ans-cc pre.autolinebreak{white-space: pre-wrap;word-wrap: break-word;}
+    .hljs-ln-numbers {text-align: center;color: #ccc;border-right: 1px solid #CCC;vertical-align: top;padding-right: 5px !important;}
+    .hljs-ln-code {padding-left: 5px !important;}
+    /* 全局去掉表格样式 */
+    .ans-cc pre code table tr td {border: solid 0px #cfd4dc;text-align: left}
+    /* 作业表格适配，考试表格适配 */
+    .ans-cc pre table{table-layout: unset;}
+    .ans-cc pre code table{table-layout: unset;}
+    /* pre 标签未换行 */
+    .ans-cc pre.line-numbers{clear:both}
+    .ans-cc pre{clear:both}
+
+    /* app作业库 考试库 查看样式 */
+
+    .hljs-link, .hljs-operator, .hljs-regexp, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-symbol, .hljs-template-variable, .hljs-variable {
+        color: #ab5656 !important;
+    }
+    .hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type {
+        color: #800 !important;
+    }
+    /* 章节作业 */
+    .hljs-ln span{margin-right:0}
+
+    /* 学习通颜色覆盖 */
+    .hljs-type{color:#800 !important;}
+    .hljs-section,.hljs-title{color:#800 !important;font-weight:700}
+    /* 背景颜色 */
+    .ans-cc pre code td{background-color: unset;}
+</style>
+<link type="text/css" href="%E4%BD%9C%E7%AD%94%E8%AE%B0%E5%BD%95_files/newEditor_nOoa.css" rel="stylesheet">
+<script>
+    /**
+     * 保证最后加载
+     */
+    $(function () {
+        var pre = $(".ans-cc").find('pre')
+        if(pre){
+            pre.each(function () {
+                // debugger
+                var me = this;
+                if ($(me).hasClass('CodeMirror-line')) { //代码编辑器
+                    return;
+                }
+                var lang = me.firstChild && me.firstChild.lang;
+                if (typeof (lang) == 'undefined' || lang == null || lang == "" ) {
+                    lang = me.firstChild && me.firstChild.className;
+                    if (typeof (lang) != 'undefined' && lang != null && lang != "" ) {
+                        var split = lang.split("-");
+                        lang = split[1];
+                        if (lang == 'plain') {
+                            lang = 'Plain Text';
+                        }
+                    } else {
+                        lang = 'Plain Text';
+                    }
+                }
+                me.innerHTML = '<div class="code-tool-wrap clearfix"><div class="code-lang fl">' + lang
+                        + '</div><div class="copy1 fr"><i></i><span></span></div></div>' + me.innerHTML;
+                me.innerHTML = me.innerHTML.replace(/<br\s*\/?>/g, "\n");
+            })
+        }
+
+        try {
+            hljs.initHighlightingOnLoad();
+            hljs.initLineNumbersOnLoad({ singleLine:true });
+        } catch (e) {
+
+        }
+    })
+</script>
+<!-- 代码高亮结束 end --></div>
+	</div>
+
+
+<script>
+	function showRecord(times) {
+		var courseId = $("#courseId").val();
+		var classId = $("#classId").val();
+		var workId = $("#workId").val();
+		var workAnswerId = $("#workAnswerId").val();
+		var cpi = '413003873';
+		window.location.href = '/mooc-ans' + "/work/record-list?courseId=" + courseId + "&classId=" + classId + "&workId=" + workId + "&workAnswerId=" + workAnswerId
+				+ "&cpi=" + cpi + "&times=" + times + "&api=1&mooc2=1&ut=s&archive=false";
+	}
+	function showRecordDetail() {
+		var courseId = $("#courseId").val();
+		var classId = $("#classId").val();
+		var workId = $("#workId").val();
+		var workAnswerId = $("#workAnswerId").val();
+		var cpi = '413003873';
+		var ut = 's';
+		var isdisplaytable = '0';
+		var firstHeader = '2';
+		var isWork = 'false';
+		var workSystem = '0';
+		var api = '1';
+		var url = "/mooc-ans/work/record-detail";
+		var times = $("#times").val();
+		$.ajax({
+			url: url,
+			type:"get",
+			data : {
+				"courseId" : courseId,
+				"classId" : classId,
+				"workId" : workId,
+				"workAnswerId" : workAnswerId,
+				"times" : times,
+				"cpi" : cpi,
+				"ut" : ut,
+				"isdisplaytable" : isdisplaytable,
+				"firstHeader" : firstHeader,
+				"isWork" : isWork,
+				"workSystem" : workSystem,
+				"api" : api,
+				"archive" : "false",
+				"mooc2" : 1
+			},
+			success: function(data){
+				$('#recordDetail').html(data);
+				$('.viewMenuAnswerTime').html($('.viewMenuList li.active').attr('data'));
+			},
+			error: function () {
+				$('#recordDetail').html('Error');
+			}
+		});
+	}
+</script>
+<script>
+	$(function(){
+		showRecordDetail();
+	});
+</script>
+</body></html>

@@ -89,7 +89,7 @@
 % ---------- AT&T Syntax ----------
 {\small\bfseries\sffamily AT\&T Syntax}\par\vspace{-3pt}
 {
-\begin{tabular}{@{}l l l l p{4.2cm}@{}}
+\begin{tabular}{@{}l l l l p{9.5cm}@{}}
 \toprule
 \textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
   & \textbf{Description} \\
@@ -156,7 +156,7 @@
 % ---------- Intel Syntax ----------
 {\small\bfseries\sffamily Intel Syntax}\par\vspace{-3pt}
 {
-\begin{tabular}{@{}l l l l p{4.2cm}@{}}
+\begin{tabular}{@{}l l l l p{9.5cm}@{}}
 \toprule
 \textbf{Mnem.} & \textbf{Op1} & \textbf{Op2} & \textbf{Op3}
   & \textbf{Description} \\
@@ -543,7 +543,182 @@ RDI, RSI, RDX, RCX, R8, R9 (first 6 int args). No shadow space. 7th+ arg on stac
 
 % ===================== PART 4 =====================
 \begin{tcolorbox}[mysec,
-  title={Part 4: GAS Directives \& Pseudo-Operations}]
+  title={Part 4: System Calls \& API Functions}]
+
+\begin{multicols}{2}
+\setlength{\parskip}{0pt}
+
+% ---------- Left: Linux Syscalls ----------
+{\small\bfseries\sffamily Linux x86-64 System Calls (via \texttt{syscall})}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l l p{11cm}@{}}
+\toprule
+\textbf{NR (\%rax)} & \textbf{Name} & \textbf{Parameters / Description} \\
+\midrule
+0  & \texttt{read}
+  & \%rdi=fd, \%rsi=buf, \%rdx=count. Read bytes. $\to$ \%rax=nread \\
+1  & \texttt{write}
+  & \%rdi=fd, \%rsi=buf, \%rdx=count. Write bytes. $\to$ \%rax=nwritten \\
+2  & \texttt{open}
+  & \%rdi=pathname, \%rsi=flags, \%rdx=mode. Open file. $\to$ \%rax=fd \\
+3  & \texttt{close}
+  & \%rdi=fd. Close file descriptor. $\to$ \%rax=0 \\
+\midrule
+9  & \texttt{mmap}
+  & \%rdi=addr, \%rsi=len, \%rdx=prot, \%r10=flags, \%r8=fd, \%r9=off. Map memory. $\to$ \%rax=addr \\
+11 & \texttt{munmap}
+  & \%rdi=addr, \%rsi=len. Unmap memory. $\to$ \%rax=0 \\
+\midrule
+12 & \texttt{brk}
+  & \%rdi=addr. Set program break. $\to$ \%rax=new break \\
+35 & \texttt{nanosleep}
+  & \%rdi=timespec, \%rsi=rem. Sleep. $\to$ \%rax=0 \\
+\midrule
+39 & \texttt{getpid}
+  & (none). $\to$ \%rax=PID \\
+57 & \texttt{fork}
+  & (none). $\to$ \%rax=0(child) / PID(parent) \\
+59 & \texttt{execve}
+  & \%rdi=filename, \%rsi=argv, \%rdx=envp. Execute program \\
+60 & \texttt{exit}
+  & \%rdi=status. Terminate process (no return) \\
+61 & \texttt{wait4}
+  & \%rdi=pid, \%rsi=status\_ptr, \%rdx=options, \%r10=rusage. Wait for child \\
+\midrule
+62 & \texttt{kill}
+  & \%rdi=pid, \%rsi=signal. Send signal to process \\
+231 & \texttt{exit\_group}
+  & \%rdi=status. Terminate all threads \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+{\scriptsize
+\textbf{Notes:}\enspace
+NR = syscall number in \%rax. Args in \%rdi, \%rsi, \%rdx, \%r10, \%r8, \%r9 (like SysV but r10 replaces rcx).
+Return in \%rax. Negative = error (abs = errno). \\
+\textbf{Common fd:}\enspace stdin=0, stdout=1, stderr=2.
+\textbf{open flags:}\enspace O\_RDONLY=0, O\_WRONLY=1, O\_RDWR=2, O\_CREAT=0x40, O\_TRUNC=0x200.}
+
+\columnbreak
+
+% ---------- Right: Windows API ----------
+{\small\bfseries\sffamily Windows x64 API Functions (via \texttt{call})}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l p{12cm}@{}}
+\toprule
+\textbf{Function} & \textbf{Parameters / Description} \\
+\midrule
+\multicolumn{2}{@{}l@{}}{\textit{Console I/O (kernel32.dll)}} \\
+\midrule
+\texttt{GetStdHandle}
+  & arg1(\%rcx) = handle type: $-11$=stdout, $-10$=stdin, $-12$=stderr. $\to$ \%rax=HANDLE. \\
+\texttt{WriteConsoleA}
+  & arg1=handle, arg2=buf\_ptr, arg3=len, arg4=\&written, arg5=reserved(0). Write to console. \\
+\texttt{WriteConsoleW}
+  & Same as A but UTF-16 (wide chars). \\
+\texttt{ReadConsoleA}
+  & arg1=handle, arg2=buf\_ptr, arg3=max\_chars, arg4=\&nread, arg5=control(0). Read from console. \\
+\texttt{ReadConsoleW}
+  & Same as A but UTF-16 (wide chars). \\
+\midrule
+\multicolumn{2}{@{}l@{}}{\textit{MessageBox (user32.dll)}} \\
+\midrule
+\texttt{MessageBoxA}
+  & arg1=hwnd(0), arg2=text\_ptr, arg3=caption\_ptr, arg4=type. Show dialog. $\to$ \%rax=button ID. \\
+  & \textit{Type:}\enspace 0=OK, 1=OK/Cancel, 2=Abort/Retry/Ignore, 3=Yes/No/Cancel, 4=Yes/No, 5=Retry/Cancel \\
+  & \textit{Icon:}\enspace OR with 0x10=Error, 0x20=Question, 0x30=Warning, 0x40=Info \\
+\texttt{MessageBoxW}
+  & Same as A but UTF-16 (wide chars). \\
+\midrule
+\multicolumn{2}{@{}l@{}}{\textit{Memory (kernel32.dll)}} \\
+\midrule
+\texttt{VirtualAlloc}
+  & arg1=addr(0), arg2=size, arg3=type, arg4=protect. Allocate memory. $\to$ \%rax=ptr. \\
+  & \textit{Type:}\enspace 0x1000=MEM\_COMMIT, 0x2000=MEM\_RESERVE. Protect: 0x04=RWX. \\
+\texttt{VirtualFree}
+  & arg1=addr, arg2=size(0), arg3=type(0x8000=MEM\_RELEASE). Free memory. \\
+\midrule
+\multicolumn{2}{@{}l@{}}{\textit{Process (kernel32.dll)}} \\
+\midrule
+\texttt{ExitProcess}
+  & arg1=exit\_code. Terminate current process (no return). \\
+\texttt{Sleep}
+  & arg1=milliseconds. Suspend thread. \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{2pt}
+{\scriptsize
+\textbf{Notes:}\enspace
+All args passed via Win x64 convention: RCX, RDX, R8, R9. Caller reserves 32B shadow space.
+\texttt{ANSI} (A) = 8-bit per char. \texttt{Wide} (W) = UTF-16. Use \texttt{WriteConsoleA} for ASCII. \\
+\textbf{Link:}\enspace
+\texttt{gcc -no-pie win.s -o win.exe -lkernel32} or \texttt{-luser32} for MessageBox.
+}\end{multicols}
+
+\vspace{2pt}
+
+% ---------- GCC Flags ----------
+{\small\bfseries\sffamily GCC Assembler \& Linker Flags}\par
+\vspace{-2pt}
+{
+\scriptsize
+\begin{tabular}{@{}l p{5.5cm} l p{5.5cm}@{}}
+\toprule
+\textbf{Flag} & \textbf{Description}
+  & \textbf{Flag} & \textbf{Description} \\
+\midrule
+\multicolumn{4}{@{}l@{}}{\textit{Compilation (gcc -c)}} \\
+\texttt{-g} & Include debug info (for GDB)
+  & \texttt{-O0/-O1/-O2/-O3} & Optimization level (default -O0) \\
+\texttt{-m32} & Compile as 32-bit (x86)
+  & \texttt{-m64} & Compile as 64-bit (default) \\
+\texttt{-Wall} & Enable common warnings
+  & \texttt{-Werror} & Treat warnings as errors \\
+\texttt{-E} & Preprocess only
+  & \texttt{-S} & Compile to .s assembly \\
+\texttt{-c} & Compile to .o object (no link)
+  & \texttt{-o file} & Set output file name \\
+\texttt{-fPIC} & Position-independent code
+  & \texttt{-no-pie} & Disable PIE (simpler linking) \\
+\texttt{-I dir} & Add include search path
+  & \texttt{-D NAME} & Define preprocessor macro \\
+\midrule
+\multicolumn{4}{@{}l@{}}{\textit{Linking (gcc .o -o exe)}} \\
+\texttt{-l lib} & Link library (e.g.\ \texttt{-lc}, \texttt{-lkernel32})
+  & \texttt{-L dir} & Add library search path \\
+\texttt{-static} & Static linking
+  & \texttt{-shared} & Build shared library (.so/.dll) \\
+\texttt{-s} & Strip symbols (smaller binary)
+  & \texttt{-no-pie} & Disable PIE for linking \\
+\texttt{-Wl,...} & Pass option to linker
+  & \texttt{-nostdlib} & Do not link default startup/libs \\
+\midrule
+\multicolumn{4}{@{}l@{}}{\textit{Common Workflows}} \\
+\multicolumn{4}{@{}l@{}}
+  {\texttt{gcc -no-pie -g prog.s -o prog}\enspace (assemble + link, debug) \quad
+   \texttt{as --64 prog.s -o prog.o \&\& ld prog.o -o prog}\enspace (GAS + ld)} \\
+\multicolumn{4}{@{}l@{}}
+  {\texttt{gcc -S -O2 prog.c -o prog.s}\enspace (C $\to$ assembly) \quad
+   \texttt{gcc -c -m32 prog.s -o prog.o}\enspace (32-bit assemble)} \\
+\bottomrule
+\end{tabular}
+}
+
+\end{tcolorbox}
+
+\newpage
+
+% ===================== PART 5 =====================
+\begin{tcolorbox}[mysec,
+  title={Part 5: GAS Directives \& Pseudo-Operations}]
 
 \begin{multicols}{2}
 \setlength{\parskip}{0pt}
@@ -715,9 +890,9 @@ _start:
 
 \end{tcolorbox}
 
-% ===================== PART 5 =====================
+% ===================== PART 6 =====================
 \begin{tcolorbox}[mysec,
-  title={Part 5: GCC / Clang Extended Inline Assembly --- x86-64}]
+  title={Part 6: GCC / Clang Extended Inline Assembly --- x86-64}]
 
 % ---------- Constraints Table ----------
 {\small\bfseries\sffamily Operand Constraint Reference}\par

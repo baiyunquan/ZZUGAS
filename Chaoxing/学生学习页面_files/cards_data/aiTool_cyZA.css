@@ -1,0 +1,485 @@
+.aiToolbarBox{
+    width: 240px;
+    height:40px;
+    background: #fff;
+    box-shadow: 0 2px 12px 0 #00255933;
+    border: 1px solid #F4F4F4;
+    border-radius:4px;
+    display:flex;
+    position:absolute;
+    z-index: 7;
+}
+
+.aiToolbarBox .tool-icon, .func-pop .tool-icon{
+    display:inline-block;
+    width:24px;
+    height:24px;
+    border-radius:4px 0 4px 0;
+    background:url(../../../mooc2/images/chapter/ai/icon-tool.png) no-repeat center center;
+    background-size:24px 24px;
+    position: absolute;
+}
+.toolNavBx{
+    display:inline-block;
+    width:calc(100% - 24px);
+    display:flex;
+    align-items: center;
+    padding:6px 0;
+    list-style-type: none;
+}
+.toolNavBx li{
+    padding:3px 6px;
+    color:#474C59;
+    font-size:14px;
+    cursor: pointer;
+    margin-right:8px;
+    border-radius:4px;
+}
+.toolNavBx li i{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    vertical-align: middle;
+    margin:-4px 6px 0 0;
+    
+}
+.toolNavBx li:hover{
+    color:#3A8BFF
+}
+
+.toolNavBx li.tool-assistant i,.func-pop li p.tool-assistant i{
+    background:url(../../../mooc2/images/chapter/ai/icon-assistant.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-assistant:hover i,.func-pop li p.tool-assistant:hover i{
+    background:url(../../../mooc2/images/chapter/ai/icon-assistant-hover.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-read i,.func-pop li p.tool-read i{
+    background:url(../../../mooc2/images/chapter/ai/icon-read.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-read:hover i,.func-pop li p.tool-read:hover i{
+    background:url(../../../mooc2/images/chapter/ai/icon-read-hover.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-translation i,.func-pop li p.tool-translation i{
+    background:url(../../../mooc2/images/chapter/ai/icon-translation.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-translation:hover i,.func-pop li p.tool-translation:hover i{
+    background:url(../../../mooc2/images/chapter/ai/icon-translation-hover.png) no-repeat;
+    background-size:100%;
+}
+
+.toolNavBx li.curtool,.func-pop li.curtool{
+    color:#3A8BFF;
+    background:#F0F6FF;
+    border-radius:4px;
+
+}
+.toolNavBx li.curtool.tool-assistant i,.func-pop li p.curtool.tool-assistant i{
+    background:url(../../../mooc2/images/chapter/ai/icon-assistant-hover.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.curtool.tool-read i,.func-pop li p.curtool.tool-read i{
+    background:url(../../../mooc2/images/chapter/ai/icon-read-hover.png) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.curtool.tool-translation i,.func-pop li p.curtool.tool-translation i{
+    background:url(../../../mooc2/images/chapter/ai/icon-translation-hover.png) no-repeat;
+    background-size:100%;
+}
+
+.toolNavBx li.tool-read-loading i,.func-pop li p.tool-read-loading i{
+    background:url(../../../mooc2/images/chapter/ai/read-loading.gif) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-read-loading,.func-pop li p.tool-read-loading{
+    color: #3A8BFF;
+    background: #F0F6FF;
+    
+}
+.toolNavBx li.tool-reading,.func-pop li p.tool-reading{
+    position:relative
+}
+.toolNavBx li.tool-reading  i,.func-pop li p.tool-reading  i{
+    background:url(../../../mooc2/images/chapter/ai/read-voice.gif) no-repeat;
+    background-size:100%;
+}
+.toolNavBx li.tool-reading::after,.func-pop li p.tool-reading::after{
+    content: "暂停朗读";
+    position: absolute;
+    left: 0px;
+    bottom: 40px;
+    min-width: 80px;
+    padding: 8px 15px;
+    line-height: 20px;
+    background: rgba(24, 30, 51, 0.80);
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.1s 1s, visibility 0s 0.3s;
+    transition: opacity 0.1s 1s, visibility 0s 0.3s;
+    text-align: left;
+    color: #fff;
+    font-size: 12px;
+    box-sizing: border-box;
+  
+}
+
+.toolNavBx li.tool-reading::before,.func-pop li p.tool-reading::before {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: solid rgba(24, 30, 51, 0.80) 4px;
+  position: absolute;
+  left: 34px;
+  bottom:32px;
+  top: auto;
+  border-color: rgba(24, 30, 51, 0.8) transparent transparent transparent;
+  /*border-color: transparent transparent rgba(24, 30, 51, 0.8) transparent;三角往左*/
+  opacity: 0;
+  visibility: hidden;
+}
+.toolNavBx li.tool-reading:hover::after,.toolNavBx li.tool-reading:hover::before,.func-pop li p.tool-reading:hover::after,.func-pop li p.tool-reading:hover::before {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0.1s, visibility 0.3s 0.1s;
+  transition: opacity 0.3s 0.1s, visibility 0.3s 0.1s;
+}
+
+/*翻译*/
+.translationBox {
+    unicode-bidi: isolate;
+    z-index: 1000;
+    user-select: none;
+    font: 12px / 1.6 CXChineseQuote, -apple-system, BlinkMacSystemFont, Helvetica Neue, Segoe UI, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    -webkit-font-smoothing: antialiased;
+}
+
+.translationBox {
+    width:422px;
+    border: 3px solid #FFFFFFCC;
+    box-shadow: 0px 2px 12px 0px #00255933;
+    background:linear-gradient(180deg, rgba(244, 250, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 88.37%),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    box-sizing: border-box;
+    border-radius: 6px;
+    position:absolute;
+}
+.translationBox .translationBg{
+    width:100%;
+    height:100%;
+    background:url(../../../mooc2/images/chapter/ai/fy-bg.png) no-repeat top center;
+    padding:0 16px;
+    box-sizing: border-box;
+}
+.translationBox .move-icon{
+    display:block;
+    width:100%;
+    height:7px;
+    background:url(../../../mooc2/images/chapter/ai/icon-move.png) no-repeat center center;
+    background-size:16px 7px;
+    cursor: move;
+    padding:10px 0 ;
+    opacity: 0.4;
+}
+.translationBox .move-icon:hover{
+    opacity: 1;
+}
+.translationBox .trans-cont{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+.translationBox .trans-cont .trans-input{
+    width:177px;
+    height:34px;
+    border: 1px solid #D4D6D9;
+    background: #FFF;
+    border-radius: 6px;
+    box-sizing: border-box;
+    padding:0 14px;
+    line-height:32px;
+}
+.translationBox .trans-cont .trans-btn{
+    display:inline-block;
+    width:14px;
+    height:14px;
+    background:url(../../../mooc2/images/chapter/ai/arrow-btn.png) no-repeat center center;
+    background-size:100%;
+    margin:0 10px;
+}
+
+
+/*下拉框*/
+.translationBox .transSelectBox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width:177px;
+  height:34px;
+  line-height: 32px;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 14px;
+}
+
+.translationBox .transSelectBox p {
+  color: #131B26;
+  height: 33px;
+  font-size: 14px;
+}
+
+.translationBox .transSelectBox ul {
+  width: 100%;
+  position: absolute;
+  z-index: 58;
+  top: 34px;
+  left: 0px;
+  background: #fff;
+  border-top: 0;
+  box-shadow: 0 2px 12px 0 rgba(175, 187, 204, 0.75);
+  border-radius: 6px;
+  padding: 6px 0;
+  max-height:200px;
+  overflow-y: auto;
+}
+
+.translationBox .transSelectBox ul li {
+  height: 40px;
+  line-height: 40px;
+}
+
+.translationBox .transSelectBox ul li a {
+  display: block;
+  line-height: 40px;
+  color: #333;
+  text-align: left;
+  font-weight: normal;
+  font-size: 14px;
+  padding-left: 12px;
+    text-decoration: none;
+}
+
+.translationBox .transSelectBox ul li a:hover {
+  background: #F7FAFC;
+  color: #3A8BFF;
+}
+.translationBox .blue-border p {
+  color: #3A8BFF;
+}
+
+
+.translationBox .transSelectBox ul li.boxli_cur a{
+  color:#3A8BFF;
+  background: #F7FAFC;
+}
+.translationBox .transSelectBox ul li.boxli_cur a::after{
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: -2px 0px 0 14px;
+  background: url(../../../mooc2/images/chapter/ai/icon-select.png) no-repeat;
+  background-size:100%; 
+  vertical-align: middle;
+}
+ .transSelectBox .icon-arrow-down {
+  float: right;
+  width: 12px;
+  height: 12px;
+  background: url(../../../mooc2/images/chapter/ai/select_icon_down.png) no-repeat;
+  background-size: 100% 100%;
+  margin-top: 12px;
+
+}
+
+.translationBox .blue-border  .icon-arrow-down {
+  background: url(../../../mooc2/images/chapter/ai/select_icon_up.png) no-repeat;
+  background-size: 100% 100%;
+
+}
+
+.translationBox .trans-result{
+    width:100%;
+    max-height:313px;
+    min-height:96px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding:14px 16px;
+    margin-top:10px;
+    border-radius:8px;
+    color:#131B26;
+    font-size:16px;
+}
+.translationBox .trans-bottom{
+    background:#fff;
+    padding-top:6px;
+}
+.translationBox .trans-bottom-icons{
+    margin-bottom:10px;
+}
+.translationBox .trans-bottom-icons li{
+    display:inline-block;
+    margin-right:14px;
+    position: relative;
+    cursor: pointer;
+    padding:3px;
+}
+.translationBox .trans-bottom-icons li span{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    
+}
+.translationBox .trans-bottom-icons li:hover{
+    background: #F2F4F7;
+    border-radius: 4px;
+}
+.translationBox .trans-bottom-icons li span.icon-langdu{
+    background:url(../../../mooc2/images/chapter/ai/icon-read.png) no-repeat center center;
+    background-size:100%;
+}
+
+.translationBox .trans-bottom-icons li span.icon-langduing {
+    background: url(../../../mooc2/images/chapter/ai/icon-read-hover.png) no-repeat center center;
+    background-size: 100%;
+}
+.translationBox .trans-bottom-icons li span.icon-copy{
+    background:url(../../../mooc2/images/chapter/ai/icon-copy.png) no-repeat center center;
+    background-size:100%;
+}
+.translationBox .trans-bottom-icons li span.icon-refresh{
+    background:url(../../../mooc2/images/chapter/ai/icon-refresh.png) no-repeat center center;
+    background-size:100%;
+}
+
+.translationBox .transtipsCon {
+  position: absolute;
+  left: -16px;
+  bottom: 30px;
+  min-width: 56px;
+  padding: 8px 15px;
+  line-height: 20px;
+  background: rgba(24, 30, 51, 0.80);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.1s 1s, visibility 0s 0.3s;
+  transition: opacity 0.1s 1s, visibility 0s 0.3s;
+  text-align: left;
+  color: #fff;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.translationBox .trans-bottom-icons .transtipsCon::after {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: solid rgba(24, 30, 51, 0.80) 4px;
+  position: absolute;
+  left: 24px;
+  bottom: -8px;
+  top: auto;
+  border-color: rgba(24, 30, 51, 0.8) transparent transparent transparent;
+  /*border-color: transparent transparent rgba(24, 30, 51, 0.8) transparent;三角往左*/
+}
+
+
+
+.translationBox .trans-bottom-icons li:hover .transtipsCon {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0.1s, visibility 0.3s 0.1s;
+  transition: opacity 0.3s 0.1s, visibility 0.3s 0.1s;
+}
+
+.translationBox .trans-question-box{
+    width:100%;
+    padding:6px 12px;
+    box-sizing: border-box;
+    border: 1px solid #D4D6D9;
+    border-radius: 6px;
+    display:flex;
+    justify-content: space-between;
+}
+.translationBox .trans-ques-text{
+    width:calc(100% - 40px);
+    max-height:120px;
+    overflow-y: auto;
+    outline: none;
+    padding:4px 0;
+    line-height:22px;
+    font-size:14px;
+}
+
+/* .trans-ques-text:empty:before {
+    content: attr(data-placeholder);
+    color: #ACB4BF;
+  } */
+
+.translationBox .trans-question-box .into-btn{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    background:url(../../../mooc2/images/chapter/ai/send-btn.png) no-repeat;
+    background-size:100%;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.translationBox .ai-tips{
+    text-align: center;
+    line-height:18px;
+    color: #ACB4BF;
+    margin:10px 0 14px 0;
+}
+
+.translationBox .blueBorder{
+     border: 1px solid #3A8BFF;
+}
+
+.translationBox .selectable-text .comment_border{
+    border-bottom: 2px solid rgb(248, 230, 171);
+}
+.translationBox .selectable-text .comment_clicked{
+    border-bottom: 2px solid #ffc60a!important;
+    background-color: #faf1d1!important;
+}
+
+.translationBox strong {
+    font-weight: normal;
+}
+
+.li-disabled {
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/**滚动条样式**/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #DADFE5;
+}
+.func-pop li p.tool-assistant, .func-pop li p.tool-read, .func-pop li p.tool-translation {
+    margin-left: 20px;
+}
